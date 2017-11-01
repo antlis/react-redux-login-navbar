@@ -1,5 +1,5 @@
 import React from 'react';
-import {Router, Route} from 'react-router-dom';
+import {Router, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {history} from '../_helpers';
@@ -7,6 +7,7 @@ import {alertActions} from '../_actions';
 import {LoginPage} from "../LoginPage/LoginPage";
 import {PrivateRoute} from "../_components/PrivateRoute";
 import {NavBar} from "../Navbar/Navbar";
+import {Journals} from "../_components/Journals";
 
 class App extends React.Component {
     constructor(props) {

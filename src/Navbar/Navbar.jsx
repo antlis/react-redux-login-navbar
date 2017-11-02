@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {BrowserRouter, Link} from 'react-router-dom'
 import {MenuItem, Nav, Navbar, NavDropdown, NavItem} from "react-bootstrap";
 import {LinkContainer} from 'react-router-bootstrap';
+import {Journals} from "../_components/Journals";
+import {journalActions} from "../_actions/journal.actions";
 
 class NabBar extends React.Component {
     constructor(props) {
@@ -43,8 +45,10 @@ class NabBar extends React.Component {
                             <NavItem eventKey={5} className="gwt-Anchor" href="#"
                                      id="gwt-debug-navbar-journal">Журналы</NavItem>
                         </LinkContainer>
-                        <NavItem eventKey={6} className="gwt-Anchor" href="#"
-                                 id="gwt-debug-navbar-sanctions">Санкции</NavItem>
+                        <LinkContainer to="/sanctions">
+                            <NavItem eventKey={6} className="gwt-Anchor" href="#"
+                                     id="gwt-debug-navbar-sanctions">Санкции</NavItem>
+                        </LinkContainer>
                         <NavItem eventKey={7} className="gwt-Anchor" href="#" id="gwt-debug-navbar-serviceinfo">Служебная
                             информация</NavItem>
                         <NavDropdown eventKey={8} pullRight noCaret title={title} id="basic-nav-dropdown"

@@ -8,6 +8,7 @@ import {LoginPage} from "../LoginPage/LoginPage";
 import {PrivateRoute} from "../_components/PrivateRoute";
 import {NavBar} from "../Navbar/Navbar";
 import {Journals} from "../_components/Journals";
+import {Body} from "../body/Body";
 
 class App extends React.Component {
     constructor(props) {
@@ -29,8 +30,8 @@ class App extends React.Component {
                 }
                 <Router history={history}>
                     <div>
-                        <PrivateRoute exact path="/" component={NavBar}/>
-                        <Route path="/login" component={LoginPage}/>
+                        <NavBar/>
+                        <Body/>
                     </div>
                 </Router>
             </div>

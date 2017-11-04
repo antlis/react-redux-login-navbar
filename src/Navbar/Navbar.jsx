@@ -1,10 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {BrowserRouter, Link} from 'react-router-dom'
 import {MenuItem, Nav, Navbar, NavDropdown, NavItem} from "react-bootstrap";
 import {LinkContainer} from 'react-router-bootstrap';
-import {Journals} from "../_components/Journals";
-import {journalActions} from "../_actions/journal.actions";
 
 class NabBar extends React.Component {
     constructor(props) {
@@ -33,30 +30,51 @@ class NabBar extends React.Component {
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav>
-                        <NavItem eventKey={1} className="gwt-Anchor" href="#"
-                                 id="gwt-debug-navbar-tasks">Задания</NavItem>
-                        <NavItem eventKey={2} className="gwt-Anchor" href="#" id="gwt-debug-navbar-accounts">Учетные
-                            записи</NavItem>
-                        <NavItem eventKey={3} className="gwt-Anchor" href="#" id="gwt-debug-navbar-groups">Органы
-                            ОРМ</NavItem>
-                        <NavItem eventKey={4} className="gwt-Anchor" href="#"
-                                 id="gwt-debug-navbar-devices">Устройства</NavItem>
+                        <LinkContainer to="/orders">
+                            <NavItem eventKey={1} className="gwt-Anchor" href="#" id="gwt-debug-navbar-tasks">
+                                Задания
+                            </NavItem>
+                        </LinkContainer>
+                        <LinkContainer to="/users">
+                            <NavItem eventKey={2} className="gwt-Anchor" href="#" id="gwt-debug-navbar-accounts">
+                                Учетные записи
+                            </NavItem>
+                        </LinkContainer>
+                        <LinkContainer to="/groups">
+                            <NavItem eventKey={3} className="gwt-Anchor" href="#" id="gwt-debug-navbar-groups">
+                                Органы ОРМ
+                            </NavItem>
+                        </LinkContainer>
+                        <LinkContainer to="/devices">
+                            <NavItem eventKey={4} className="gwt-Anchor" href="#" id="gwt-debug-navbar-devices">
+                                Устройства
+                            </NavItem>
+                        </LinkContainer>
                         <LinkContainer to="/journals">
-                            <NavItem eventKey={5} className="gwt-Anchor" href="#"
-                                     id="gwt-debug-navbar-journal">Журналы</NavItem>
+                            <NavItem eventKey={5} className="gwt-Anchor" href="#" id="gwt-debug-navbar-journal">
+                                Журналы
+                            </NavItem>
                         </LinkContainer>
                         <LinkContainer to="/sanctions">
-                            <NavItem eventKey={6} className="gwt-Anchor" href="#"
-                                     id="gwt-debug-navbar-sanctions">Санкции</NavItem>
+                            <NavItem eventKey={6} className="gwt-Anchor" href="#" id="gwt-debug-navbar-sanctions">
+                                Санкции
+                            </NavItem>
                         </LinkContainer>
-                        <NavItem eventKey={7} className="gwt-Anchor" href="#" id="gwt-debug-navbar-serviceinfo">Служебная
-                            информация</NavItem>
+                        <LinkContainer to="/serviceInfo">
+                            <NavItem eventKey={7} className="gwt-Anchor" href="#" id="gwt-debug-navbar-serviceinfo">
+                                Служебная информация
+                            </NavItem>
+                        </LinkContainer>
                         <NavDropdown eventKey={8} pullRight noCaret title={title} id="basic-nav-dropdown"
                                      style={{right: 60, position: 'fixed'}}>
                             <MenuItem eventKey={8.1} className="gwt-Anchor"
-                                      id="gwt-debug-navbar-usermenu-change-password-btn">Изменение пароля</MenuItem>
+                                      id="gwt-debug-navbar-usermenu-change-password-btn">
+                                Изменение пароля
+                            </MenuItem>
                             <LinkContainer to="/login">
-                                <MenuItem eventKey={8.2}>Выход</MenuItem>
+                                <MenuItem eventKey={8.2}>
+                                    Выход
+                                </MenuItem>
                             </LinkContainer>
                         </NavDropdown>
                     </Nav>

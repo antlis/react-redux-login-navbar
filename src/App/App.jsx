@@ -7,7 +7,7 @@ import {alertActions} from '../_actions';
 import {LoginPage} from "../LoginPage/LoginPage";
 import {PrivateRoute} from "../_components/PrivateRoute";
 import {NavBar} from "../Navbar/Navbar";
-import {Journals} from "../_components/Journals";
+import {Journals} from "../_components/journals/journals";
 import {Body} from "../body/Body";
 
 class App extends React.Component {

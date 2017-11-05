@@ -1,6 +1,6 @@
 import content from '../lang/Lang';
 
-const getContent = (lang = 'en') => {
+const getContent = (lang = 'ru') => {
     return content.filter(obj => obj.lang === lang)[0];
 };
 

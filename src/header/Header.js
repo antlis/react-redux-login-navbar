@@ -1,6 +1,6 @@
 import {Switch, Route} from 'react-router-dom'
 import * as React from "react";
-import {NavBar} from "../_components/navbar/Navbar";
+import {NavBar} from "../_components/Navbar";
 
 export const Header = () => (
     <main>

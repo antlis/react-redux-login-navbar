@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {userActions} from '../_actions';
 import {Button, ButtonGroup, DropdownButton, MenuItem} from "react-bootstrap";
+import {switchLanguages} from '../_actions/translateAction';
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -18,6 +19,7 @@ class LoginPage extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.changeLanguage = this.changeLanguage.bind(this);
     }
 
     handleChange(e) {
@@ -35,8 +37,15 @@ class LoginPage extends React.Component {
         }
     }
 
+    changeLanguage(e) {
+        const {dispatch} = this.props;
+        dispatch(switchLanguages(e));
+    }
+
     render() {
+        const contentTranslation = this.props.content;
         const {username, password, submitted} = this.state;
+
         return (
             <div id="page-container">
                 <div className="login-screen" id="gwt-debug-sorm.ui.main" style={{height: 521}}>
@@ -48,16 +57,16 @@ class LoginPage extends React.Component {
                                 <div className={'col-xs-12 form-group ' + (submitted && !username ? 'has-error' : '')}>
                                     <input type="text" className="form-control" name="username"
                                            value={username} onChange={this.handleChange}
-                                           placeholder="Имя пользователя"
+                                           placeholder={contentTranslation.page.login.username}
                                            id="gwt-debug-auth-login-field"/>
                                 </div>
                             </div>
                             <div className={'row'}>
                                 <div className={'col-xs-12 form-group ' + (submitted && !password ? 'has-error' : '')}>
                                     <input type="password" className="form-control" name="password"
-                                           value={password}
-                                           placeholder="Пароль" id="gwt-debug-auth-password-field"
-                                           onChange={this.handleChange}/>
+                                           value={password} onChange={this.handleChange}
+                                           placeholder={contentTranslation.page.login.password}
+                                           id="gwt-debug-auth-password-field"/>
                                 </div>
                             </div>
                         </form>
@@ -67,10 +76,12 @@ class LoginPage extends React.Component {
                                         id="gwt-debug-auth-submit-btn" form="loginForm">
                                     Вход
                                 </Button>
-                                <DropdownButton pullRight title={""} className="btn-primary glyphicon glyphicon-globe"
+                                <DropdownButton pullRight title=""
+                                                onSelect={this.changeLanguage}
+                                                className="btn-primary glyphicon glyphicon-globe"
                                                 id="bg-nested-dropdown">
-                                    <MenuItem id="gwt-debug-auth-locale-en" eventKey="1">English</MenuItem>
-                                    <MenuItem id="gwt-debug-auth-locale-ru" eventKey="2">Русский</MenuItem>
+                                    <MenuItem id="gwt-debug-auth-locale-en" eventKey="en">English</MenuItem>
+                                    <MenuItem id="gwt-debug-auth-locale-ru" eventKey="ru">Русский</MenuItem>
                                 </DropdownButton>
                             </ButtonGroup>
                         </div>
@@ -83,8 +94,9 @@ class LoginPage extends React.Component {
 
 function mapStateToProps(state) {
     const {loggingIn} = state.authentication;
+    const {content} = state.translate;
     return {
-        loggingIn
+        loggingIn, content
     };
 }
 

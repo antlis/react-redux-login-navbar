@@ -15,7 +15,7 @@ class NabBar extends React.Component {
 
         const title =
             <div id="gwt-debug-navbar-usermenu-btn" className="navbar-user">
-                <img alt="" src="../../Journals&filter_files/user_icon.png"/>
+                <img alt="" src="../../../Journals&filter_files/user_icon.png"/>
                 <span>superadmin2,  superadmin2   (#34), superadmins</span>
                 <b className="caret"/>
             </div>;
@@ -25,42 +25,42 @@ class NabBar extends React.Component {
                     <Navbar.Header>
                         <Navbar.Brand>
                             <li className="navbar-brand"><img
-                                src="../../Journals&filter_files/header_icon_protei.png"
+                                src="../../../Journals&filter_files/header_icon_protei.png"
                                 style={{display: 'inline', height: 28}}/></li>
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav>
-                        <LinkContainer to="/orders">
+                        <LinkContainer to="/index/orders">
                             <NavItem eventKey={1} className="gwt-Anchor" href="#" id="gwt-debug-navbar-tasks">
                                 Задания
                             </NavItem>
                         </LinkContainer>
-                        <LinkContainer to="/users">
+                        <LinkContainer to="/index/users">
                             <NavItem eventKey={2} className="gwt-Anchor" href="#" id="gwt-debug-navbar-accounts">
                                 Учетные записи
                             </NavItem>
                         </LinkContainer>
-                        <LinkContainer to="/groups">
+                        <LinkContainer to="/index/groups">
                             <NavItem eventKey={3} className="gwt-Anchor" href="#" id="gwt-debug-navbar-groups">
                                 Органы ОРМ
                             </NavItem>
                         </LinkContainer>
-                        <LinkContainer to="/devices">
+                        <LinkContainer to="/index/devices">
                             <NavItem eventKey={4} className="gwt-Anchor" href="#" id="gwt-debug-navbar-devices">
                                 Устройства
                             </NavItem>
                         </LinkContainer>
-                        <LinkContainer to="/journals">
+                        <LinkContainer to="/index/journals">
                             <NavItem eventKey={5} className="gwt-Anchor" href="#" id="gwt-debug-navbar-journal">
                                 Журналы
                             </NavItem>
                         </LinkContainer>
-                        <LinkContainer to="/sanctions">
+                        <LinkContainer to="/index/sanctions">
                             <NavItem eventKey={6} className="gwt-Anchor" href="#" id="gwt-debug-navbar-sanctions">
                                 Санкции
                             </NavItem>
                         </LinkContainer>
-                        <LinkContainer to="/serviceInfo">
+                        <LinkContainer to="/index/serviceInfo">
                             <NavItem eventKey={7} className="gwt-Anchor" href="#" id="gwt-debug-navbar-serviceinfo">
                                 Служебная информация
                             </NavItem>

@@ -5,13 +5,13 @@ import {Orders, Users, Devices, Journals, Groups, Sanctions, ServiceInfo} from '
 export const Body = () => (
     <main>
         <Switch>
-            <Route path='/orders' component={Orders}/>
-            <Route path='/users' component={Users}/>
-            <Route path='/devices' component={Devices}/>
-            <Route path='/journals' component={Journals}/>
-            <Route path='/groups' component={Groups}/>
-            <Route path='/sanctions' component={Sanctions}/>
-            <Route path='/serviceInfo' component={ServiceInfo}/>
+            <Route path='/index/orders' component={Orders}/>
+            <Route path='/index/users' component={Users}/>
+            <Route path='/index/devices' component={Devices}/>
+            <Route path='/index/journals' component={Journals}/>
+            <Route path='/index/groups' component={Groups}/>
+            <Route path='/index/sanctions' component={Sanctions}/>
+            <Route path='/index/serviceInfo' component={ServiceInfo}/>
         </Switch>
     </main>
 )

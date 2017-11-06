@@ -1,18 +1,16 @@
 import React from 'react';
-import {render} from 'react-dom';
-import {Provider} from 'react-redux';
+import { render } from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom'
 
-import {store} from './_helpers';
-import {App} from "./App/App";
+import configureStore from "./store/configureStore";
+import App from "./containers/Root";
 
-// setup fake backend
-import {configureFakeBackend} from './_helpers';
 
-configureFakeBackend();
+const store = configureStore();
 
 render(
-    <Provider store={store}>
-        <App/>
-    </Provider>,
+        <Router>
+            <App store={store}/>
+        </Router>,
     document.getElementById('app')
 );

@@ -10,11 +10,6 @@ export class Journals extends React.Component {
         this.state = {
             filter: false
         }
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick(){
-        return <Filter/>
     }
 
     render() {
@@ -24,7 +19,7 @@ export class Journals extends React.Component {
                     <div className="panel-heading">
                         <div className="row">
                             <div className="pull-left">
-                                <DropdownButton onClick={()=>this.handleClick} className="btn-info btn-xs filterButton" title={'Фильтр'}
+                                <DropdownButton className="btn-info btn-xs filterButton" title={'Фильтр'}
                                                 id="gwt-debug-common-filter-btn">
                                    {/* <MenuItem id="gwt-debug-journal-filter" eventKey="filter">
                                         <Filter/>

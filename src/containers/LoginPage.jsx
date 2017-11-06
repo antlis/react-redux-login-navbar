@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {userActions} from '../_actions';
+import {userActions} from '../_actions/index';
 import {Button, ButtonGroup, DropdownButton, MenuItem} from "react-bootstrap";
 import {switchLanguages} from '../_actions/translateAction';
+import {withRouter} from "react-router";
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -90,12 +91,10 @@ class LoginPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const {loggingIn} = state.authentication;
     const {content} = state.translate;
     return {
-        loggingIn, content
+        content
     };
 }
 
-const connectedLoginPage = connect(mapStateToProps)(LoginPage);
-export {connectedLoginPage as LoginPage};
+export default withRouter(connect(mapStateToProps)(LoginPage));

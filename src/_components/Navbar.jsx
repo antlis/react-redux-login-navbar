@@ -6,9 +6,6 @@ import {LinkContainer} from 'react-router-bootstrap';
 class NabBar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            activePage: 1
-        };
     }
 
     render() {
@@ -19,7 +16,6 @@ class NabBar extends React.Component {
                 <span>superadmin2,  superadmin2   (#34), superadmins</span>
                 <b className="caret"/>
             </div>;
-
         return (
             <div id="page-container">
                 <Navbar fluid>
@@ -67,9 +63,8 @@ class NabBar extends React.Component {
                             </NavItem>
                         </LinkContainer>
                         <NavDropdown eventKey={8} pullRight noCaret title={title} id="basic-nav-dropdown"
-                                     style={{right: 60, position: 'fixed'}}>
-                            <MenuItem eventKey={8.1} className="gwt-Anchor"
-                                      id="gwt-debug-navbar-usermenu-change-password-btn">
+                                     style={{right: 60, position: 'fixed', zIndex:400}}>
+                            <MenuItem eventKey={8.1} className="gwt-Anchor" id="gwt-debug-navbar-usermenu-change-password-btn">
                                 {contentTranslation.page.navbar.changePassword}
                             </MenuItem>
                             <LinkContainer to="/login">
@@ -86,10 +81,8 @@ class NabBar extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const {activePage} = state;
     const {content} = state.translate;
     return {
-        activePage,
         content
     };
 }

@@ -31,15 +31,13 @@ class LoginPage extends React.Component {
         e.preventDefault();
         this.setState({submitted: true});
         const {username, password} = this.state;
-        const {dispatch} = this.props;
         if (username && password) {
-            dispatch(userActions.login(username, password));
+            this.props.dispatch(userActions.login(username, password));
         }
     }
 
     changeLanguage(e) {
-        const {dispatch} = this.props;
-        dispatch(switchLanguages(e));
+        this.props.dispatch(switchLanguages(e));
     }
 
     render() {
@@ -48,7 +46,7 @@ class LoginPage extends React.Component {
 
         return (
             <div id="page-container">
-                <div className="login-screen" id="gwt-debug-sorm.ui.main" style={{height: 521}}>
+                <div className="login-screen" id="gwt-debug-sorm.ui.main" style={{height: window.innerHeight}}>
                     <div className="logo"><img className="logo-image img-responsive"
                                                src="/login_files/logo_protei.png"/></div>
                     <div className="login-form">
@@ -76,8 +74,7 @@ class LoginPage extends React.Component {
                                         id="gwt-debug-auth-submit-btn" form="loginForm">
                                     Вход
                                 </Button>
-                                <DropdownButton pullRight title=""
-                                                onSelect={this.changeLanguage}
+                                <DropdownButton pullRight title="" onSelect={this.changeLanguage}
                                                 className="btn-primary glyphicon glyphicon-globe"
                                                 id="bg-nested-dropdown">
                                     <MenuItem id="gwt-debug-auth-locale-en" eventKey="en">English</MenuItem>

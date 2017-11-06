@@ -6,6 +6,7 @@ import {alertActions} from '../_actions';
 import {Body} from "../body/Body";
 import {Header} from "../header/Header";
 import {LoginPage} from "../LoginPage/LoginPage";
+import DevTools from "../containers/DevTools";
 
 class App extends React.Component {
     constructor(props) {
@@ -32,6 +33,7 @@ class App extends React.Component {
                         <Route path="/login" component={LoginPage} />
                     </div>
                 </Router>
+                <DevTools />
             </div>
         );
     }

@@ -97,4 +97,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default withRouter(connect(mapStateToProps)(LoginPage));
+export default connect(mapStateToProps)(LoginPage);

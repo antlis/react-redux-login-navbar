@@ -3,15 +3,15 @@ import {connect} from 'react-redux';
 import {MenuItem, Nav, Navbar, NavDropdown, NavItem} from "react-bootstrap";
 import {LinkContainer} from 'react-router-bootstrap';
 import {withRouter} from 'react-router-dom'
+import {history} from "../_constants/history";
 
 class NavBar extends React.Component {
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(page) {
-        this.props.history.push(`/index/` + page)
+    static handleChange(page) {
+        history.push(`/` + page)
     }
 
     render() {
@@ -33,36 +33,36 @@ class NavBar extends React.Component {
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav>
-                        <NavItem eventKey={'orders'} onSelect={this.handleChange} className="gwt-Anchor" href="#"
+                        <NavItem eventKey={'orders'} onSelect={NavBar.handleChange} className="gwt-Anchor" href="#"
                                  id="gwt-debug-navbar-tasks">
                             {contentTranslation.page.navbar.orders}
                         </NavItem>
-                        <NavItem eventKey={'users'} onSelect={this.handleChange} className="gwt-Anchor" href="#"
+                        <NavItem eventKey={'users'} onSelect={NavBar.handleChange} className="gwt-Anchor" href="#"
                                  id="gwt-debug-navbar-accounts">
                             {contentTranslation.page.navbar.users}
                         </NavItem>
-                        <NavItem eventKey={'groups'} onSelect={this.handleChange} className="gwt-Anchor" href="#"
+                        <NavItem eventKey={'groups'} onSelect={NavBar.handleChange} className="gwt-Anchor" href="#"
                                  id="gwt-debug-navbar-groups">
                             {contentTranslation.page.navbar.groups}
                         </NavItem>
-                        <NavItem eventKey={'devices'} onSelect={this.handleChange} className="gwt-Anchor"
+                        <NavItem eventKey={'devices'} onSelect={NavBar.handleChange} className="gwt-Anchor"
                                  id="gwt-debug-navbar-devices">
                             {contentTranslation.page.navbar.devices}
                         </NavItem>
-                        <NavItem eventKey={'journals'} onSelect={this.handleChange} className="gwt-Anchor"
+                        <NavItem eventKey={'journals'} onSelect={NavBar.handleChange} className="gwt-Anchor"
                                  id="gwt-debug-navbar-journal">
                             {contentTranslation.page.navbar.journals}
                         </NavItem>
-                        <NavItem eventKey={'sanctions'} onSelect={this.handleChange} className="gwt-Anchor"
+                        <NavItem eventKey={'sanctions'} onSelect={NavBar.handleChange} className="gwt-Anchor"
                                  id="gwt-debug-navbar-sanctions">
                             {contentTranslation.page.navbar.sanctions}
                         </NavItem>
-                        <NavItem eventKey={'serviceInfo'} onSelect={this.handleChange} className="gwt-Anchor"
+                        <NavItem eventKey={'serviceInfo'} onSelect={NavBar.handleChange} className="gwt-Anchor"
                                  id="gwt-debug-navbar-serviceinfo">
                             {contentTranslation.page.navbar.serviceInfo}
                         </NavItem>
                         <NavDropdown eventKey={8} pullRight noCaret title={title} id="basic-nav-dropdown"
-                                     style={{right: 60, position: 'fixed', zIndex: 400}}>
+                                     style={{right: 60, position: 'fixed', zIndex: 4}}>
                             <MenuItem eventKey={8.1} className="gwt-Anchor"
                                       id="gwt-debug-navbar-usermenu-change-password-btn">
                                 {contentTranslation.page.navbar.changePassword}
@@ -87,4 +87,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default withRouter(connect(mapStateToProps)(NavBar));
+export default connect(mapStateToProps)(NavBar);

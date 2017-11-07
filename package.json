@@ -17,7 +17,7 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "react-router": "latest",
+    "history": "^4.6.3",
     "prop-types": "latest"
   },
   "devDependencies": {

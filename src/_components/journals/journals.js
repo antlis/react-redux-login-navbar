@@ -3,14 +3,25 @@ import {connect} from 'react-redux';
 import {Filter} from "./filter";
 import {Button, DropdownButton, MenuItem} from "react-bootstrap";
 import {Groups} from "../groups/groups";
+import {withRouter} from "react-router-dom";
 
-export class Journals extends React.Component {
+/*const loadData = props => {
+    const { fullName } = props
+    props.loadRepo(fullName, [ 'description' ])
+    props.loadStargazers(fullName)
+}*/
+
+class Journals extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             filter: false
         }
     }
+
+  /*  componentWillMount(){
+        Journals(this.props);
+    }*/
 
     render() {
         return (
@@ -95,4 +106,4 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedJournals = connect(mapStateToProps)(Journals);
+export default withRouter(connect(mapStateToProps)(Journals));

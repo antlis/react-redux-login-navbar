@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {userActions} from '../_actions/index';
 import {Button, ButtonGroup, DropdownButton, MenuItem} from "react-bootstrap";
 import {switchLanguages} from '../_actions/translateAction';
-import {withRouter} from "react-router";
 
 class LoginPage extends React.Component {
     constructor(props) {

@@ -5,12 +5,6 @@ import {Button, DropdownButton, MenuItem} from "react-bootstrap";
 import {Groups} from "../groups/groups";
 import {withRouter} from "react-router-dom";
 
-/*const loadData = props => {
-    const { fullName } = props
-    props.loadRepo(fullName, [ 'description' ])
-    props.loadStargazers(fullName)
-}*/
-
 class Journals extends React.Component {
     constructor(props) {
         super(props);
@@ -18,10 +12,6 @@ class Journals extends React.Component {
             filter: false
         }
     }
-
-  /*  componentWillMount(){
-        Journals(this.props);
-    }*/
 
     render() {
         return (
@@ -106,4 +96,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default withRouter(connect(mapStateToProps)(Journals));
+export default connect(mapStateToProps)(Journals);

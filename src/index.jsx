@@ -1,17 +1,12 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { Router } from 'react-router-dom'
-
+import {render} from 'react-dom';
 import configureStore from "./store/configureStore";
-import App from "./containers/Root";
-import {history} from "./_constants/history";
+import Root from "./containers/Root";
 
 
 const store = configureStore();
 
 render(
-        <Router history={history}>
-            <App store={store}/>
-        </Router>,
+    <Root store={store}/>,
     document.getElementById('app')
 );

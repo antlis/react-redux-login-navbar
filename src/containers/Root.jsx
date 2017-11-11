@@ -1,29 +1,32 @@
 import React from 'react';
-import {Switch, Route, Redirect} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import LoginPage from "./LoginPage";
-import DevTools from "./DevTools";
-import NavBar from "./Navbar";
 import {Provider} from 'react-redux'
-import Journals from '../_components/journals/journals'
+import {history} from "../_constants/history";
+import {Route, Router, Switch} from "react-router-dom";
+import LoginPage from "./LoginPage";
 import {Orders, Users, Devices, Groups, Sanctions, ServiceInfo} from '../_components'
+import Journals from "../_components/journals/journals";
+import DevTools from "./DevTools";
+import App from "./App";
 
 const Root = ({store}) => (
     <Provider store={store}>
-        <div>
-            <Route path='/' component={NavBar}/>
-            <Switch>
-                <Route path='/orders' component={Orders}/>
-                <Route path='/users' component={Users}/>
-                <Route path='/devices' component={Devices}/>
-                <Route path='/journals' component={Journals}/>
-                <Route path='/groups' component={Groups}/>
-                <Route path='/sanctions' component={Sanctions}/>
-                <Route path='/serviceInfo' component={ServiceInfo}/>
-            </Switch>
-            <Route path="/login" component={LoginPage}/>
-            <DevTools/>
-        </div>
+        <Router history={history}>
+            <div>
+                <Route path='/index' component={App}/>
+                <Switch>
+                    <Route path='/index/orders' component={Orders}/>
+                    <Route path='/index/users' component={Users}/>
+                    <Route path='/index/devices' component={Devices}/>
+                    <Route path='/index/journals' component={Journals}/>
+                    <Route path='/index/groups' component={Groups}/>
+                    <Route path='/index/sanctions' component={Sanctions}/>
+                    <Route path='/index/serviceInfo' component={ServiceInfo}/>
+                </Switch>
+                <Route path="/login" component={LoginPage}/>
+                <DevTools/>
+            </div>
+        </Router>
     </Provider>
 );
 

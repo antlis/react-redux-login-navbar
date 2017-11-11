@@ -1,21 +1,20 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {MenuItem, Nav, Navbar, NavDropdown, NavItem} from "react-bootstrap";
-import {LinkContainer} from 'react-router-bootstrap';
-import {withRouter} from 'react-router-dom'
+import {Navbar, MenuItem, Nav, NavDropdown, NavItem} from "react-bootstrap";
 import {history} from "../_constants/history";
 
-class NavBar extends React.Component {
+class App extends React.Component {
     constructor(props) {
         super(props);
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    static handleChange(page) {
-        history.push(`/` + page)
+    handleChange(page) {
+        history.push(`/index/` + page)
     }
 
     render() {
-        const contentTranslation = this.props.content;
+        const lang = this.props.content;
         const title =
             <div id="gwt-debug-navbar-usermenu-btn" className="navbar-user">
                 <img alt="" src="../../Journals&filter_files/user_icon.png"/>
@@ -33,45 +32,43 @@ class NavBar extends React.Component {
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav>
-                        <NavItem eventKey={'orders'} onSelect={NavBar.handleChange} className="gwt-Anchor" href="#"
+                        <NavItem eventKey={'orders'} onSelect={this.handleChange} className="gwt-Anchor" href="#"
                                  id="gwt-debug-navbar-tasks">
-                            {contentTranslation.page.navbar.orders}
+                            {lang.page.navbar.orders}
                         </NavItem>
-                        <NavItem eventKey={'users'} onSelect={NavBar.handleChange} className="gwt-Anchor" href="#"
+                        <NavItem eventKey={'users'} onSelect={this.handleChange} className="gwt-Anchor" href="#"
                                  id="gwt-debug-navbar-accounts">
-                            {contentTranslation.page.navbar.users}
+                            {lang.page.navbar.users}
                         </NavItem>
-                        <NavItem eventKey={'groups'} onSelect={NavBar.handleChange} className="gwt-Anchor" href="#"
+                        <NavItem eventKey={'groups'} onSelect={this.handleChange} className="gwt-Anchor" href="#"
                                  id="gwt-debug-navbar-groups">
-                            {contentTranslation.page.navbar.groups}
+                            {lang.page.navbar.groups}
                         </NavItem>
-                        <NavItem eventKey={'devices'} onSelect={NavBar.handleChange} className="gwt-Anchor"
+                        <NavItem eventKey={'devices'} onSelect={this.handleChange} className="gwt-Anchor"
                                  id="gwt-debug-navbar-devices">
-                            {contentTranslation.page.navbar.devices}
+                            {lang.page.navbar.devices}
                         </NavItem>
-                        <NavItem eventKey={'journals'} onSelect={NavBar.handleChange} className="gwt-Anchor"
+                        <NavItem eventKey={'journals'} onSelect={this.handleChange} className="gwt-Anchor"
                                  id="gwt-debug-navbar-journal">
-                            {contentTranslation.page.navbar.journals}
+                            {lang.page.navbar.journals}
                         </NavItem>
-                        <NavItem eventKey={'sanctions'} onSelect={NavBar.handleChange} className="gwt-Anchor"
+                        <NavItem eventKey={'sanctions'} onSelect={this.handleChange} className="gwt-Anchor"
                                  id="gwt-debug-navbar-sanctions">
-                            {contentTranslation.page.navbar.sanctions}
+                            {lang.page.navbar.sanctions}
                         </NavItem>
-                        <NavItem eventKey={'serviceInfo'} onSelect={NavBar.handleChange} className="gwt-Anchor"
+                        <NavItem eventKey={'serviceInfo'} onSelect={this.handleChange} className="gwt-Anchor"
                                  id="gwt-debug-navbar-serviceinfo">
-                            {contentTranslation.page.navbar.serviceInfo}
+                            {lang.page.navbar.serviceInfo}
                         </NavItem>
                         <NavDropdown eventKey={8} pullRight noCaret title={title} id="basic-nav-dropdown"
                                      style={{right: 60, position: 'fixed', zIndex: 4}}>
                             <MenuItem eventKey={8.1} className="gwt-Anchor"
                                       id="gwt-debug-navbar-usermenu-change-password-btn">
-                                {contentTranslation.page.navbar.changePassword}
+                                {lang.page.navbar.changePassword}
                             </MenuItem>
-                            <LinkContainer to="/login">
-                                <MenuItem eventKey={8.2}>
-                                    {contentTranslation.page.navbar.exit}
-                                </MenuItem>
-                            </LinkContainer>
+                            <MenuItem onSelect={() => history.push('/login')} eventKey={8.2}>
+                                {lang.page.navbar.exit}
+                            </MenuItem>
                         </NavDropdown>
                     </Nav>
                 </Navbar>
@@ -87,4 +84,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(NavBar);
+export default connect(mapStateToProps)(App);

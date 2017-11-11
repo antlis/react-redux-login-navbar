@@ -1,29 +1,28 @@
-import { createStore, applyMiddleware, compose } from 'redux'
+import {createStore, applyMiddleware, compose} from 'redux'
 import thunk from 'redux-thunk'
-import { createLogger } from 'redux-logger'
+import {createLogger} from 'redux-logger'
 import rootReducer from '../_reducers'
 import DevTools from '../containers/DevTools'
+import {loadState, saveState} from "./localeStorage";
 
 
-const configureStore = preloadedState => {
-  const store = createStore(
-    rootReducer,
-    preloadedState,
-      compose(
-          applyMiddleware(thunk, createLogger()),
-          DevTools.instrument()
-      )
-  );
+const configureStore = () => {
+    const store = createStore(
+        rootReducer,
+        loadState(),
+        compose(
+            applyMiddleware(thunk, createLogger()),
+            DevTools.instrument()
+        )
+    );
 
-  if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept('../reducers', () => {
-      const nextRootReducer = require('../_reducers').default
-      store.replaceReducer(nextRootReducer)
-    })
-  }
+    store.subscribe(() => {
+        saveState({
+            translate: store.getState().translate
+        });
+    });
 
-  return store
+    return store
 }
 
 export default configureStore

@@ -1,21 +1,31 @@
+import {journalService} from "../_services/journal.service";
+import {journalConstants} from "../_constants/journalContstants";
 
 
 export const journalActions = {
     getAll
 };
 
-function getAll() {
+function getAll(offset, limit) {
     return dispatch => {
         dispatch(request());
 
-        userService.getAll()
+        journalService.getAll(offset, limit)
             .then(
-                users => dispatch(success(users)),
+                journals => dispatch(success(journals)),
                 error => dispatch(failure(error))
             );
     };
 
-    function request() { return { type: userConstants.GETALL_REQUEST } }
-    function success(users) { return { type: userConstants.GETALL_SUCCESS, users } }
-    function failure(error) { return { type: userConstants.GETALL_FAILURE, error } }
+    function request() {
+        return {type: journalConstants.GETALL_REQUEST}
+    }
+
+    function success(journals) {
+        return {type: journalConstants.GETALL_SUCCESS, journals}
+    }
+
+    function failure(error) {
+        return {type: journalConstants.GETALL_FAILURE, error}
+    }
 }

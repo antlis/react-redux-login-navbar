@@ -1,11 +1,11 @@
 import {authHeader} from '../_helpers';
 
-export const userService = {
+export const journalService = {
     getAll,
     getById
 };
 
-function getAll(limit, offset) {
+function getAll(offset, limit) {
     const requestOptions = {
         method: 'GET',
         headers: authHeader()

@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Button} from "react-bootstrap";
 import {Filter} from "./filter";
+import {journalActions} from "../../_actions/journalsActions";
 
 
 class Journals extends React.Component {
@@ -15,6 +16,10 @@ class Journals extends React.Component {
 
     showFilter() {
         this.setState({filter: !this.state.filter})
+    }
+
+    componentDidMount() {
+        this.props.dispatch(journalActions.getAll(0, 50));
     }
 
     render() {
@@ -86,7 +91,6 @@ class Journals extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div></div>
                     <div className="panel-body">
                         <div className="table table-hover journal fixed-row" id="gwt-debug-journaling-table">
                             <div className="scroller left"/>

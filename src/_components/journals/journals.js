@@ -1,9 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Filter} from "./filter";
-import {Button, DropdownButton, MenuItem} from "react-bootstrap";
-import {Groups} from "../groups/groups";
-import {withRouter} from "react-router-dom";
+import {Button, Overlay} from "react-bootstrap";
+import * as ReactDOM from "react-dom/cjs/react-dom.production.min";
 
 class Journals extends React.Component {
     constructor(props) {
@@ -20,12 +18,41 @@ class Journals extends React.Component {
                     <div className="panel-heading">
                         <div className="row">
                             <div className="pull-left">
-                                <DropdownButton className="btn-info btn-xs filterButton" title={'Фильтр'}
+                                {/*  <DropdownButton className="btn-info btn-xs filterButton" title={'Фильтр'}
                                                 id="gwt-debug-common-filter-btn">
-                                   {/* <MenuItem id="gwt-debug-journal-filter" eventKey="filter">
+                                    <MenuItem id="gwt-debug-journal-filter" eventKey="filter">
                                         <Filter/>
-                                    </MenuItem>*/}
-                                </DropdownButton>
+                                    </MenuItem>
+                                </DropdownButton>*/}
+                                <div style={{height: 100, position: 'relative'}}>
+                                    <Button ref="target" onClick={this.toggle}>
+                                        I am an Overlay target
+                                    </Button>
+
+                                    <Overlay
+                                        show={this.state.show}
+                                        onHide={() => this.setState({show: false})}
+                                        placement="right"
+                                        container={this}
+                                        target={() => ReactDOM.findDOMNode(this.refs.target)}
+                                    >
+                                        <div
+                                            style={{
+                                                ...this.props.style,
+                                                position: 'absolute',
+                                                backgroundColor: '#EEE',
+                                                boxShadow: '0 5px 10px rgba(0, 0, 0, 0.2)',
+                                                border: '1px solid #CCC',
+                                                borderRadius: 3,
+                                                marginLeft: -5,
+                                                marginTop: 5,
+                                                padding: 10,
+                                            }}
+                                        >
+                                            <strong>Holy guacamole!</strong> Check this info.
+                                        </div>
+                                    </Overlay>
+                                </div>
                             </div>
                             <table className="pull-left" style={{display: 'none'}} aria-hidden="true" cellSpacing="0"
                                    cellPadding="0">

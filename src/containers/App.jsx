@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Navbar, MenuItem, Nav, NavDropdown, NavItem} from "react-bootstrap";
+import {MenuItem, Nav, Navbar, NavDropdown, NavItem} from "react-bootstrap";
 import {history} from "../_constants/history";
 
 class App extends React.Component {
@@ -60,8 +60,9 @@ class App extends React.Component {
                                  id="gwt-debug-navbar-serviceinfo">
                             {lang.page.navbar.serviceInfo}
                         </NavItem>
-                        <NavDropdown eventKey={8} pullRight noCaret title={title} id="basic-nav-dropdown"
-                                     style={{right: 60, position: 'fixed', zIndex: 4}}>
+                    </Nav>
+                    <Nav className="nav navbar-nav navbar-right">
+                        <NavDropdown eventKey={8} pullRight noCaret title={title} id="basic-nav-dropdown">
                             <MenuItem eventKey={8.1} className="gwt-Anchor"
                                       id="gwt-debug-navbar-usermenu-change-password-btn">
                                 {lang.page.navbar.changePassword}

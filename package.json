@@ -6,7 +6,6 @@
     "start": "webpack-dev-server --open"
   },
   "dependencies": {
-    "connect-history-api-fallback": "^1.5.0",
     "history": "^4.6.3",
     "humps": "^2.0.0",
     "jest-cli": "^20.0.4",

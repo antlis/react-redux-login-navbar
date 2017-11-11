@@ -4,7 +4,6 @@ export class Filter extends React.Component {
     render() {
         return (
             <div style={{visibility: 'visible', position: 'absolute', overflow: 'visible'}} className="gwt-PopupPanel">
-                <div className="popupContent">
                     <div className="filter-popup animated fadeIn" style={{width: 600}}>
                         <div className="row">
                             <div className="col-xs-12">
@@ -103,7 +102,6 @@ export class Filter extends React.Component {
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         )
     }

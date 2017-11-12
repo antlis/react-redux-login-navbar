@@ -4,7 +4,7 @@ let users = JSON.parse(localStorage.getItem('users')) || [];
 
 function createJournals() {
     let journals = [];
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 20; i++) {
         journals[i] = {
             time: Date.now(),
             type: "Запрос " + i,

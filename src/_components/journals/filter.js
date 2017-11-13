@@ -90,7 +90,7 @@ export class Filter extends React.Component {
                         <div className="row">
                             <div className="form-group col-xs-12">
                                 <div className="pull-right">
-                                    <button type="button" className="btn btn-sm btn-primary"
+                                    <button onClick={this.props.loadJournals} type="button" className="btn btn-sm btn-primary"
                                             id="gwt-debug-journaling-filter-apply-button">
                                         Применить
                                     </button>

@@ -1,6 +1,10 @@
 import {journalConstants} from "../_constants/journalContstants";
 
-export function journals(state = {}, action) {
+const initialState = {
+    items: []
+};
+
+export function journals(state = initialState, action) {
     switch (action.type) {
         case journalConstants.GETALL_REQUEST:
             return {
@@ -8,7 +12,7 @@ export function journals(state = {}, action) {
             };
         case journalConstants.GETALL_SUCCESS:
             return {
-                items: action.journals
+                items: initialState.concat(action.journals)
             };
         case journalConstants.GETALL_FAILURE:
             return {

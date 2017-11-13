@@ -1,9 +1,9 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import React from "react";
+import {connect} from "react-redux";
 import {Button} from "react-bootstrap";
 import {Filter} from "./filter";
 import {journalActions} from "../../_actions/journalsActions";
-import InfiniteScroll from '../../../node_modules/react-infinite-scroller/dist/InfiniteScroll';
+import JournalsList from "./journalsList"
 
 class Journals extends React.Component {
     constructor(props) {
@@ -20,58 +20,17 @@ class Journals extends React.Component {
     }
 
     loadJournals() {
-        this.props.dispatch(journalActions.getAll(0, 50));
+        this.setState({
+            filter: false
+        });
+      //  this.props.dispatch(journalActions.getAll(0, 50));
     }
 
-    componentDidMount() {
-        this.props.dispatch(journalActions.getAll(0, 50));
-    }
+    /*  componentDidMount() {
+     this.props.dispatch(journalActions.getAll(0, 50));
+     }*/
 
     render() {
-        const {journals} = this.props;
-        const items = [];
-        journals.items && journals.items.map((journal, index) =>
-            items.push(
-                <tr>
-                    <td>
-                        <div>{journal.time}</div>
-                    </td>
-                    <td>
-                        <div>{journal.type}</div>
-                    </td>
-                    <td>{journal.source}</td>
-                    <td><i className="glyphicon glyphicon-ok-sign activeStatus"
-                           data-toggle="tooltip"
-                           data-placement="right" title="Успешно"/></td>
-                    <td>
-                        <div className="journaling-params"><a href="#">Параметры объекта</a>
-                            <form className="form-horizontal">
-                                <div className="form-group" style={{marginBottom: 0}}><label
-                                    className="col-sm-6 control-label">Объект</label>
-                                    <div className="col-sm-6">
-                                        <div className="break">Запрос СИ (id=0)</div>
-                                    </div>
-                                </div>
-                                <div className="form-group" style={{marginBottom: 0}}><label
-                                    className="col-sm-6 control-label">Пользователь</label>
-                                    <div className="col-sm-6">
-                                        <div className="break">superadmin (id=1)</div>
-                                    </div>
-                                </div>
-                                <div className="form-group" style={{marginBottom: 0}}><label
-                                    className="col-sm-6 control-label">Тип</label>
-                                    <div className="col-sm-6">
-                                        <div className="break">Запрос 2.4 Просмотр списка
-                                            реализованных
-                                            запросов на получение служебной информации
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-            ));
         return (
             <div className="main-content">
                 <div className="panel panel-default">
@@ -83,7 +42,7 @@ class Journals extends React.Component {
                                     {'Фильтр '}
                                     <span className="caret"/>
                                 </Button>
-                                {this.state.filter && <Filter/>}
+                            {/*    {this.state.filter && <Filter loadJournals={this.loadJournals}/>}*/}
                             </div>
                             <table className="pull-left" style={{display: 'none'}} aria-hidden="true" cellSpacing="0"
                                    cellPadding="0">
@@ -140,7 +99,6 @@ class Journals extends React.Component {
                             </div>
                         </div>
                     </div>
-                    {journals.items &&
                     <div className="panel-body">
                         <div className="table table-hover journal fixed-row" id="gwt-debug-journaling-table">
                             <div className="table-container">
@@ -161,54 +119,7 @@ class Journals extends React.Component {
                                             80324)
                                         </td>
                                     </tr>
-                                    <InfiniteScroll
-                                        pageStart={0}
-                                        loadMore={this.loadJournals}
-                                        hasMore={true}
-                                        loader={<div className="loader">Loading ...</div>}>
-                                        {items}
-                                    </InfiniteScroll>
-                                    {/*   {journals.items.map((journal, index) =>
-                                        <tr>
-                                            <td>
-                                                <div>{journal.time}</div>
-                                            </td>
-                                            <td>
-                                                <div>{journal.type}</div>
-                                            </td>
-                                            <td>{journal.source}</td>
-                                            <td><i className="glyphicon glyphicon-ok-sign activeStatus"
-                                                   data-toggle="tooltip"
-                                                   data-placement="right" title="Успешно"/></td>
-                                            <td>
-                                                <div className="journaling-params"><a href="#">Параметры объекта</a>
-                                                    <form className="form-horizontal">
-                                                        <div className="form-group" style={{marginBottom: 0}}><label
-                                                            className="col-sm-6 control-label">Объект</label>
-                                                            <div className="col-sm-6">
-                                                                <div className="break">Запрос СИ (id=0)</div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="form-group" style={{marginBottom: 0}}><label
-                                                            className="col-sm-6 control-label">Пользователь</label>
-                                                            <div className="col-sm-6">
-                                                                <div className="break">superadmin (id=1)</div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="form-group" style={{marginBottom: 0}}><label
-                                                            className="col-sm-6 control-label">Тип</label>
-                                                            <div className="col-sm-6">
-                                                                <div className="break">Запрос 2.4 Просмотр списка
-                                                                    реализованных
-                                                                    запросов на получение служебной информации
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    )}*/}
+                                  {/*  <JournalsList/>*/}
                                     </tbody>
                                 </table>
                             </div>

@@ -1,16 +1,16 @@
-
 import {journalActions} from "../../_actions/journalsActions";
 import {connect} from "react-redux";
 import React from "react";
+import ReduxInfiniteScroll from "redux-infinite-scroll";
+
 
 class JournalsList extends React.Component {
-
     loadMore() {
         this.props.dispatch(journalActions.getAll(0, 50));
     }
 
-   /* renderJournals() {
-        return _.map(this.props.journals, (journal) => {
+    renderJournals() {
+        return this.props.journals.items.map((journal) => {
             return (
                 <tr>
                     <td>
@@ -54,13 +54,15 @@ class JournalsList extends React.Component {
             )
         })
     }
-*/
+
     render() {
         return (
-       {/*     <InfiniteScroll
-                items={this.renderJournals.bind(this)}
+            <ReduxInfiniteScroll
+                elementIsScrollable={true}
+                items={this.renderJournals}
                 loadMore={this.loadMore.bind(this)}
-            />*/}
+                hasMore={true}
+            />
         )
     }
 }

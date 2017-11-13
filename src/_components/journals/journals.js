@@ -2,8 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {Button} from "react-bootstrap";
 import {Filter} from "./filter";
-import {journalActions} from "../../_actions/journalsActions";
-import JournalsList from "./journalsList"
+import JournalsList from "./journalsList";
 
 class Journals extends React.Component {
     constructor(props) {
@@ -23,7 +22,7 @@ class Journals extends React.Component {
         this.setState({
             filter: false
         });
-      //  this.props.dispatch(journalActions.getAll(0, 50));
+        //this.props.dispatch(journalActions.getAll(0, 50));
     }
 
     /*  componentDidMount() {
@@ -42,7 +41,7 @@ class Journals extends React.Component {
                                     {'Фильтр '}
                                     <span className="caret"/>
                                 </Button>
-                            {/*    {this.state.filter && <Filter loadJournals={this.loadJournals}/>}*/}
+                                {this.state.filter && <Filter loadJournals={this.loadJournals}/>}
                             </div>
                             <table className="pull-left" style={{display: 'none'}} aria-hidden="true" cellSpacing="0"
                                    cellPadding="0">
@@ -119,7 +118,7 @@ class Journals extends React.Component {
                                             80324)
                                         </td>
                                     </tr>
-                                  {/*  <JournalsList/>*/}
+                                    <JournalsList/>
                                     </tbody>
                                 </table>
                             </div>

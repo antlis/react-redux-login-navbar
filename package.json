@@ -29,8 +29,10 @@
     "babel-preset-stage-3": "^6.24.1",
     "html-webpack-plugin": "^2.26.0",
     "path": "^0.12.7",
+    "redux-devtools": "^3.4.1",
+    "redux-devtools-dock-monitor": "^1.1.2",
+    "redux-devtools-log-monitor": "^1.4.0",
     "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.8.2",
-    "redux-devtools": "^3.4.0"
+    "webpack-dev-server": "^2.8.2"
   }
 }

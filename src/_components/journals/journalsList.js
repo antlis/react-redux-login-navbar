@@ -1,72 +1,85 @@
 import {journalActions} from "../../_actions/journalsActions";
-import {connect} from "react-redux";
 import React from "react";
-import ReduxInfiniteScroll from "redux-infinite-scroll";
+import {connect} from "react-redux";
 
 
 class JournalsList extends React.Component {
-    loadMore() {
-        this.props.dispatch(journalActions.getAll(0, 50));
+
+    componentDidMount() {
+        //this.props.dispatch();
+        window.addEventListener('scroll', this.infiniteScroll);
     }
 
-    renderJournals() {
-        return this.props.journals.items.map((journal) => {
-            return (
-                <tr>
-                    <td>
-                        <div>{journal.time}</div>
-                    </td>
-                    <td>
-                        <div>{journal.type}</div>
-                    </td>
-                    <td>{journal.source}</td>
-                    <td><i className="glyphicon glyphicon-ok-sign activeStatus"
-                           data-toggle="tooltip"
-                           data-placement="right" title="Успешно"/></td>
-                    <td>
-                        <div className="journaling-params"><a href="#">Параметры объекта</a>
-                            <form className="form-horizontal">
-                                <div className="form-group" style={{marginBottom: 0}}><label
-                                    className="col-sm-6 control-label">Объект</label>
-                                    <div className="col-sm-6">
-                                        <div className="break">Запрос СИ (id=0)</div>
-                                    </div>
-                                </div>
-                                <div className="form-group" style={{marginBottom: 0}}><label
-                                    className="col-sm-6 control-label">Пользователь</label>
-                                    <div className="col-sm-6">
-                                        <div className="break">superadmin (id=1)</div>
-                                    </div>
-                                </div>
-                                <div className="form-group" style={{marginBottom: 0}}><label
-                                    className="col-sm-6 control-label">Тип</label>
-                                    <div className="col-sm-6">
-                                        <div className="break">Запрос 2.4 Просмотр списка
-                                            реализованных
-                                            запросов на получение служебной информации
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-            )
-        })
+    componentDidUpdate() {
+        //this is a fallback for a special case for when the article-wrapper is shorther than window height
+      /*  if (window.innerHeight > document.getElementById('journals-wrapper').scrollHeight) {
+            this.props.dispatch(journalActions.getAll(0, 50));
+        }*/
+    }
+
+    infiniteScroll() {
+        if (this.props.journals && this.props.journals.remainingJournals.length) {
+            if ((window.innerHeight * 1.3 + window.scrollY) >= document.getElementById('journals-wrapper').scrollHeight) {
+                this.props.dispatch(journalActions.getAll(0, 50));
+            }
+        } else {
+            window.removeEventListener('scroll', this.infiniteScroll);
+        }
     }
 
     render() {
-        return (
-            <ReduxInfiniteScroll
-                elementIsScrollable={true}
-                items={this.renderJournals}
-                loadMore={this.loadMore.bind(this)}
-                hasMore={true}
-            />
-        )
+        const {journals} = this.props;
+        let items = [];
+        if (journals.items) {
+            journals.items.map((journal) => {
+                items.push(
+                    <tr>
+                        <td>
+                            <div>{journal.time}</div>
+                        </td>
+                        <td>
+                            <div>{journal.type}</div>
+                        </td>
+                        <td>{journal.source}</td>
+                        <td><i className="glyphicon glyphicon-ok-sign activeStatus"
+                               data-toggle="tooltip"
+                               data-placement="right" title="Успешно"/></td>
+                        <td>
+                            <div className="journaling-params"><a href="#">Параметры объекта</a>
+                                <form className="form-horizontal">
+                                    <div className="form-group" style={{marginBottom: 0}}><label
+                                        className="col-sm-6 control-label">Объект</label>
+                                        <div className="col-sm-6">
+                                            <div className="break">Запрос СИ (id=0)</div>
+                                        </div>
+                                    </div>
+                                    <div className="form-group" style={{marginBottom: 0}}>
+                                        <label className="col-sm-6 control-label">Пользователь</label>
+                                        <div className="col-sm-6">
+                                            <div className="break">superadmin (id=1)</div>
+                                        </div>
+                                    </div>
+                                    <div className="form-group" style={{marginBottom: 0}}><label
+                                        className="col-sm-6 control-label">Тип</label>
+                                        <div className="col-sm-6">
+                                            <div className="break">Запрос 2.4 Просмотр списка
+                                                реализованных
+                                                запросов на получение служебной информации
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                )
+            })
+        } else {
+            items.push(<tr><td>ERROR</td></tr>)
+        }
+        return items;
     }
 }
-
 function mapStateToProps(state) {
     const {journals} = state;
     const {lang} = state.translate;

@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {Button} from "react-bootstrap";
 import {Filter} from "./filter";
 import JournalsList from "./journalsList";
+import {journalActions} from "../../_actions/journalsActions";
 
 class Journals extends React.Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class Journals extends React.Component {
         this.setState({
             filter: false
         });
-        //this.props.dispatch(journalActions.getAll(0, 50));
+        this.props.dispatch(journalActions.getAll(0, 50));
     }
 
     /*  componentDidMount() {
@@ -111,7 +112,7 @@ class Journals extends React.Component {
                                         <th style={{width: '15%'}}>Параметры</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="journals-wrapper">
                                     <tr style={{height: 0}}/>
                                     <tr>
                                         <td colSpan="5" className="separator">Страница 1 из 2675 (Записи 1 — 30 из

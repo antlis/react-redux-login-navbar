@@ -12,7 +12,8 @@ export function journals(state = initialState, action) {
             };
         case journalConstants.GETALL_SUCCESS:
             return {
-                items: initialState.concat(action.journals)
+                items: initialState.items.concat(action.journals),
+                remainingJournals: 0
             };
         case journalConstants.GETALL_FAILURE:
             return {

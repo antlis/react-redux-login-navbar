@@ -80,10 +80,6 @@ export class Filter extends React.Component {
                                 <span className="checkbox" id="gwt-debug-filters-successful-pings-checkbox">
                                     <input value="on" id="gwt-debug-filters-successful-pings-checkbox-input"
                                            tabIndex="0" type="checkbox"/>
-                              {/*  <label forHtml="gwt-debug-filters-successful-pings-checkbox-input"
-                                       id="gwt-debug-filters-successful-pings-checkbox-label">
-                                    Отображать успешный пинг
-                                </label>*/}
                             </span>
                             </div>
                         </div>

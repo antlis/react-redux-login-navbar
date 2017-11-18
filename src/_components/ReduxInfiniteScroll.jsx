@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import PropTypes from "prop-types";
 
-import {topPosition, leftPosition} from './Utilities/DOMPositionUtils';
+import {leftPosition, topPosition} from './Utilities/DOMPositionUtils';
 
 export default class ReduxInfiniteScroll extends React.Component {
 
@@ -34,7 +34,6 @@ export default class ReduxInfiniteScroll extends React.Component {
 
   _elScrollListener() {
     let el = ReactDOM.findDOMNode(this);
-
     if (this.props.horizontal) {
       let leftScrollPos = el.scrollLeft;
       let totalContainerWidth = el.scrollWidth;
@@ -54,7 +53,6 @@ export default class ReduxInfiniteScroll extends React.Component {
 
   _windowScrollListener() {
     let el = ReactDOM.findDOMNode(this);
-
     if(this.props.horizontal) {
       let windowScrollLeft = (window.pageXOffset !== undefined) ? window.pageXOffset : (document.documentElement || document.body.parentNode || document.body).scrollLeft;
       let elTotalWidth = leftPosition(el) + el.offsetWidth;
@@ -180,7 +178,7 @@ ReduxInfiniteScroll.propTypes = {
 
 ReduxInfiniteScroll.defaultProps = {
   className: '',
-  elementIsScrollable: true,
+    elementIsScrollable: false,
   containerHeight: '100%',
   threshold: 100,
   horizontal: false,

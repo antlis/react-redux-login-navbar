@@ -11,9 +11,9 @@ export function journals(state = initialState, action) {
                 loading: true
             };
         case journalConstants.GETALL_SUCCESS:
-            return Object.assign({}, initialState, {
-                items: initialState.items.concat(action.journals)
-            });
+            return {
+                items: state.items.concat(action.journals)
+            };
         case journalConstants.GETALL_FAILURE:
             return {
                 error: action.error

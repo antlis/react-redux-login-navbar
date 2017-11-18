@@ -8,7 +8,7 @@ export const journalActions = {
 
 function getAll(offset, limit) {
     return dispatch => {
-        dispatch(request());
+        //dispatch(request());
 
         journalService.getAll(offset, limit)
             .then(

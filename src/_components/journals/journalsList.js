@@ -3,19 +3,24 @@ import React from "react";
 import {connect} from "react-redux";
 import ReduxInfiniteScroll from "../ReduxInfiniteScroll";
 
-
 class JournalsList extends React.Component {
 
     loadMore() {
-        setTimeout(() => this.props.dispatch(journalActions.getAll(0, 50)), 50000);
+        this.props.dispatch(journalActions.getAll(0, 50));
     }
 
     renderJournals() {
-        const {journals} = this.props;
-        let items = [];
-        if (journals.items) {
-            journals.items.map((journal) => {
-                items.push(
+        let journalsRows = [];
+        let {items} = this.props.journals;
+        if (items) {
+            journalsRows.push(
+                <tr style={{height: 0}}>
+                    <td colSpan="5" className="separator">Страница 1 из 2675 (Записи 1 — 30 из 80324)
+                    </td>
+                </tr>
+            );
+            items.map((journal) => {
+                journalsRows.push(
                     <tr>
                         <td>
                             <div>{journal.time}</div>
@@ -56,15 +61,16 @@ class JournalsList extends React.Component {
                         </td>
                     </tr>
                 )
-            })
+            });
         }
-        return items;
+        return journalsRows;
     }
 
     render() {
         return (
-            <ReduxInfiniteScroll items={this.renderJournals.bind(this)}
+            <ReduxInfiniteScroll items={this.renderJournals()}
                                  loadMore={this.loadMore.bind(this)}
+                                 holderType='tbody'
             />
         )
     }

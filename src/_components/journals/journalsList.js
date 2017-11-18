@@ -1,33 +1,16 @@
 import {journalActions} from "../../_actions/journalsActions";
 import React from "react";
 import {connect} from "react-redux";
+import ReduxInfiniteScroll from "../ReduxInfiniteScroll";
 
 
 class JournalsList extends React.Component {
 
-    componentDidMount() {
-        //this.props.dispatch();
-        window.addEventListener('scroll', this.infiniteScroll);
+    loadMore() {
+        setTimeout(() => this.props.dispatch(journalActions.getAll(0, 50)), 50000);
     }
 
-    componentDidUpdate() {
-        //this is a fallback for a special case for when the article-wrapper is shorther than window height
-      /*  if (window.innerHeight > document.getElementById('journals-wrapper').scrollHeight) {
-            this.props.dispatch(journalActions.getAll(0, 50));
-        }*/
-    }
-
-    infiniteScroll() {
-        if (this.props.journals && this.props.journals.remainingJournals.length) {
-            if ((window.innerHeight * 1.3 + window.scrollY) >= document.getElementById('journals-wrapper').scrollHeight) {
-                this.props.dispatch(journalActions.getAll(0, 50));
-            }
-        } else {
-            window.removeEventListener('scroll', this.infiniteScroll);
-        }
-    }
-
-    render() {
+    renderJournals() {
         const {journals} = this.props;
         let items = [];
         if (journals.items) {
@@ -74,12 +57,19 @@ class JournalsList extends React.Component {
                     </tr>
                 )
             })
-        } else {
-            items.push(<tr><td>ERROR</td></tr>)
         }
         return items;
     }
+
+    render() {
+        return (
+            <ReduxInfiniteScroll items={this.renderJournals.bind(this)}
+                                 loadMore={this.loadMore.bind(this)}
+            />
+        )
+    }
 }
+
 function mapStateToProps(state) {
     const {journals} = state;
     const {lang} = state.translate;

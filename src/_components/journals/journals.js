@@ -26,10 +26,6 @@ class Journals extends React.Component {
         this.props.dispatch(journalActions.getAll(0, 50));
     }
 
-    /*  componentDidMount() {
-     this.props.dispatch(journalActions.getAll(0, 50));
-     }*/
-
     render() {
         return (
             <div className="main-content">
@@ -115,8 +111,7 @@ class Journals extends React.Component {
                                     <tbody id="journals-wrapper">
                                     <tr style={{height: 0}}/>
                                     <tr>
-                                        <td colSpan="5" className="separator">Страница 1 из 2675 (Записи 1 — 30 из
-                                            80324)
+                                        <td colSpan="5" className="separator">Страница 1 из 2675 (Записи 1 — 30 из 80324)
                                         </td>
                                     </tr>
                                     <JournalsList/>
@@ -125,7 +120,6 @@ class Journals extends React.Component {
                             </div>
                         </div>
                     </div>
-                    }
                 </div>
             </div>
 

@@ -12,13 +12,14 @@ class JournalsFilter extends React.Component {
     }
 
     render() {
+        let lang = this.props;
         return (
             <div style={{visibility: 'visible', position: 'absolute', overflow: 'visible'}} className="gwt-PopupPanel">
                 <div className="filter-popup animated fadeIn" style={{width: 600}}>
                     <div className="row">
                         <div className="col-xs-12">
                             <label className="form-label">
-                                Период выборки
+                                {lang.journals.filter.SamplingPeriod}
                             </label>
                             <div className="form-group" id="gwt-debug-journaling-filter-range-picker">
                                 <div className="input-group date">
@@ -38,7 +39,7 @@ class JournalsFilter extends React.Component {
                         </div>
                         <div className="form-group col-xs-6">
                             <label>
-                                Идентификатор источника
+                                {lang.journals.filter.SourceId}
                             </label>
                             <div>
                                 <input className="form-control" onChange={() => Console.log('input')}
@@ -61,11 +62,11 @@ class JournalsFilter extends React.Component {
                         </div>
                         <div className="form-group col-xs-6">
                             <div id="gwt-debug-journaling-object-type">
-                                <label>Тип объекта</label>
+                                <label>{lang.journals.filter.ObjType}</label>
                                 <label className="required-field-indicator hide">*</label>
                                 <div className="btn-group btn-group-selector">
                                     <button type="button" className="btn btn-white">
-                                        Пользователь
+                                        {lang.journals.common.user}
                                     </button>
                                     <span className="input-group-btn">
                                             <button type="button" className="btn btn-default">
@@ -76,7 +77,7 @@ class JournalsFilter extends React.Component {
                             </div>
                         </div>
                         <div className="form-group col-xs-12 fix-col-xs-12" id="gwt-debug-journaling-event-category">
-                            <label>Категория события</label>
+                            <label>{lang.journals.filter.SourceType}</label>
                             <label className="required-field-indicator hide">*</label>
                             <div className="btn-group btn-group-selector">
                                 <button type="button" className="btn btn-white">
@@ -102,12 +103,12 @@ class JournalsFilter extends React.Component {
                                 <Button onClick={() => this.onApplyClicked(this)} type="button"
                                         className="btn btn-sm btn-primary"
                                         id="gwt-debug-journaling-filter-apply-button">
-                                    Применить
+                                    {lang.journals.common.apply}
                                 </Button>
                                 <Button onClick={() => this.props.dispatch(filterActions.filterClick())} type="button"
                                         className="btn btn-sm btn-default"
                                         id="gwt-debug-journaling-filter-cancel-button">
-                                    Отмена
+                                    {lang.journals.common.cancel}
                                 </Button>
                             </div>
                         </div>

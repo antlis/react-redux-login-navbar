@@ -5,6 +5,12 @@ import * as filterActions from "../../actions/filterActions";
 import {Button} from "react-bootstrap";
 
 class JournalsFilter extends React.Component {
+
+    onApplyClicked() {
+        this.props.dispatch(journalActions.getAll(0, 50));
+        this.props.dispatch(filterActions.filterClick())
+    }
+
     render() {
         return (
             <div style={{visibility: 'visible', position: 'absolute', overflow: 'visible'}} className="gwt-PopupPanel">
@@ -93,7 +99,7 @@ class JournalsFilter extends React.Component {
                     <div className="row">
                         <div className="form-group col-xs-12">
                             <div className="pull-right">
-                                <Button onClick={() => this.props.dispatch(journalActions.getAll(0, 50))} type="button"
+                                <Button onClick={() => this.onApplyClicked(this)} type="button"
                                         className="btn btn-sm btn-primary"
                                         id="gwt-debug-journaling-filter-apply-button">
                                     Применить

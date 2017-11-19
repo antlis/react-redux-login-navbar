@@ -41,7 +41,7 @@ class LoginPage extends React.Component {
     }
 
     render() {
-        const contentTranslation = this.props.content;
+        const lang = this.props.content;
         const {username, password, submitted} = this.state;
 
         return (
@@ -55,7 +55,7 @@ class LoginPage extends React.Component {
                                 <div className={'col-xs-12 form-group ' + (submitted && !username ? 'has-error' : '')}>
                                     <input type="text" className="form-control" name="username"
                                            value={username} onChange={this.handleChange}
-                                           placeholder={contentTranslation.page.login.username}
+                                           placeholder={lang.page.login.username}
                                            id="gwt-debug-auth-login-field"/>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@ class LoginPage extends React.Component {
                                 <div className={'col-xs-12 form-group ' + (submitted && !password ? 'has-error' : '')}>
                                     <input type="password" className="form-control" name="password"
                                            value={password} onChange={this.handleChange}
-                                           placeholder={contentTranslation.page.login.password}
+                                           placeholder={lang.page.login.password}
                                            id="gwt-debug-auth-password-field"/>
                                 </div>
                             </div>

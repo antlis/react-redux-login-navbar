@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {userActions} from '../_actions/index';
+import {userActions} from '../actions/index';
 import {Button, ButtonGroup, DropdownButton, MenuItem} from "react-bootstrap";
-import {switchLanguages} from '../_actions/translateAction';
+import {switchLanguages} from '../actions/translateAction';
 
 class LoginPage extends React.Component {
     constructor(props) {

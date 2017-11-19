@@ -1,4 +1,4 @@
-import {journalConstants} from "../_constants/journalContstants";
+import {journalConstants} from "../constants/journalContstants";
 
 const initialState = {
     items: []

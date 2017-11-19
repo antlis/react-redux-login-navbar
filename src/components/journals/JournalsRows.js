@@ -1,9 +1,9 @@
-import {journalActions} from "../../_actions/journalsActions";
+import {journalActions} from "../../actions/journalsActions";
 import React from "react";
 import {connect} from "react-redux";
 import ReduxInfiniteScroll from "../ReduxInfiniteScroll";
 
-class JournalsList extends React.Component {
+class JournalsRows extends React.Component {
 
     loadMore() {
         this.props.dispatch(journalActions.getAll(0, 50));
@@ -85,4 +85,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(JournalsList);
+export default connect(mapStateToProps)(JournalsRows);

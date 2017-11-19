@@ -1,7 +1,7 @@
 import React from 'react'
-import Filter from "./filter";
+import JournalsFilter from "./JournalsFilter";
 import {Button} from "react-bootstrap";
-import * as filterActions from "../../_actions/filterActions";
+import * as filterActions from "../../actions/filterActions";
 import {connect} from "react-redux";
 
 class JournalsHeader extends React.Component {
@@ -17,7 +17,7 @@ class JournalsHeader extends React.Component {
                             <span className="caret"/>
                         </Button>
                         {
-                            this.props.journalsFilter.isOpen && <Filter/>
+                            this.props.journalsFilter.isOpen && <JournalsFilter/>
                         }
                     </div>
                     <table className="pull-left" style={{display: 'none'}} aria-hidden="true" cellSpacing="0"

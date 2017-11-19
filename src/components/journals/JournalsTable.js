@@ -1,5 +1,5 @@
 import * as React from "react";
-import JournalsList from './journalsList';
+import JournalsRows from './JournalsRows';
 
 export class JournalsTable extends React.Component {
     render() {
@@ -17,7 +17,7 @@ export class JournalsTable extends React.Component {
                                 <th style={{width: '15%'}}>Параметры</th>
                             </tr>
                             </thead>
-                            <JournalsList/>
+                            <JournalsRows/>
                         </table>
                     </div>
                 </div>

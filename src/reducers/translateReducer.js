@@ -1,4 +1,4 @@
-import content from '../lang/Lang';
+import content from '../components/Lang';
 
 const getContent = (lang = 'ru') => {
     return content.filter(obj => obj.lang === lang)[0];

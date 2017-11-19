@@ -1,16 +1,9 @@
 import React from "react";
 import {connect} from "react-redux";
-import {JournalsTable} from "./journalsTable";
-import JournalsHeader from "./JournalsHeader";
+import {JournalsTable} from "../components/journals/JournalsTable";
+import JournalsHeader from "../components/journals/JournalsHeader";
 
 class Journals extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            filter: false
-        };
-    }
-
     render() {
         const {items} = this.props.journals;
         return (
@@ -20,7 +13,6 @@ class Journals extends React.Component {
                     {items.length !== 0 && <JournalsTable/>}
                 </div>
             </div>
-
         )
     }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {MenuItem, Nav, Navbar, NavDropdown, NavItem} from "react-bootstrap";
-import {history} from "../_constants/history";
+import {history} from "../constants/history";
 
 class App extends React.Component {
     constructor(props) {

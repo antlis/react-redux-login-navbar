@@ -1,5 +1,5 @@
-import {journalService} from "../_services/journal.service";
-import {journalConstants} from "../_constants/journalContstants";
+import {journalService} from "../services/journal.service";
+import {journalConstants} from "../constants/journalContstants";
 
 
 export const journalActions = {

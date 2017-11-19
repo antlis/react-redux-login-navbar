@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {journalActions} from "../../_actions/journalsActions";
-import * as filterActions from "../../_actions/filterActions";
+import {journalActions} from "../../actions/journalsActions";
+import * as filterActions from "../../actions/filterActions";
 import {Button} from "react-bootstrap";
 
-class Filter extends React.Component {
+class JournalsFilter extends React.Component {
     render() {
         return (
             <div style={{visibility: 'visible', position: 'absolute', overflow: 'visible'}} className="gwt-PopupPanel">
@@ -16,7 +16,8 @@ class Filter extends React.Component {
                             </label>
                             <div className="form-group" id="gwt-debug-journaling-filter-range-picker">
                                 <div className="input-group date">
-                                    <input className="form-control" placeholder="Не задан"
+                                    <input className="form-control" onChange={() => Console.log('input')}
+                                           placeholder="Не задан"
                                            value="25.10.2017 00:00 - 25.10.2017 23:59"
                                            type="text"/>
                                     <div className="input-group-btn">
@@ -34,7 +35,8 @@ class Filter extends React.Component {
                                 Идентификатор источника
                             </label>
                             <div>
-                                <input className="form-control" id="gwt-debug-journaling-filter-source-id"
+                                <input className="form-control" onChange={() => Console.log('input')}
+                                       id="gwt-debug-journaling-filter-source-id"
                                        type="text"/>
                                 <div id="gwt-debug-journaling-filter-source-id-selector" style={{display: 'none'}}
                                      aria-hidden="true">
@@ -117,4 +119,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(Filter)
+export default connect(mapStateToProps)(JournalsFilter)

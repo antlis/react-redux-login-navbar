@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Provider} from "react-redux";
-import {history} from "../_constants/history";
+import {history} from "../constants/history";
 import {Redirect, Route, Router, Switch} from "react-router-dom";
 import LoginPage from "./LoginPage";
-import {Devices, Groups, Orders, Sanctions, ServiceInfo, Users} from "../_components";
-import Journals from "../_components/journals/journals";
+import {Devices, Groups, Orders, Sanctions, ServiceInfo, Users} from "../components/index";
+import Journals from "./JournalsPage";
 import DevTools from "./DevTools";
 import App from "./App";
 

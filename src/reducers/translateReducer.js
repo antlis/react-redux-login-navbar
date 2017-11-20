@@ -1,4 +1,4 @@
-import content from '../components/Lang';
+import content from '../constants/Lang';
 
 const getContent = (lang = 'ru') => {
     return content.filter(obj => obj.lang === lang)[0];
@@ -14,7 +14,6 @@ export function translate(state = initialState, action) {
             return {
                 content: getContent(action.lang)
             };
-            break;
         default:
             return state;
     }

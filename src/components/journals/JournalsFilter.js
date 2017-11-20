@@ -12,14 +12,15 @@ class JournalsFilter extends React.Component {
     }
 
     render() {
-        let lang = this.props;
+        const filterLang = this.props.content.page.journals.filter;
+        const commonLang = this.props.content.page.common;
         return (
             <div style={{visibility: 'visible', position: 'absolute', overflow: 'visible'}} className="gwt-PopupPanel">
                 <div className="filter-popup animated fadeIn" style={{width: 600}}>
                     <div className="row">
                         <div className="col-xs-12">
                             <label className="form-label">
-                                {lang.journals.filter.SamplingPeriod}
+                                {filterLang.SamplingPeriod}
                             </label>
                             <div className="form-group" id="gwt-debug-journaling-filter-range-picker">
                                 <div className="input-group date">
@@ -39,7 +40,7 @@ class JournalsFilter extends React.Component {
                         </div>
                         <div className="form-group col-xs-6">
                             <label>
-                                {lang.journals.filter.SourceId}
+                                {filterLang.SourceId}
                             </label>
                             <div>
                                 <input className="form-control" onChange={() => Console.log('input')}
@@ -62,11 +63,11 @@ class JournalsFilter extends React.Component {
                         </div>
                         <div className="form-group col-xs-6">
                             <div id="gwt-debug-journaling-object-type">
-                                <label>{lang.journals.filter.ObjType}</label>
+                                <label>{filterLang.ObjType}</label>
                                 <label className="required-field-indicator hide">*</label>
                                 <div className="btn-group btn-group-selector">
                                     <button type="button" className="btn btn-white">
-                                        {lang.journals.common.user}
+                                        {commonLang.user}
                                     </button>
                                     <span className="input-group-btn">
                                             <button type="button" className="btn btn-default">
@@ -77,7 +78,7 @@ class JournalsFilter extends React.Component {
                             </div>
                         </div>
                         <div className="form-group col-xs-12 fix-col-xs-12" id="gwt-debug-journaling-event-category">
-                            <label>{lang.journals.filter.SourceType}</label>
+                            <label>{filterLang.SourceType}</label>
                             <label className="required-field-indicator hide">*</label>
                             <div className="btn-group btn-group-selector">
                                 <button type="button" className="btn btn-white">
@@ -103,12 +104,12 @@ class JournalsFilter extends React.Component {
                                 <Button onClick={() => this.onApplyClicked(this)} type="button"
                                         className="btn btn-sm btn-primary"
                                         id="gwt-debug-journaling-filter-apply-button">
-                                    {lang.journals.common.apply}
+                                    {commonLang.apply}
                                 </Button>
                                 <Button onClick={() => this.props.dispatch(filterActions.filterClick())} type="button"
                                         className="btn btn-sm btn-default"
                                         id="gwt-debug-journaling-filter-cancel-button">
-                                    {lang.journals.common.cancel}
+                                    {commonLang.cancel}
                                 </Button>
                             </div>
                         </div>
@@ -120,9 +121,9 @@ class JournalsFilter extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const {lang} = state.translate;
+    const {content} = state.translate;
     return {
-        lang
+        content
     };
 }
 

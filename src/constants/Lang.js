@@ -5,7 +5,6 @@ export default [
             "login": {
                 "username": "User name",
                 "password": "Password"
-
             },
             "navbar": {
                 "journals": "Journals",
@@ -18,18 +17,25 @@ export default [
                 "changePassword": "Change Password",
                 "exit": "Exit"
             },
+            "table": {
+                "time": "Time",
+                "type": "Type",
+                "source": "Source",
+                "result": "Result",
+                "params": "Parameters"
+            },
             "journals": {
                 "filter": {
-                    "SamplingPeriod": "Период выборки",
-                    "SourceId": "Идентификатор источника",
-                    "ObjType": "Тип объекта",
-                    "SourceType": "Категория события"
+                    "SamplingPeriod": "Sampling Period",
+                    "SourceId": "Source Id",
+                    "ObjType": "Object Type",
+                    "SourceType": "Source Type"
                 },
             },
             "common": {
-                "user": "Пользователь",
-                "apply": "Применить",
-                "cancel": "Отменить"
+                "user": "User",
+                "apply": "Apply",
+                "cancel": "Cancel"
             }
         }
     },
@@ -51,18 +57,25 @@ export default [
                 "changePassword": "Сменить пароль",
                 "exit": "Выход"
             },
+            "table": {
+                "time": "Время",
+                "type": "Тип",
+                "source": "Источник",
+                "result": "Результат",
+                "params": "Параметры"
+            },
             "journals": {
                 "filter": {
-                    "SamplingPeriod": "Sampling Period",
-                    "SourceId": "Source Id",
-                    "ObjType": "Object Type",
-                    "SourceType": "Source Type"
+                    "SamplingPeriod": "Период выборки",
+                    "SourceId": "Идентификатор источника",
+                    "ObjType": "Тип объекта",
+                    "SourceType": "Категория события"
                 },
             },
             "common": {
-                "user": "User",
-                "apply": "Apply",
-                "cancel": "Cancel"
+                "user": "Пользователь",
+                "apply": "Применить",
+                "cancel": "Отменить"
             }
         }
     }

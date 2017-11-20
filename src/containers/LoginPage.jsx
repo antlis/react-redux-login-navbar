@@ -74,9 +74,9 @@ class LoginPage extends React.Component {
                                         id="gwt-debug-auth-submit-btn" form="loginForm">
                                     Вход
                                 </Button>
-                                <DropdownButton pullRight title="" onSelect={this.changeLanguage}
+                                <DropdownButton noCaret pullRight title="" onSelect={this.changeLanguage}
                                                 className="btn-primary glyphicon glyphicon-globe"
-                                                id="bg-nested-dropdown">
+                                                id="bg-nested-dropdown" style={{'borderLeftColor': '#2a72b5'}}>
                                     <MenuItem id="gwt-debug-auth-locale-en" eventKey="en">English</MenuItem>
                                     <MenuItem id="gwt-debug-auth-locale-ru" eventKey="ru">Русский</MenuItem>
                                 </DropdownButton>

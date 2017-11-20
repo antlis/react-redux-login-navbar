@@ -5,7 +5,6 @@ const initialState = {
 };
 
 export function journals(state = initialState, action) {
-    action.type === journalConstants.GETALL_SUCCESS && state.items && alert(state.items.length);
     switch (action.type) {
         case journalConstants.GETALL_REQUEST:
             return {

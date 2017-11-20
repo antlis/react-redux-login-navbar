@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {connect} from "react-redux";
 import {journalActions} from "../../actions/journalsActions";
 import * as filterActions from "../../actions/filterActions";
@@ -61,20 +61,20 @@ class JournalsFilter extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="form-group col-xs-6">
-                            <div id="gwt-debug-journaling-object-type">
-                                <label>{filterLang.ObjType}</label>
-                                <label className="required-field-indicator hide">*</label>
-                                <div className="btn-group btn-group-selector">
-                                    <button type="button" className="btn btn-white">
-                                        {commonLang.user}
-                                    </button>
-                                    <span className="input-group-btn">
+                        <div className="form-group col-xs-6" id="gwt-debug-journaling-object-type">
+                            <label>
+                                {filterLang.ObjType}
+                            </label>
+                            <label className="required-field-indicator hide">*</label>
+                            <div className="btn-group btn-group-selector">
+                                <button type="button" className="btn btn-white">
+                                    {commonLang.user}
+                                </button>
+                                <span className="input-group-btn">
                                             <button type="button" className="btn btn-default">
                                                 <span className="caret"/>
                                             </button>
-                                        </span>
-                                </div>
+                                </span>
                             </div>
                         </div>
                         <div className="form-group col-xs-12 fix-col-xs-12" id="gwt-debug-journaling-event-category">
@@ -95,13 +95,14 @@ class JournalsFilter extends React.Component {
                                 <span className="checkbox" id="gwt-debug-filters-successful-pings-checkbox">
                                     <input value="on" id="gwt-debug-filters-successful-pings-checkbox-input"
                                            tabIndex="0" type="checkbox"/>
+                                    <label>Отображать успешный пинг</label>
                             </span>
                         </div>
                     </div>
                     <div className="row">
                         <div className="form-group col-xs-12">
                             <div className="pull-right">
-                                <Button onClick={() => this.onApplyClicked(this)} type="button"
+                                <Button onClick={() => this.onApplyClicked()} type="button"
                                         className="btn btn-sm btn-primary"
                                         id="gwt-debug-journaling-filter-apply-button">
                                     {commonLang.apply}

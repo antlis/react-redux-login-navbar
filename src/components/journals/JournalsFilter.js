@@ -1,19 +1,42 @@
+import 'react-dates/initialize'
+import 'react-dates/lib/css/_datepicker.css';
 import React from "react";
 import {connect} from "react-redux";
 import {journalActions} from "../../actions/journalsActions";
 import * as filterActions from "../../actions/filterActions";
 import {Button} from "react-bootstrap";
+import {DateRangePicker} from "react-dates";
 
 class JournalsFilter extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            startDate: null,
+            endDate: null,
+            focusedInput: 'startDate',
+        };
+        this.onDatesChange = this.onDatesChange.bind(this);
+        this.onFocusChange = this.onFocusChange.bind(this);
+    }
 
     onApplyClicked() {
         this.props.dispatch(journalActions.getAll(0, 50));
         this.props.dispatch(filterActions.filterClick())
     }
 
+    onDatesChange({startDate, endDate}) {
+        this.setState({startDate, endDate});
+    }
+
+    onFocusChange(focusedInput) {
+        this.setState({focusedInput});
+    }
+
     render() {
         const filterLang = this.props.content.page.journals.filter;
         const commonLang = this.props.content.page.common;
+        const {focusedInput, startDate, endDate} = this.state;
+
         return (
             <div style={{visibility: 'visible', position: 'absolute', overflow: 'visible'}} className="gwt-PopupPanel">
                 <div className="filter-popup animated fadeIn" style={{width: 600}}>
@@ -24,10 +47,20 @@ class JournalsFilter extends React.Component {
                             </label>
                             <div className="form-group" id="gwt-debug-journaling-filter-range-picker">
                                 <div className="input-group date">
-                                    <input className="form-control" onChange={() => Console.log('input')}
+                                    <div>
+                                        <DateRangePicker
+                                            startDate={startDate} // momentPropTypes.momentObj or null,
+                                            endDate={endDate} // momentPropTypes.momentObj or null,
+                                            onDatesChange={this.onDatesChange} // PropTypes.func.isRequired,
+                                            focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                                            onFocusChange={this.onFocusChange}
+                                            // PropTypes.func.isRequired,
+                                        />
+                                    </div>
+                                    {/* <input className="form-control" onChange={() => Console.log('input')}
                                            placeholder="Не задан"
                                            value="25.10.2017 00:00 - 25.10.2017 23:59"
-                                           type="text"/>
+                                           type="text"/>*/}
                                     <div className="input-group-btn">
                                         <button type="button" className="btn btn-default">
                                             <i className="fa fa-calendar"/>

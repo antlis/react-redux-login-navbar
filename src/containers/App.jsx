@@ -17,7 +17,7 @@ class App extends React.Component {
         const lang = this.props.content;
         const title =
             <div id="gwt-debug-navbar-usermenu-btn" className="navbar-user">
-                <img alt="" src="../../Journals&filter_files/user_icon.png"/>
+                <img alt="" src="../../styles/images/user_icon.png"/>
                 <span>Superadmin2,  superadmin2   (#34), superadmins</span>
                 <b className="caret"/>
             </div>;
@@ -27,20 +27,20 @@ class App extends React.Component {
                     <Navbar.Header>
                         <Navbar.Brand>
                             <li className="navbar-brand"><img
-                                src="../../Journals&filter_files/header_icon_protei.png"
+                                src="../../styles/images/header_icon_protei.png"
                                 style={{display: 'inline', height: 28}}/></li>
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav>
-                        <NavItem eventKey={'orders'} onSelect={this.handleChange} className="gwt-Anchor" href="#"
+                        <NavItem eventKey={'orders'} onSelect={this.handleChange} className="gwt-Anchor"
                                  id="gwt-debug-navbar-tasks">
                             {lang.page.navbar.orders}
                         </NavItem>
-                        <NavItem eventKey={'users'} onSelect={this.handleChange} className="gwt-Anchor" href="#"
+                        <NavItem eventKey={'users'} onSelect={this.handleChange} className="gwt-Anchor"
                                  id="gwt-debug-navbar-accounts">
                             {lang.page.navbar.users}
                         </NavItem>
-                        <NavItem eventKey={'groups'} onSelect={this.handleChange} className="gwt-Anchor" href="#"
+                        <NavItem eventKey={'groups'} onSelect={this.handleChange} className="gwt-Anchor"
                                  id="gwt-debug-navbar-groups">
                             {lang.page.navbar.groups}
                         </NavItem>

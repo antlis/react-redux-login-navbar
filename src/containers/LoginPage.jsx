@@ -48,7 +48,7 @@ class LoginPage extends React.Component {
             <div id="page-container">
                 <div className="login-screen" id="gwt-debug-sorm.ui.main" style={{height: window.innerHeight}}>
                     <div className="logo"><img className="logo-image img-responsive"
-                                               src="/login_files/logo_protei.png"/></div>
+                                               src="../../styles/images/logo_protei.png"/></div>
                     <div className="login-form">
                         <form name="form" onSubmit={this.handleSubmit} id="loginForm">
                             <div className={'row'}>

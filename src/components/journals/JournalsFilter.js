@@ -1,17 +1,18 @@
 import React from "react";
-import "react-dates/initialize";
 import {connect} from "react-redux";
 import {journalActions} from "../../actions/journalsActions";
 import * as filterActions from "../../actions/filterActions";
 import {Button} from "react-bootstrap";
 import {DateRangePicker} from "react-dates";
+import moment from "moment";
+const date = moment();
 
 class JournalsFilter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            startDate: null,
-            endDate: null,
+            startDate: moment().unix(),
+            endDate: moment().unix(),
             focusedInput: 'startDate',
         };
         this.onDatesChange = this.onDatesChange.bind(this);
@@ -23,7 +24,11 @@ class JournalsFilter extends React.Component {
         this.props.dispatch(filterActions.filterClick())
     }
 
-    onDatesChange({startDate, endDate}) {
+    onDatesChange(e) {
+        let dates = e.target.value.split("-");
+        let startDate = moment(dates[0],'DD.MM.YYYY hh:mm').unix();
+        let endDate = moment(dates[1],'DD.MM.YYYY hh:mm').unix();
+
         this.setState({startDate, endDate});
     }
 
@@ -46,20 +51,10 @@ class JournalsFilter extends React.Component {
                             </label>
                             <div className="form-group" id="gwt-debug-journaling-filter-range-picker">
                                 <div className="input-group date">
-                                    <div>
-                                        <DateRangePicker
-                                            startDate={startDate} // momentPropTypes.momentObj or null,
-                                            endDate={endDate} // momentPropTypes.momentObj or null,
-                                            onDatesChange={this.onDatesChange} // PropTypes.func.isRequired,
-                                            focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                                            onFocusChange={this.onFocusChange}
-                                            // PropTypes.func.isRequired,
-                                        />
-                                    </div>
-                                    {/* <input className="form-control" onChange={() => Console.log('input')}
+                                    <input className="form-control" onChange={this.onDatesChange}
                                            placeholder="Не задан"
-                                           value="25.10.2017 00:00 - 25.10.2017 23:59"
-                                           type="text"/>*/}
+                                           value= {moment(startDate).format('DD.MM.YYYY hh:mm') + " - " + moment(endDate).format('DD.MM.YYYY hh:mm')}
+                                           type="text"/>
                                     <div className="input-group-btn">
                                         <button type="button" className="btn btn-default">
                                             <i className="fa fa-calendar"/>

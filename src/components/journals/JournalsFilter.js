@@ -3,9 +3,8 @@ import {connect} from "react-redux";
 import {journalActions} from "../../actions/journalsActions";
 import * as filterActions from "../../actions/filterActions";
 import {Button} from "react-bootstrap";
-import {DateRangePicker} from "react-dates";
 import moment from "moment";
-const date = moment();
+import DatePicker from "../common/DatePicker";
 
 class JournalsFilter extends React.Component {
     constructor(props) {
@@ -14,6 +13,7 @@ class JournalsFilter extends React.Component {
             startDate: moment().unix(),
             endDate: moment().unix(),
             focusedInput: 'startDate',
+            dates: "23.11.2017 00:00 - 23.11.2017 23:59"
         };
         this.onDatesChange = this.onDatesChange.bind(this);
         this.onFocusChange = this.onFocusChange.bind(this);
@@ -25,11 +25,11 @@ class JournalsFilter extends React.Component {
     }
 
     onDatesChange(e) {
-        let dates = e.target.value.split("-");
+        let dates = e.target.value;
         let startDate = moment(dates[0],'DD.MM.YYYY hh:mm').unix();
         let endDate = moment(dates[1],'DD.MM.YYYY hh:mm').unix();
 
-        this.setState({startDate, endDate});
+        this.setState({dates});
     }
 
     onFocusChange(focusedInput) {
@@ -49,21 +49,7 @@ class JournalsFilter extends React.Component {
                             <label className="form-label">
                                 {filterLang.SamplingPeriod}
                             </label>
-                            <div className="form-group" id="gwt-debug-journaling-filter-range-picker">
-                                <div className="input-group date">
-                                    <input className="form-control" onChange={this.onDatesChange}
-                                           placeholder="Не задан"
-                                           value= {moment(startDate).format('DD.MM.YYYY hh:mm') + " - " + moment(endDate).format('DD.MM.YYYY hh:mm')}
-                                           type="text"/>
-                                    <div className="input-group-btn">
-                                        <button type="button" className="btn btn-default">
-                                            <i className="fa fa-calendar"/>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div className="control-label range-message" style={{display: 'none'}}
-                                     aria-hidden="true"/>
-                            </div>
+                            <DatePicker dates={this.state.dates} onChange={this.onDatesChange}/>
                         </div>
                         <div className="form-group col-xs-6">
                             <label>

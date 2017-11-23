@@ -1,7 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
 import {journalActions} from "../../actions/journalsActions";
-import * as filterActions from "../../actions/filterActions";
 import {Button} from "react-bootstrap";
 import moment from "moment";
 import DatePicker from "../common/DatePicker";
@@ -21,13 +20,13 @@ class JournalsFilter extends React.Component {
 
     onApplyClicked() {
         this.props.dispatch(journalActions.getAll(0, 50));
-        this.props.dispatch(filterActions.filterClick())
+        this.props.toggleFilter();
     }
 
     onDatesChange(e) {
         let dates = e.target.value;
-        let startDate = moment(dates[0],'DD.MM.YYYY hh:mm').unix();
-        let endDate = moment(dates[1],'DD.MM.YYYY hh:mm').unix();
+        let startDate = moment(dates[0], 'DD.MM.YYYY hh:mm').unix();
+        let endDate = moment(dates[1], 'DD.MM.YYYY hh:mm').unix();
 
         this.setState({dates});
     }
@@ -37,9 +36,7 @@ class JournalsFilter extends React.Component {
     }
 
     render() {
-        const filterLang = this.props.content.page.journals.filter;
-        const commonLang = this.props.content.page.common;
-        const {focusedInput, startDate, endDate} = this.state;
+        const lang = this.props.content.page;
 
         return (
             <div style={{visibility: 'visible', position: 'absolute', overflow: 'visible'}} className="gwt-PopupPanel">
@@ -47,13 +44,13 @@ class JournalsFilter extends React.Component {
                     <div className="row">
                         <div className="col-xs-12">
                             <label className="form-label">
-                                {filterLang.SamplingPeriod}
+                                {lang.journals.filter.SamplingPeriod}
                             </label>
                             <DatePicker dates={this.state.dates} onChange={this.onDatesChange}/>
                         </div>
                         <div className="form-group col-xs-6">
                             <label>
-                                {filterLang.SourceId}
+                                {lang.journals.filter.SourceId}
                             </label>
                             <div>
                                 <input className="form-control" onChange={() => Console.log('input')}
@@ -76,12 +73,12 @@ class JournalsFilter extends React.Component {
                         </div>
                         <div className="form-group col-xs-6" id="gwt-debug-journaling-object-type">
                             <label>
-                                {filterLang.ObjType}
+                                {lang.journals.filter.ObjType}
                             </label>
                             <label className="required-field-indicator hide">*</label>
                             <div className="btn-group btn-group-selector">
                                 <button type="button" className="btn btn-white">
-                                    {commonLang.user}
+                                    {lang.common.user}
                                 </button>
                                 <span className="input-group-btn">
                                             <button type="button" className="btn btn-default">
@@ -91,7 +88,7 @@ class JournalsFilter extends React.Component {
                             </div>
                         </div>
                         <div className="form-group col-xs-12 fix-col-xs-12" id="gwt-debug-journaling-event-category">
-                            <label>{filterLang.SourceType}</label>
+                            <label>{lang.journals.filter.SourceType}</label>
                             <label className="required-field-indicator hide">*</label>
                             <div className="btn-group btn-group-selector">
                                 <button type="button" className="btn btn-white">
@@ -117,13 +114,13 @@ class JournalsFilter extends React.Component {
                             <div className="pull-right">
                                 <Button onClick={() => this.onApplyClicked()} type="button"
                                         className="btn btn-sm btn-primary"
-                                        id="gwt-debug-journaling-filter-apply-button">
-                                    {commonLang.apply}
+                                        id="gwt-debug-filter-apply-button">
+                                    {lang.common.apply}
                                 </Button>
-                                <Button onClick={() => this.props.dispatch(filterActions.filterClick())} type="button"
+                                <Button onClick={this.props.toggleFilter} type="button"
                                         className="btn btn-sm btn-default"
-                                        id="gwt-debug-journaling-filter-cancel-button">
-                                    {commonLang.cancel}
+                                        id="gwt-debug-filter-cancel-button">
+                                    {lang.common.cancel}
                                 </Button>
                             </div>
                         </div>

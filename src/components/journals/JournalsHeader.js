@@ -1,10 +1,23 @@
-import React from 'react'
+import React from "react";
 import JournalsFilter from "./JournalsFilter";
 import {Button} from "react-bootstrap";
-import * as filterActions from "../../actions/filterActions";
 import {connect} from "react-redux";
 
 class JournalsHeader extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            filterIsOpen: false
+        };
+        this.toggleFilter = this.toggleFilter.bind(this);
+    }
+
+    toggleFilter() {
+        this.setState({
+            filterIsOpen: !this.state.filterIsOpen
+        });
+    }
+
     render() {
         return (
             <div className="panel-heading">
@@ -12,32 +25,14 @@ class JournalsHeader extends React.Component {
                     <div className="pull-left">
                         <Button className="btn btn-info btn-xs filterButton"
                                 id="gwt-debug-common-filter-btn"
-                                onClick={() => this.props.dispatch(filterActions.filterClick())}>
+                                onClick={this.toggleFilter}>
                             {'Фильтр '}
                             <span className="caret"/>
                         </Button>
                         {
-                            this.props.journalsFilter.isOpen && <JournalsFilter/>
+                            this.state.filterIsOpen && <JournalsFilter toggleFilter={this.toggleFilter}/>
                         }
                     </div>
-                    <table className="pull-left" style={{display: 'none'}} aria-hidden="true" cellSpacing="0"
-                           cellPadding="0">
-                        <tbody>
-                        <tr>
-                            <td style={{verticalAlign: 'top'}} align="left">
-                                <button type="button" className="btn btn-info btn-xs smallOffsetLeft">
-                                    <span className="glyphicon glyphicon-backward"/>
-                                    Назад
-                                </button>
-                            </td>
-                            <td style={{verticalAlign: 'top'}} align="left">
-                                <div className="smallOffsetLeft">
-                                    Журнал устройства
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
                     <div className="pull-left">
                         <button type="button" className="btn btn-info btn-xs smallOffsetLeft"
                                 id="gwt-debug-journaling-refresh-button">

@@ -13,13 +13,16 @@ class JournalsRows extends React.Component {
         let journalsRows = [];
         let items = this.props.items;
         if (items) {
-            journalsRows.push(
-                <tr style={{height: 0}}>
-                    <td colSpan="5" className="separator">Страница 1 из 2675 (Записи 1 — 30 из 80324)
-                    </td>
-                </tr>
-            );
-            items.map((journal) => {
+            items.map((journal, key) => {
+                if ((key) % 20 === 0 || key === 0) {
+                    journalsRows.push(
+                        <tr style={{height: 0}}>
+                            <td colSpan="5"
+                                className="separator">{'Страница ' + (key / 20 + 1) + ' из 2675 (Записи 1 — 30 из 80324)'}
+                            </td>
+                        </tr>
+                    );
+                }
                 journalsRows.push(
                     <tr>
                         <td>

@@ -15,9 +15,6 @@ const initialState = {
 };
 
 export function journals(state = initialState, action) {
-    if (action.type === journalConstants.LOAD_NEXT_SUCCESS) {
-        alert(JSON.stringify(action.filter));
-    }
     switch (action.type) {
         case journalConstants.GETALL_REQUEST:
             return {
@@ -27,7 +24,6 @@ export function journals(state = initialState, action) {
             return {
                 filter: action.filter,
                 items: action.journals
-                //items: state.items.concat(action.journals)
             };
         case journalConstants.LOAD_NEXT_SUCCESS:
             return {

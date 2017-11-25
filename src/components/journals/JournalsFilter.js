@@ -15,16 +15,20 @@ class JournalsFilter extends React.Component {
     }
 
     onApplyClicked() {
+        let filter = this.createFilter();
+        this.props.dispatch(journalActions.loadJournals(filter));
+        this.props.toggleFilter();
+    }
+
+    createFilter() {
         let startDate = moment(this.state.dates[0], 'DD.MM.YYYY hh:mm').unix();
         let endDate = moment(this.state.dates[1], 'DD.MM.YYYY hh:mm').unix();
-        let filter = {
+        return {
             startDate: startDate,
             stopDate: endDate,
             limit: 50,
             offset: 0
         };
-        this.props.dispatch(journalActions.loadJournals(filter));
-        this.props.toggleFilter();
     }
 
     onDatesChange(e) {

@@ -45,7 +45,7 @@ function getAll() {
     return dispatch => {
         dispatch(request());
 
-        userService.getAll()
+        userService.loadJournals()
             .then(
                 users => dispatch(success(users)),
                 error => dispatch(failure(error))

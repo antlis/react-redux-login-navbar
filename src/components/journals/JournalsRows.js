@@ -6,12 +6,12 @@ import ReduxInfiniteScroll from "../ReduxInfiniteScroll";
 class JournalsRows extends React.Component {
 
     loadMore() {
-        this.props.dispatch(journalActions.getAll(0, 50));
+        this.props.dispatch(journalActions.loadNext(this.props.filter));
     }
 
     renderJournals() {
         let journalsRows = [];
-        let {items} = this.props.journals;
+        let items = this.props.items;
         if (items) {
             journalsRows.push(
                 <tr style={{height: 0}}>
@@ -77,11 +77,12 @@ class JournalsRows extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const {journals} = state;
+    const {items, filter} = state.journals;
     const {lang} = state.translate;
     return {
         lang,
-        journals
+        items,
+        filter
     };
 }
 

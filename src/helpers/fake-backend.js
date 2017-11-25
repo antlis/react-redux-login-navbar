@@ -52,7 +52,7 @@ export function configureFakeBackend() {
                 }
 
                 // get journals
-                if (url.endsWith('/journals?limit=50&offset=0') && opts.method === 'GET') {
+                if (url.endsWith('/journals') && opts.method === 'POST') {
                     // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
                     resolve({ok: true, json: () => createJournals()});
                     return;

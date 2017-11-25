@@ -9,30 +9,27 @@ class JournalsFilter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            startDate: moment().unix(),
-            endDate: moment().unix(),
-            focusedInput: 'startDate',
             dates: "23.11.2017 00:00 - 23.11.2017 23:59"
         };
         this.onDatesChange = this.onDatesChange.bind(this);
-        this.onFocusChange = this.onFocusChange.bind(this);
     }
 
     onApplyClicked() {
-        this.props.dispatch(journalActions.getAll(0, 50));
+        let startDate = moment(this.state.dates[0], 'DD.MM.YYYY hh:mm').unix();
+        let endDate = moment(this.state.dates[1], 'DD.MM.YYYY hh:mm').unix();
+        let filter = {
+            startDate: startDate,
+            stopDate: endDate,
+            limit: 50,
+            offset: 0
+        };
+        this.props.dispatch(journalActions.loadJournals(filter));
         this.props.toggleFilter();
     }
 
     onDatesChange(e) {
         let dates = e.target.value;
-        let startDate = moment(dates[0], 'DD.MM.YYYY hh:mm').unix();
-        let endDate = moment(dates[1], 'DD.MM.YYYY hh:mm').unix();
-
         this.setState({dates});
-    }
-
-    onFocusChange(focusedInput) {
-        this.setState({focusedInput});
     }
 
     render() {
@@ -56,32 +53,18 @@ class JournalsFilter extends React.Component {
                                 <input className="form-control" onChange={() => Console.log('input')}
                                        id="gwt-debug-journaling-filter-source-id"
                                        type="text"/>
-                                <div id="gwt-debug-journaling-filter-source-id-selector" style={{display: 'none'}}
-                                     aria-hidden="true">
-                                    <label style={{display: 'none'}} aria-hidden="true"/>
-                                    <label className="required-field-indicator hide">*</label>
-                                    <div className="btn-group btn-group-selector">
-                                        <button type="button" className="btn btn-white"/>
-                                        <span className="input-group-btn">
-                                                <button type="button" className="btn btn-default">
-                                                <span className="caret"/>
-                                                </button>
-                                            </span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div className="form-group col-xs-6" id="gwt-debug-journaling-object-type">
                             <label>
                                 {lang.journals.filter.ObjType}
                             </label>
-                            <label className="required-field-indicator hide">*</label>
                             <div className="btn-group btn-group-selector">
-                                <button type="button" className="btn btn-white">
+                                <button type="button" className="btn btn-white" style={{marginTop: 0}}>
                                     {lang.common.user}
                                 </button>
                                 <span className="input-group-btn">
-                                            <button type="button" className="btn btn-default">
+                                            <button type="button" className="btn btn-default" style={{marginTop: 0}}>
                                                 <span className="caret"/>
                                             </button>
                                 </span>
@@ -133,8 +116,10 @@ class JournalsFilter extends React.Component {
 
 function mapStateToProps(state) {
     const {content} = state.translate;
+    const {journalsFilter} = state;
     return {
-        content
+        content,
+        journalsFilter
     };
 }
 

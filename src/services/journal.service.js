@@ -1,17 +1,27 @@
 import {authHeader} from '../helpers';
 
 export const journalService = {
-    getAll,
+    loadJournals,
+    loadNext,
     getById
 };
 
-function getAll(offset, limit) {
+function loadJournals(filter) {
     const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
+        method: 'POST',
+        body: filter,
+        headers: authHeader(),
     };
+    return fetch('/journals', requestOptions).then(handleResponse);
+}
 
-    return fetch('/journals?limit=' + limit + "&offset=" + offset, requestOptions).then(handleResponse);
+function loadNext(filter) {
+    const requestOptions = {
+        method: 'POST',
+        body: filter,
+        headers: authHeader(),
+    };
+    return fetch('/journals', requestOptions).then(handleResponse);
 }
 
 function getById(id) {

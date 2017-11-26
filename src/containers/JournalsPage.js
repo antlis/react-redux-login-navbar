@@ -1,10 +1,8 @@
 import React from "react";
-import {connect} from "react-redux";
 import JournalsTable from "../components/journals/JournalsTable";
 import JournalsHeader from "../components/journals/JournalsHeader";
 
-export default class Journals extends React.Component {
-    render() {
+export const Journals = () => {
         return (
             <div className="main-content">
                 <div className="panel panel-default">
@@ -13,5 +11,4 @@ export default class Journals extends React.Component {
                 </div>
             </div>
         )
-    }
-}
+};

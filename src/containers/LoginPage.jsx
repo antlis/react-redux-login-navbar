@@ -41,7 +41,7 @@ class LoginPage extends React.Component {
     }
 
     render() {
-        const lang = this.props.content;
+        const lang = this.props.lang;
         const {username, password, submitted} = this.state;
 
         return (
@@ -55,7 +55,7 @@ class LoginPage extends React.Component {
                                 <div className={'col-xs-12 form-group ' + (submitted && !username ? 'has-error' : '')}>
                                     <input type="text" className="form-control" name="username"
                                            value={username} onChange={this.handleChange}
-                                           placeholder={lang.page.login.username}
+                                           placeholder={lang.username}
                                            id="gwt-debug-auth-login-field"/>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@ class LoginPage extends React.Component {
                                 <div className={'col-xs-12 form-group ' + (submitted && !password ? 'has-error' : '')}>
                                     <input type="password" className="form-control" name="password"
                                            value={password} onChange={this.handleChange}
-                                           placeholder={lang.page.login.password}
+                                           placeholder={lang.password}
                                            id="gwt-debug-auth-password-field"/>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@ class LoginPage extends React.Component {
                             <ButtonGroup className="col-xs-12">
                                 <Button type="submit" className="col-xs-4 btn-primary"
                                         id="gwt-debug-auth-submit-btn" form="loginForm">
-                                    Вход
+                                    {lang.enter}
                                 </Button>
                                 <DropdownButton noCaret pullRight title="" onSelect={this.changeLanguage}
                                                 className="btn-primary glyphicon glyphicon-globe"
@@ -90,9 +90,9 @@ class LoginPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const {content} = state.translate;
+    const lang = state.translate.content.page.login;
     return {
-        content
+        lang
     };
 }
 

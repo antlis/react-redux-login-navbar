@@ -4,7 +4,8 @@ export default [
         "page": {
             "login": {
                 "username": "User name",
-                "password": "Password"
+                "password": "Password",
+                "enter": "Enter"
             },
             "navbar": {
                 "journals": "Journals",
@@ -35,7 +36,15 @@ export default [
             "common": {
                 "user": "User",
                 "apply": "Apply",
-                "cancel": "Cancel"
+                "cancel": "Cancel",
+                "filter": "Filter ",
+                "refresh": " Refresh",
+                "quickFilter": {
+                    "authorization": "Authorization",
+                    "hostEvents": "Host Events",
+                    "databaseStatus": "Database Status",
+                    "objectEvents": "Object Events"
+                }
             }
         }
     },
@@ -44,7 +53,8 @@ export default [
         "page": {
             "login": {
                 "username": "Имя пользователя",
-                "password": "Пароль"
+                "password": "Пароль",
+                "enter": "Вход"
             },
             "navbar": {
                 "journals": "Журналы",
@@ -75,7 +85,15 @@ export default [
             "common": {
                 "user": "Пользователь",
                 "apply": "Применить",
-                "cancel": "Отменить"
+                "cancel": "Отменить",
+                "filter": "Фильтр ",
+                "refresh": " Обновить",
+                "quickFilter": {
+                    "authorization": "Авторизация",
+                    "hostEvents": "События узлов",
+                    "databaseStatus": "Состояние БД",
+                    "objectEvents": "События объектов"
+                }
             }
         }
     }

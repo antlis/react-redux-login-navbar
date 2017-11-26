@@ -19,6 +19,7 @@ class JournalsHeader extends React.Component {
     }
 
     render() {
+        const lang = this.props.lang;
         return (
             <div className="panel-heading">
                 <div className="row">
@@ -26,7 +27,7 @@ class JournalsHeader extends React.Component {
                         <Button className="btn btn-info btn-xs filterButton"
                                 id="gwt-debug-common-filter-btn"
                                 onClick={this.toggleFilter}>
-                            {'Фильтр '}
+                            {lang.filter}
                             <span className="caret"/>
                         </Button>
                         {
@@ -37,7 +38,7 @@ class JournalsHeader extends React.Component {
                         <button type="button" className="btn btn-info btn-xs smallOffsetLeft"
                                 id="gwt-debug-journaling-refresh-button">
                             <span className="glyphicon glyphicon-refresh"/>
-                            {' Обновить'}
+                            {lang.refresh}
                         </button>
                     </div>
                     <div className="btn-group pull-right smallOffsetRight">
@@ -46,26 +47,26 @@ class JournalsHeader extends React.Component {
                                 <span className="hide">
                                     <input value="on" id="gwt-uid-727" tabIndex="0" type="checkbox"/>
                                 </span>
-                            <span>Авторизация</span>
+                            <span>{lang.quickFilter.authorization}</span>
                         </div>
                         <div className="btn btn-xs btn-default"
                              id="gwt-debug-journaling-quick-filter-node-btn">
                                     <span className="hide">
                                         <input value="on" id="gwt-uid-730" tabIndex="0" type="checkbox"/>
                                 </span>
-                            <span>События узлов</span>
+                            <span>{lang.quickFilter.hostEvents}</span>
                         </div>
                         <div className="btn btn-xs btn-default"
                              id="gwt-debug-journaling-quick-filter-database-btn">
                                 <span className="hide"><input value="on" id="gwt-uid-733" tabIndex="0" type="checkbox"/>
                                 </span>
-                            <span>Состояние БД</span></div>
+                            <span>{lang.quickFilter.databaseStatus}</span></div>
                         <div className="btn btn-xs btn-default"
                              id="gwt-debug-journaling-quick-filter-objects-btn">
                                     <span className="hide"><input value="on" id="gwt-uid-736" tabIndex="0"
                                                                   type="checkbox"/>
                                 </span>
-                            <span>События объектов</span>
+                            <span>{lang.quickFilter.objectEvents}</span>
                         </div>
                     </div>
                 </div>
@@ -75,7 +76,7 @@ class JournalsHeader extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const {lang} = state.translate;
+    const lang = state.translate.content.page.common;
     const {journalsFilter} = state;
     return {
         lang,

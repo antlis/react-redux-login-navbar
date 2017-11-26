@@ -19,29 +19,33 @@ class JournalsFilter extends React.Component {
 
     onApplyClicked() {
         let filter = this.createFilter();
-        if (!filter) {
-            this.setState({
-                error: true
-            });
-            return;
+        if (filter) {
+            this.props.dispatch(journalActions.loadJournals(filter));
+            this.props.toggleFilter();
         }
-        this.props.dispatch(journalActions.loadJournals(filter));
-        this.props.toggleFilter();
     }
 
     createFilter() {
         let splitDates = this.state.dates.split("-");
         let startDate = moment(splitDates[0].trim(), 'DD.MM.YYYY HH:mm', true);
         let endDate = moment(splitDates[1].trim(), 'DD.MM.YYYY HH:mm', true);
-        if (!startDate.isValid() || !endDate.isValid()) {
-            return false;
+
+        if (this.datesIsValid(startDate, endDate)) {
+            return {
+                startDate: startDate.unix(),
+                stopDate: endDate.unix(),
+                limit: 50,
+                offset: 0
+            };
         }
-        return {
-            startDate: startDate.unix(),
-            stopDate: endDate.unix(),
-            limit: 50,
-            offset: 0
-        };
+    }
+
+    datesIsValid(startDate, endDate) {
+        if (startDate.isValid() && endDate.isValid()) {
+            return true;
+        }
+        this.setState({error: true});
+
     }
 
     onDatesChange(e) {
@@ -89,7 +93,6 @@ class JournalsFilter extends React.Component {
                         </div>
                         <div className="form-group col-xs-12 fix-col-xs-12" id="gwt-debug-journaling-event-category">
                             <label>{lang.journals.filter.SourceType}</label>
-                            <label className="required-field-indicator hide">*</label>
                             <div className="btn-group btn-group-selector">
                                 <button type="button" className="btn btn-white">
                                     Любая
@@ -106,11 +109,11 @@ class JournalsFilter extends React.Component {
                                     <input value="on" id="gwt-debug-filters-successful-pings-checkbox-input"
                                            tabIndex="0" type="checkbox"/>
                                     <label>Отображать успешный пинг</label>
-                            </span>
+                                </span>
                         </div>
                     </div>
                     <div className="row">
-                        <div className="form-group col-xs-12">
+                        <div className="form-group col-xs-12 pull-right">
                             <div className="pull-right">
                                 <Button onClick={() => this.onApplyClicked()} type="button"
                                         className="btn btn-sm btn-primary"

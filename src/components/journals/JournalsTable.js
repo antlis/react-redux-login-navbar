@@ -4,20 +4,19 @@ import {connect} from "react-redux";
 
 class JournalsTable extends React.Component {
     render() {
-        const {rows} = this.props.journals;
-        const {table} = this.props.content.page;
+        const {lang, rows} = this.props;
         return (
             <div className="panel-body">
                 <div className="table table-hover journal fixed-row" id="gwt-debug-journaling-table">
                     <div className="table-container">
                         <table className="table">
-                            <thead className="">
+                            <thead>
                             <tr>
-                                <th>{table.time}</th>
-                                <th>{table.type}</th>
-                                <th>{table.source}</th>
-                                <th>{table.result}</th>
-                                <th>{table.params}</th>
+                                <th>{lang.time}</th>
+                                <th>{lang.type}</th>
+                                <th>{lang.source}</th>
+                                <th>{lang.result}</th>
+                                <th>{lang.params}</th>
                             </tr>
                             </thead>
                             {rows.length !== 0 && <JournalsRows/>}
@@ -30,11 +29,11 @@ class JournalsTable extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const {content} = state.translate;
-    const {journals} = state;
+    const lang = state.translate.content.page.table;
+    const {rows} = state.journals;
     return {
-        content,
-        journals
+        lang,
+        rows
     };
 }
 

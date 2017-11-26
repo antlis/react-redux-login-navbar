@@ -11,9 +11,9 @@ class JournalsRows extends React.Component {
 
     renderJournals() {
         let journalsRows = [];
-        let items = this.props.items;
-        if (items) {
-            items.map((journal, key) => {
+        let {rows} = this.props;
+        if (rows) {
+            rows.map((journal, key) => {
                 if ((key) % 20 === 0) {
                     journalsRows.push(
                         <tr style={{height: 0}}>
@@ -80,11 +80,11 @@ class JournalsRows extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const {items, filter} = state.journals;
+    const {rows, filter} = state.journals;
     const {lang} = state.translate;
     return {
         lang,
-        items,
+        rows,
         filter
     };
 }

@@ -10,7 +10,7 @@ const defaultFilter = {
 };
 
 const initialState = {
-    items: [],
+    rows: [],
     filter: defaultFilter
 };
 
@@ -23,12 +23,12 @@ export function journals(state = initialState, action) {
         case journalConstants.GETALL_SUCCESS:
             return {
                 filter: action.filter,
-                items: action.journals
+                rows: action.journals
             };
         case journalConstants.LOAD_NEXT_SUCCESS:
             return {
                 filter: action.filter,
-                items: state.items.concat(action.journals)
+                rows: state.rows.concat(action.journals)
             };
         case journalConstants.GETALL_FAILURE:
             return {

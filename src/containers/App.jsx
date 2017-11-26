@@ -23,31 +23,38 @@ class App extends React.Component {
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav>
-                        <NavItem eventKey={'/index/orders'} onSelect={(page) => history.push(page)}
+                        <NavItem eventKey={'/index/orders'}
+                                 onSelect={(page) => history.push(page)}
                                  id="gwt-debug-navbar-tasks">
                             {lang.orders}
                         </NavItem>
-                        <NavItem eventKey={'/index/users'} onSelect={(page) => history.push(page)}
+                        <NavItem eventKey={'/index/users'}
+                                 onSelect={(page) => history.push(page)}
                                  id="gwt-debug-navbar-accounts">
                             {lang.users}
                         </NavItem>
-                        <NavItem eventKey={'/index/groups'} onSelect={(page) => history.push(page)}
+                        <NavItem eventKey={'/index/groups'}
+                                 onSelect={(page) => history.push(page)}
                                  id="gwt-debug-navbar-groups">
                             {lang.groups}
                         </NavItem>
-                        <NavItem eventKey={'/index/devices'} onSelect={(page) => history.push(page)}
+                        <NavItem eventKey={'/index/devices'}
+                                 onSelect={(page) => history.push(page)}
                                  id="gwt-debug-navbar-devices">
                             {lang.devices}
                         </NavItem>
-                        <NavItem eventKey={'/index/journals'} onSelect={(page) => history.push(page)}
+                        <NavItem eventKey={'/index/journals'}
+                                 onSelect={(page) => history.push(page)}
                                  id="gwt-debug-navbar-journal">
                             {lang.journals}
                         </NavItem>
-                        <NavItem eventKey={'/index/sanctions'} onSelect={(page) => history.push(page)}
+                        <NavItem eventKey={'/index/sanctions'}
+                                 onSelect={(page) => history.push(page)}
                                  id="gwt-debug-navbar-sanctions">
                             {lang.sanctions}
                         </NavItem>
-                        <NavItem eventKey={'/index/serviceInfo'} onSelect={(page) => history.push(page)}
+                        <NavItem eventKey={'/index/serviceInfo'}
+                                 onSelect={(page) => history.push(page)}
                                  id="gwt-debug-navbar-serviceinfo">
                             {lang.serviceInfo}
                         </NavItem>

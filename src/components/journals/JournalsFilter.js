@@ -9,23 +9,34 @@ class JournalsFilter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            dates: "23.11.2017 00:00 - 23.11.2017 23:59"
+            dates: moment().startOf('day').format('DD.MM.YYYY HH:mm') + ' - ' + moment().endOf('day').format('DD.MM.YYYY HH:mm'),
+            error: false
         };
         this.onDatesChange = this.onDatesChange.bind(this);
     }
 
     onApplyClicked() {
         let filter = this.createFilter();
+        if (!filter) {
+            this.setState({
+                error: true
+            });
+            return;
+        }
         this.props.dispatch(journalActions.loadJournals(filter));
         this.props.toggleFilter();
     }
 
     createFilter() {
-        let startDate = moment(this.state.dates[0], 'DD.MM.YYYY hh:mm').unix();
-        let endDate = moment(this.state.dates[1], 'DD.MM.YYYY hh:mm').unix();
+        let splitDates = this.state.dates.split("-");
+        let startDate = moment(splitDates[0].trim(), 'DD.MM.YYYY HH:mm', true);
+        let endDate = moment(splitDates[1].trim(), 'DD.MM.YYYY HH:mm', true);
+        if (!startDate.isValid() || !endDate.isValid()) {
+            return false;
+        }
         return {
-            startDate: startDate,
-            stopDate: endDate,
+            startDate: startDate.unix(),
+            stopDate: endDate.unix(),
             limit: 50,
             offset: 0
         };
@@ -38,14 +49,14 @@ class JournalsFilter extends React.Component {
 
     render() {
         const lang = this.props.content.page;
-
+        const {error} = this.state;
         return (
             <div style={{visibility: 'visible', position: 'absolute', overflow: 'visible'}} className="gwt-PopupPanel">
                 <div className="filter-popup animated fadeIn" style={{width: 600}}>
                     <div className="row">
                         <div className="col-xs-12">
-                            <label className="form-label">
-                                {lang.journals.filter.SamplingPeriod}
+                            <label className='form-label' style={{color: error ? 'red' : ''}}>
+                                {lang.journals.filter.SamplingPeriod}{error ? "*" : ""}
                             </label>
                             <DatePicker dates={this.state.dates} onChange={this.onDatesChange}/>
                         </div>

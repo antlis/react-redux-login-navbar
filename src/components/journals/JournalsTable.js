@@ -4,8 +4,8 @@ import {connect} from "react-redux";
 
 class JournalsTable extends React.Component {
     render() {
-        const {items} = this.props.journals;
-        const table = this.props.content.page.table;
+        const {rows} = this.props.journals;
+        const {table} = this.props.content.page;
         return (
             <div className="panel-body">
                 <div className="table table-hover journal fixed-row" id="gwt-debug-journaling-table">
@@ -17,10 +17,10 @@ class JournalsTable extends React.Component {
                                 <th>{table.type}</th>
                                 <th>{table.source}</th>
                                 <th>{table.result}</th>
-                                <th style={{width: '15%'}}>{table.params}</th>
+                                <th>{table.params}</th>
                             </tr>
                             </thead>
-                            {items.length !== 0 && <JournalsRows/>}
+                            {rows.length !== 0 && <JournalsRows/>}
                         </table>
                     </div>
                 </div>

@@ -6,6 +6,7 @@ function createJournals() {
     let journals = [];
     for (let i = 0; i < 20; i++) {
         journals[i] = {
+            id:  Math.ceil(Math.random() * 100000),
             time: Date.now(),
             type: "Запрос " + i,
             source: "Пользователь " + i,

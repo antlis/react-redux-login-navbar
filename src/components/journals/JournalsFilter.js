@@ -5,11 +5,13 @@ import {Button} from "react-bootstrap";
 import moment from "moment";
 import DatePicker from "../common/DatePicker";
 
+const dates = moment().startOf('day').format('DD.MM.YYYY HH:mm') + ' - ' + moment().endOf('day').format('DD.MM.YYYY HH:mm');
+
 class JournalsFilter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            dates: moment().startOf('day').format('DD.MM.YYYY HH:mm') + ' - ' + moment().endOf('day').format('DD.MM.YYYY HH:mm'),
+            dates: dates,
             error: false
         };
         this.onDatesChange = this.onDatesChange.bind(this);
@@ -48,7 +50,7 @@ class JournalsFilter extends React.Component {
     }
 
     render() {
-        const lang = this.props.content.page;
+        const lang = this.props.page;
         const {error} = this.state;
         return (
             <div style={{visibility: 'visible', position: 'absolute', overflow: 'visible'}} className="gwt-PopupPanel">
@@ -130,10 +132,10 @@ class JournalsFilter extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const {content} = state.translate;
+    const {page} = state.translate.content;
     const {journalsFilter} = state;
     return {
-        content,
+        page,
         journalsFilter
     };
 }

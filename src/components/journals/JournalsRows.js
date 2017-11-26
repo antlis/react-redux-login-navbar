@@ -16,7 +16,7 @@ class JournalsRows extends React.Component {
             rows.map((journal, key) => {
                 if ((key) % 20 === 0) {
                     journalsRows.push(
-                        <tr style={{height: 0}}>
+                        <tr style={{height: 0}} key={key}>
                             <td colSpan="5"
                                 className="separator">{'Страница ' + (key / 20 + 1) + ' из 2675 (Записи 1 — 30 из 80324)'}
                             </td>
@@ -24,7 +24,7 @@ class JournalsRows extends React.Component {
                     );
                 }
                 journalsRows.push(
-                    <tr>
+                    <tr key={journal.id}>
                         <td>
                             <div>{journal.time}</div>
                         </td>

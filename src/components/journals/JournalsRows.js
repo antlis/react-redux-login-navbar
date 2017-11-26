@@ -14,7 +14,7 @@ class JournalsRows extends React.Component {
         let items = this.props.items;
         if (items) {
             items.map((journal, key) => {
-                if ((key) % 20 === 0 || key === 0) {
+                if ((key) % 20 === 0) {
                     journalsRows.push(
                         <tr style={{height: 0}}>
                             <td colSpan="5"

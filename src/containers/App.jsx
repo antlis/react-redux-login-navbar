@@ -4,15 +4,6 @@ import {MenuItem, Nav, Navbar, NavDropdown, NavItem} from "react-bootstrap";
 import {history} from "../constants/history";
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(page) {
-        history.push(`/index/` + page)
-    }
-
     render() {
         const lang = this.props.content;
         const title =
@@ -32,31 +23,31 @@ class App extends React.Component {
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav>
-                        <NavItem eventKey={'orders'} onSelect={this.handleChange} className="gwt-Anchor"
+                        <NavItem eventKey={'/index/orders'} onSelect={(page) => history.push(page)}
                                  id="gwt-debug-navbar-tasks">
                             {lang.page.navbar.orders}
                         </NavItem>
-                        <NavItem eventKey={'users'} onSelect={this.handleChange} className="gwt-Anchor"
+                        <NavItem eventKey={'/index/users'} onSelect={(page) => history.push(page)}
                                  id="gwt-debug-navbar-accounts">
                             {lang.page.navbar.users}
                         </NavItem>
-                        <NavItem eventKey={'groups'} onSelect={this.handleChange} className="gwt-Anchor"
+                        <NavItem eventKey={'/index/groups'} onSelect={(page) => history.push(page)}
                                  id="gwt-debug-navbar-groups">
                             {lang.page.navbar.groups}
                         </NavItem>
-                        <NavItem eventKey={'devices'} onSelect={this.handleChange} className="gwt-Anchor"
+                        <NavItem eventKey={'/index/devices'} onSelect={(page) => history.push(page)}
                                  id="gwt-debug-navbar-devices">
                             {lang.page.navbar.devices}
                         </NavItem>
-                        <NavItem eventKey={'journals'} onSelect={this.handleChange} className="gwt-Anchor"
+                        <NavItem eventKey={'/index/journals'} onSelect={(page) => history.push(page)}
                                  id="gwt-debug-navbar-journal">
                             {lang.page.navbar.journals}
                         </NavItem>
-                        <NavItem eventKey={'sanctions'} onSelect={this.handleChange} className="gwt-Anchor"
+                        <NavItem eventKey={'/index/sanctions'} onSelect={(page) => history.push(page)}
                                  id="gwt-debug-navbar-sanctions">
                             {lang.page.navbar.sanctions}
                         </NavItem>
-                        <NavItem eventKey={'serviceInfo'} onSelect={this.handleChange} className="gwt-Anchor"
+                        <NavItem eventKey={'/index/serviceInfo'} onSelect={(page) => history.push(page)}
                                  id="gwt-debug-navbar-serviceinfo">
                             {lang.page.navbar.serviceInfo}
                         </NavItem>

@@ -20,7 +20,7 @@ class JournalsFilter extends React.Component {
     onApplyClicked() {
         let filter = this.createFilter();
         if (filter) {
-            this.props.dispatch(journalActions.loadJournals(filter));
+            this.props.loadJournals(filter);
             this.props.toggleFilter();
         }
     }
@@ -142,5 +142,10 @@ function mapStateToProps(state) {
         journalsFilter
     };
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loadJournals: (filter) => dispatch(journalActions.loadJournals(filter))
+    }
+};
 
-export default connect(mapStateToProps)(JournalsFilter)
+export default connect(mapStateToProps, mapDispatchToProps)(JournalsFilter)

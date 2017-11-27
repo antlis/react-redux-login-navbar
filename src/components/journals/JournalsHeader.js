@@ -38,7 +38,7 @@ class JournalsHeader extends React.Component {
                     <div className="pull-left">
                         <Button type="button" className="btn btn-info btn-xs smallOffsetLeft"
                                 id="gwt-debug-journaling-refresh-button"
-                                onClick={() => this.props.dispatch(journalActions.loadJournals(this.props.journals.filter))}>
+                                onClick={() => this.props.loadJournals(this.props.journals.filter)}>
                             <span className="glyphicon glyphicon-refresh"/>
                             {lang.refresh}
                         </Button>
@@ -75,6 +75,10 @@ function mapStateToProps(state) {
         journals
     };
 }
-
-export default connect(mapStateToProps)(JournalsHeader)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loadJournals: (filter) => dispatch(journalActions.loadJournals(filter))
+    }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(JournalsHeader)
 

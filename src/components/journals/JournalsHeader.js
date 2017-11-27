@@ -25,8 +25,7 @@ class JournalsHeader extends React.Component {
     };
 
     render() {
-        const lang = this.props.lang;
-        const {filter} = this.props.journals;
+        const {filter, lang} = this.props;
         return (
             <div className="panel-heading">
                 <div className="row">
@@ -72,11 +71,10 @@ class JournalsHeader extends React.Component {
 
 function mapStateToProps(state) {
     const lang = state.translate.content.page.common;
-    const {journalsFilter, journals} = state;
+    const {filter} = state.journals;
     return {
         lang,
-        journalsFilter,
-        journals
+        filter
     };
 }
 

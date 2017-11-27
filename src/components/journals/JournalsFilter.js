@@ -30,7 +30,7 @@ class JournalsFilter extends React.Component {
         let startDate = moment(splitDates[0].trim(), 'DD.MM.YYYY HH:mm', true);
         let endDate = moment(splitDates[1].trim(), 'DD.MM.YYYY HH:mm', true);
 
-        if (this.datesIsValid(startDate, endDate)) {
+        if (startDate.isValid() && endDate.isValid()) {
             return {
                 startDate: startDate.unix(),
                 stopDate: endDate.unix(),
@@ -38,14 +38,7 @@ class JournalsFilter extends React.Component {
                 offset: 0
             };
         }
-    }
-
-    datesIsValid(startDate, endDate) {
-        if (startDate.isValid() && endDate.isValid()) {
-            return true;
-        }
         this.setState({error: true});
-
     }
 
     onDatesChange(e) {

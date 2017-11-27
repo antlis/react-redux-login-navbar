@@ -2,6 +2,7 @@ import {journalActions} from "../../actions/journalsActions";
 import React from "react";
 import {connect} from "react-redux";
 import ReduxInfiniteScroll from "../ReduxInfiniteScroll";
+import PropTypes from "prop-types";
 
 class JournalsRows extends React.Component {
 
@@ -93,3 +94,13 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(JournalsRows);
+
+JournalsRows.propTypes = {
+    filter : PropTypes.shape({
+        startDate: PropTypes.number.isRequired,
+        stopDate: PropTypes.number.isRequired,
+        limit: PropTypes.number.isRequired,
+        offset: PropTypes.number.isRequired
+    }),
+    loadNext: PropTypes.func.isRequired
+};

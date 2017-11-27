@@ -1,6 +1,6 @@
 import React from "react";
 import JournalsFilter from "./JournalsFilter";
-import {Button} from "react-bootstrap";
+import {Button, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
 import {connect} from "react-redux";
 import {journalActions} from "../../actions/journalsActions";
 
@@ -8,7 +8,8 @@ class JournalsHeader extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            filterIsOpen: false
+            filterIsOpen: false,
+            value: []
         };
         this.toggleFilter = this.toggleFilter.bind(this);
     }
@@ -19,8 +20,13 @@ class JournalsHeader extends React.Component {
         });
     }
 
+    onChange(value) {
+        this.setState({value});
+    };
+
     render() {
         const lang = this.props.lang;
+        const {filter} = this.props.journals;
         return (
             <div className="panel-heading">
                 <div className="row">
@@ -38,27 +44,25 @@ class JournalsHeader extends React.Component {
                     <div className="pull-left">
                         <Button type="button" className="btn btn-info btn-xs smallOffsetLeft"
                                 id="gwt-debug-journaling-refresh-button"
-                                onClick={() => this.props.loadJournals(this.props.journals.filter)}>
+                                onClick={() => this.props.loadJournals(filter)}>
                             <span className="glyphicon glyphicon-refresh"/>
                             {lang.refresh}
                         </Button>
                     </div>
                     <div className="btn-group pull-right smallOffsetRight">
-                        <div className="btn btn-xs btn-default"
-                             id="gwt-debug-journaling-quick-filter-auth-src-btn">
-                            <span>{lang.quickFilter.authorization}</span>
-                        </div>
-                        <div className="btn btn-xs btn-default"
-                             id="gwt-debug-journaling-quick-filter-node-btn">
-                            <span>{lang.quickFilter.hostEvents}</span>
-                        </div>
-                        <div className="btn btn-xs btn-default"
-                             id="gwt-debug-journaling-quick-filter-database-btn">
-                            <span>{lang.quickFilter.databaseStatus}</span></div>
-                        <div className="btn btn-xs btn-default"
-                             id="gwt-debug-journaling-quick-filter-objects-btn">
-                            <span>{lang.quickFilter.objectEvents}</span>
-                        </div>
+                        <ToggleButtonGroup
+                            type="checkbox"
+                            value={this.state.value}
+                            onChange={this.onChange.bind(this)}>
+                            <ToggleButton className="btn btn-xs btn-default"
+                                          value={1}>{lang.quickFilter.authorization}</ToggleButton>
+                            <ToggleButton className="btn btn-xs btn-default"
+                                          value={2}>{lang.quickFilter.hostEvents}</ToggleButton>
+                            <ToggleButton className="btn btn-xs btn-default"
+                                          value={3}>{lang.quickFilter.databaseStatus}</ToggleButton>
+                            <ToggleButton className="btn btn-xs btn-default"
+                                          value={4}>{lang.quickFilter.objectEvents}</ToggleButton>
+                        </ToggleButtonGroup>
                     </div>
                 </div>
             </div>
@@ -75,6 +79,7 @@ function mapStateToProps(state) {
         journals
     };
 }
+
 const mapDispatchToProps = (dispatch) => {
     return {
         loadJournals: (filter) => dispatch(journalActions.loadJournals(filter))

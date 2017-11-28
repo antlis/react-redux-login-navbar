@@ -1,14 +1,16 @@
 // array in local storage for registered users
+import {journalConstants} from "../constants/journalContstants";
+
 let users = JSON.parse(localStorage.getItem('users')) || [];
 
 
 function createJournals() {
     let journals = [];
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < journalConstants.PAGE_SIZE; i++) {
         journals[i] = {
             id:  Math.ceil(Math.random() * 100000),
             time: Date.now(),
-            type: "Запрос " + i,
+            type: i%3+1,
             source: "Пользователь " + i,
             result: 'ok'
         }

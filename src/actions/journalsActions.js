@@ -5,14 +5,15 @@ import {journalConstants} from "../constants/journalContstants";
 export const journalActions = {
     loadJournals: loadJournals,
     loadNext: loadNext,
-    quickFilterChange: quickFilterChange
+    quickFilterChange: quickFilterChange,
+    noMore: noMore
     // createFilter: createFilter,
     // updateFilterOffset: updateFilterOffset
 };
 
 function loadJournals(filter) {
     return dispatch => {
-        //dispatch(request());
+        dispatch(request());
 
         journalService.loadJournals(filter)
             .then(
@@ -26,12 +27,21 @@ function loadJournals(filter) {
     }
 
     function success(journals) {
-        return {type: journalConstants.GETALL_SUCCESS, journals, filter}
+        if (journals.length < journalConstants.PAGE_SIZE) {
+            return noMore(journals, filter);
+        } else {
+            return {type: journalConstants.GETALL_SUCCESS, journals, filter}
+        }
     }
 
     function failure(error) {
         return {type: journalConstants.GETALL_FAILURE, error}
     }
+
+}
+
+function noMore(journals, filter) {
+    return {type: journalConstants.NO_MORE_JOURNALS, journals, filter};
 }
 
 function loadNext(oldFilter) {
@@ -48,7 +58,11 @@ function loadNext(oldFilter) {
     };
 
     function success(journals, filter) {
-        return {type: journalConstants.LOAD_NEXT_SUCCESS, journals, filter: filter}
+        if (journals.length < journalConstants.PAGE_SIZE) {
+            return {type: journalConstants.NO_MORE_JOURNALS, journals, filter};
+        } else {
+            return {type: journalConstants.LOAD_NEXT_SUCCESS, journals, filter: filter}
+        }
     }
 
     function failure(error) {

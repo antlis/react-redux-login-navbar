@@ -10,6 +10,8 @@ const defaultFilter = {
 };
 
 const initialState = {
+    loading: false,
+    hasMore: true,
     rows: [],
     filter: defaultFilter,
     quickFilter: []
@@ -18,11 +20,19 @@ const initialState = {
 export function journals(state = initialState, action) {
     switch (action.type) {
         case journalConstants.GETALL_REQUEST:
-            return {
+            return Object.assign({}, state, {
                 loading: true
-            };
+            });
         case journalConstants.GETALL_SUCCESS:
             return Object.assign({}, state, {
+                loading: false,
+                filter: action.filter,
+                rows: action.journals
+            });
+        case journalConstants.NO_MORE_JOURNALS:
+            return Object.assign({}, state, {
+                hasMore: false,
+                loading: false,
                 filter: action.filter,
                 rows: action.journals
             });

@@ -3,6 +3,7 @@ import React from "react";
 import {connect} from "react-redux";
 import ReduxInfiniteScroll from "../ReduxInfiniteScroll";
 import PropTypes from "prop-types";
+import {journals} from "../../reducers/journalsReducer";
 
 class JournalsRows extends React.Component {
 
@@ -12,7 +13,14 @@ class JournalsRows extends React.Component {
 
     renderJournals() {
         let journalsRows = [];
-        this.props.rows.map((journal, key) => {
+        const {rows, quickFilter, filter} = this.props;
+
+        rows.filter((journal) => {
+            if (quickFilter.length === 0) {
+                return true;
+            }
+            return quickFilter.indexOf(journal.type) !== -1
+        }).map((journal, key) => {
             if ((key) % 20 === 0) {
                 journalsRows.push(
                     <tr style={{height: 0}} key={key}>
@@ -64,39 +72,47 @@ class JournalsRows extends React.Component {
                 </tr>
             )
         });
+        if (journalsRows.length === 0) {
+            this.props.noMore(journalsRows, filter);
+        }
         return journalsRows;
     }
 
     render() {
+        alert(this.props.hasMore);
         return (
             <ReduxInfiniteScroll items={this.renderJournals()}
                                  loadMore={this.loadMore.bind(this)}
                                  holderType='tbody'
+                                 hasMore={this.props.hasMore}
             />
         )
     }
 }
 
 function mapStateToProps(state) {
-    const {rows, filter} = state.journals;
+    const {rows, filter, quickFilter, hasMore} = state.journals;
     const {lang} = state.translate;
     return {
         lang,
         rows,
-        filter
+        filter,
+        quickFilter,
+        hasMore
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadNext: (filter) => dispatch(journalActions.loadNext(filter))
+        loadNext: (filter) => dispatch(journalActions.loadNext(filter)),
+        noMore: (journals, filter) => dispatch(journalActions.noMore(journals, filter))
     }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(JournalsRows);
 
 JournalsRows.propTypes = {
-    filter : PropTypes.shape({
+    filter: PropTypes.shape({
         startDate: PropTypes.number.isRequired,
         stopDate: PropTypes.number.isRequired,
         limit: PropTypes.number.isRequired,

@@ -21,7 +21,6 @@ class JournalsHeader extends React.Component {
 
     render() {
         const {filter, quickFilter, lang} = this.props;
-        alert(quickFilter);
         return (
             <div className="panel-heading">
                 <div className="row">

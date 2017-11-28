@@ -12,7 +12,6 @@ class JournalsFilter extends React.Component {
         super(props);
         this.state = {
             dates: dates,
-            error: false
         };
         this.onDatesChange = this.onDatesChange.bind(this);
     }
@@ -26,11 +25,11 @@ class JournalsFilter extends React.Component {
     }
 
     createFilter() {
-        let splitDates = this.state.dates.split("-");
-        let startDate = moment(splitDates[0].trim(), 'DD.MM.YYYY HH:mm', true);
-        let endDate = moment(splitDates[1].trim(), 'DD.MM.YYYY HH:mm', true);
+        if (this.dateIsValid()) {
+            let splitDates = this.state.dates.split("-");
+            let startDate = moment(splitDates[0].trim(), 'DD.MM.YYYY HH:mm', true);
+            let endDate = moment(splitDates[1].trim(), 'DD.MM.YYYY HH:mm', true);
 
-        if (startDate.isValid() && endDate.isValid()) {
             return {
                 startDate: startDate.unix(),
                 stopDate: endDate.unix(),
@@ -38,7 +37,6 @@ class JournalsFilter extends React.Component {
                 offset: 0
             };
         }
-        this.setState({error: true});
     }
 
     onDatesChange(e) {
@@ -46,18 +44,23 @@ class JournalsFilter extends React.Component {
         this.setState({dates});
     }
 
+    dateIsValid() {
+        return moment(this.state.dates, 'DD.MM.YYYY HH:mm - DD.MM.YYYY HH:mm', true).isValid();
+    }
+
     render() {
         const lang = this.props.page;
-        const {error} = this.state;
         return (
             <div style={{visibility: 'visible', position: 'absolute', overflow: 'visible'}} className="gwt-PopupPanel">
                 <div className="filter-popup animated fadeIn" style={{width: 600}}>
                     <div className="row">
                         <div className="col-xs-12">
-                            <label className='form-label' style={{color: error ? 'red' : ''}}>
-                                {lang.journals.filter.SamplingPeriod}{error ? "*" : ""}
+                            <label className='form-label'>
+                                {lang.journals.filter.SamplingPeriod}
                             </label>
-                            <DatePicker dates={this.state.dates} onChange={this.onDatesChange}/>
+                            <div className={this.dateIsValid() ? '' : 'has-error'}>
+                                <DatePicker dates={this.state.dates} onChange={this.onDatesChange}/>
+                            </div>
                         </div>
                         <div className="form-group col-xs-6">
                             <label>
@@ -87,7 +90,7 @@ class JournalsFilter extends React.Component {
                         <div className="form-group col-xs-12 fix-col-xs-12" id="gwt-debug-journaling-event-category">
                             <label>{lang.journals.filter.SourceType}</label>
                             <div className="btn-group btn-group-selector">
-                                <button type="button" className="btn btn-white">
+                                <button type="button" className="btn btn-white" style={{marginTop: 0}}>
                                     Любая
                                 </button>
                                 <span className="input-group-btn">
@@ -135,6 +138,7 @@ function mapStateToProps(state) {
         journalsFilter
     };
 }
+
 const mapDispatchToProps = (dispatch) => {
     return {
         loadJournals: (filter) => dispatch(journalActions.loadJournals(filter))

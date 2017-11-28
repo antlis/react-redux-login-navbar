@@ -26,9 +26,9 @@ class JournalsFilter extends React.Component {
 
     createFilter() {
         if (this.dateIsValid()) {
-            let splitDates = this.state.dates.split("-");
-            let startDate = moment(splitDates[0].trim(), 'DD.MM.YYYY HH:mm', true);
-            let endDate = moment(splitDates[1].trim(), 'DD.MM.YYYY HH:mm', true);
+            let splitDates = this.state.dates.split(" - ");
+            let startDate = moment(splitDates[0], 'DD.MM.YYYY HH:mm', true);
+            let endDate = moment(splitDates[1], 'DD.MM.YYYY HH:mm', true);
 
             return {
                 startDate: startDate.unix(),

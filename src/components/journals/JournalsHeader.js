@@ -9,7 +9,6 @@ class JournalsHeader extends React.Component {
         super(props);
         this.state = {
             filterIsOpen: false,
-            value: []
         };
         this.toggleFilter = this.toggleFilter.bind(this);
     }
@@ -20,12 +19,9 @@ class JournalsHeader extends React.Component {
         });
     }
 
-    onChange(value) {
-        this.setState({value});
-    };
-
     render() {
-        const {filter, lang} = this.props;
+        const {filter, quickFilter, lang} = this.props;
+        alert(quickFilter);
         return (
             <div className="panel-heading">
                 <div className="row">
@@ -51,8 +47,8 @@ class JournalsHeader extends React.Component {
                     <div className="btn-group pull-right smallOffsetRight">
                         <ToggleButtonGroup
                             type="checkbox"
-                            value={this.state.value}
-                            onChange={this.onChange.bind(this)}>
+                            value={quickFilter}
+                            onChange={this.props.quickFilterChange}>
                             <ToggleButton className="btn btn-xs btn-default"
                                           value={1}>{lang.quickFilter.authorization}</ToggleButton>
                             <ToggleButton className="btn btn-xs btn-default"
@@ -71,16 +67,18 @@ class JournalsHeader extends React.Component {
 
 function mapStateToProps(state) {
     const lang = state.translate.content.page.common;
-    const {filter} = state.journals;
+    const {filter, quickFilter} = state.journals;
     return {
         lang,
-        filter
+        filter,
+        quickFilter
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadJournals: (filter) => dispatch(journalActions.loadJournals(filter))
+        loadJournals: (filter) => dispatch(journalActions.loadJournals(filter)),
+        quickFilterChange: (value) => dispatch(journalActions.quickFilterChange(value))
     }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(JournalsHeader)

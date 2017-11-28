@@ -4,7 +4,8 @@ import {journalConstants} from "../constants/journalContstants";
 
 export const journalActions = {
     loadJournals: loadJournals,
-    loadNext: loadNext
+    loadNext: loadNext,
+    quickFilterChange: quickFilterChange
     // createFilter: createFilter,
     // updateFilterOffset: updateFilterOffset
 };
@@ -46,10 +47,6 @@ function loadNext(oldFilter) {
             );
     };
 
-    function request() {
-        return {type: journalConstants.GETALL_REQUEST}
-    }
-
     function success(journals, filter) {
         return {type: journalConstants.LOAD_NEXT_SUCCESS, journals, filter: filter}
     }
@@ -57,4 +54,8 @@ function loadNext(oldFilter) {
     function failure(error) {
         return {type: journalConstants.GETALL_FAILURE, error}
     }
+}
+
+function quickFilterChange(quickFilter) {
+    return {type: journalConstants.QUICK_FILTER_CHANGE, quickFilter: quickFilter}
 }

@@ -11,7 +11,8 @@ const defaultFilter = {
 
 const initialState = {
     rows: [],
-    filter: defaultFilter
+    filter: defaultFilter,
+    quickFilter: []
 };
 
 export function journals(state = initialState, action) {
@@ -21,19 +22,23 @@ export function journals(state = initialState, action) {
                 loading: true
             };
         case journalConstants.GETALL_SUCCESS:
-            return {
+            return Object.assign({}, state, {
                 filter: action.filter,
                 rows: action.journals
-            };
+            });
         case journalConstants.LOAD_NEXT_SUCCESS:
-            return {
+            return Object.assign({}, state, {
                 filter: action.filter,
                 rows: state.rows.concat(action.journals)
-            };
+            });
         case journalConstants.GETALL_FAILURE:
             return {
                 error: action.error
             };
+        case journalConstants.QUICK_FILTER_CHANGE:
+            return Object.assign({}, state, {
+                quickFilter: action.quickFilter
+            });
         default:
             return state
     }

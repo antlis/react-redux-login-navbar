@@ -20,7 +20,7 @@ class JournalsHeader extends React.Component {
     }
 
     render() {
-        const {filter, quickFilter, lang} = this.props;
+        const {filter, quickFilter, lang, quickFilterChange} = this.props;
         return (
             <div className="panel-heading">
                 <div className="row">
@@ -47,7 +47,7 @@ class JournalsHeader extends React.Component {
                         <ToggleButtonGroup
                             type="checkbox"
                             value={quickFilter}
-                            onChange={this.props.quickFilterChange}>
+                            onChange={quickFilterChange}>
                             <ToggleButton className="btn btn-xs btn-default"
                                           value={1}>{lang.quickFilter.authorization}</ToggleButton>
                             <ToggleButton className="btn btn-xs btn-default"

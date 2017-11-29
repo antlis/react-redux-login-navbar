@@ -5,6 +5,9 @@ import ReduxInfiniteScroll from "../ReduxInfiniteScroll";
 import PropTypes from "prop-types";
 import {journalConstants} from "../../constants/journalContstants";
 
+const pageSize = journalConstants.PAGE_SIZE;
+const count = 1000;
+
 class JournalsRows extends React.Component {
 
     loadMore() {
@@ -15,8 +18,9 @@ class JournalsRows extends React.Component {
     }
 
     renderJournals() {
+        const {rows, quickFilter, lang} = this.props;
+
         let journalsRows = [];
-        const {rows, quickFilter} = this.props;
 
         rows.filter((journal) => {
             if (quickFilter.length === 0) {
@@ -24,11 +28,16 @@ class JournalsRows extends React.Component {
             }
             return quickFilter.indexOf(journal.type) !== -1
         }).map((journal, key) => {
-            if ((key) % journalConstants.PAGE_SIZE === 0) {
+            if ((key) % pageSize === 0) {
+                let pageNumber = key / pageSize;
+                let pageCount = count / pageSize;
+                let firstRowNumber = pageNumber * pageSize + 1;
+                let lastRowNumber = pageNumber * pageSize + pageSize;
+
                 journalsRows.push(
                     <tr style={{height: 0}} key={key}>
-                        <td colSpan="5"
-                            className="separator">{'Страница ' + (key / journalConstants.PAGE_SIZE + 1) + ' из 2675 (Записи 1 — 30 из 80324)'}
+                        <td colSpan="5" className="separator">
+                            {`Страница ${pageNumber+1} из ${pageCount} (Записи ${firstRowNumber} - ${lastRowNumber} из ${count})`}
                         </td>
                     </tr>
                 );

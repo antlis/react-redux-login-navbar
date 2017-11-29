@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import ReduxInfiniteScroll from "../ReduxInfiniteScroll";
 import PropTypes from "prop-types";
 import {journalConstants} from "../../constants/journalContstants";
+import {RowInfo} from "./RowInfo";
 
 const pageSize = journalConstants.PAGE_SIZE;
 const count = 1000;
@@ -18,7 +19,7 @@ class JournalsRows extends React.Component {
     }
 
     renderJournals() {
-        const {rows, quickFilter, lang} = this.props;
+        const {rows, quickFilter} = this.props;
 
         let journalsRows = [];
 
@@ -55,31 +56,7 @@ class JournalsRows extends React.Component {
                            data-toggle="tooltip"
                            data-placement="right" title="Успешно"/></td>
                     <td>
-                        <div className="journaling-params"><a href="#">Параметры объекта</a>
-                            <form className="form-horizontal">
-                                <div className="form-group"><label
-                                    className="col-sm-6 control-label">Объект</label>
-                                    <div className="col-sm-6">
-                                        <div className="break">Запрос СИ (id=0)</div>
-                                    </div>
-                                </div>
-                                <div className="form-group">
-                                    <label className="col-sm-6 control-label">Пользователь</label>
-                                    <div className="col-sm-6">
-                                        <div className="break">superadmin (id=1)</div>
-                                    </div>
-                                </div>
-                                <div className="form-group"><label
-                                    className="col-sm-6 control-label">Тип</label>
-                                    <div className="col-sm-6">
-                                        <div className="break">Запрос 2.4 Просмотр списка
-                                            реализованных
-                                            запросов на получение служебной информации
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                        <RowInfo journal={journal}/>
                     </td>
                 </tr>
             )

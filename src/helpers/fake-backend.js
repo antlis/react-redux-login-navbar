@@ -8,9 +8,9 @@ function createJournals() {
     let journals = [];
     for (let i = 0; i < journalConstants.PAGE_SIZE; i++) {
         journals[i] = {
-            id:  Math.ceil(Math.random() * 100000),
+            id:  Math.ceil(Math.random() * 1000000000),
             time: Date.now(),
-            type: i%3+1,
+            type: i%4+1,
             source: "Пользователь " + i,
             result: 'ok'
         }

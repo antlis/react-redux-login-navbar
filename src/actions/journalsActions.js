@@ -40,15 +40,15 @@ function loadJournals(filter) {
 
 }
 
-function noMore(journals, filter) {
-    return {type: journalConstants.NO_MORE_JOURNALS, journals, filter};
+function noMore(filter) {
+    return {type: journalConstants.NO_MORE_JOURNALS, filter};
 }
 
 function loadNext(oldFilter) {
     return dispatch => {
         //dispatch(request());
         let filter = Object.assign({}, oldFilter, {
-            offset: oldFilter.offset + 50,
+            offset: oldFilter.offset + journalConstants.PAGE_SIZE,
         });
         journalService.loadNext(filter)
             .then(

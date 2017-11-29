@@ -4,6 +4,7 @@ import {journalActions} from "../../actions/journalsActions";
 import {Button} from "react-bootstrap";
 import moment from "moment";
 import DatePicker from "../common/DatePicker";
+import {journalConstants} from "../../constants/journalContstants";
 
 const dates = moment().startOf('day').format('DD.MM.YYYY HH:mm') + ' - ' + moment().endOf('day').format('DD.MM.YYYY HH:mm');
 
@@ -33,7 +34,7 @@ class JournalsFilter extends React.Component {
             return {
                 startDate: startDate.unix(),
                 stopDate: endDate.unix(),
-                limit: 50,
+                limit: journalConstants.PAGE_SIZE,
                 offset: 0
             };
         }

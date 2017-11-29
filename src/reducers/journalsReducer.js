@@ -33,8 +33,7 @@ export function journals(state = initialState, action) {
             return Object.assign({}, state, {
                 hasMore: false,
                 loading: false,
-                filter: action.filter,
-                rows: action.journals
+                filter: action.filter
             });
         case journalConstants.LOAD_NEXT_SUCCESS:
             return Object.assign({}, state, {
@@ -42,11 +41,12 @@ export function journals(state = initialState, action) {
                 rows: state.rows.concat(action.journals)
             });
         case journalConstants.GETALL_FAILURE:
-            return {
+            return Object.assign({}, state, {
                 error: action.error
-            };
+            });
         case journalConstants.QUICK_FILTER_CHANGE:
             return Object.assign({}, state, {
+                hasMore: action.quickFilter.length === 0,
                 quickFilter: action.quickFilter
             });
         default:

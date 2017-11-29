@@ -3,12 +3,14 @@ import React from "react";
 import {connect} from "react-redux";
 import ReduxInfiniteScroll from "../ReduxInfiniteScroll";
 import PropTypes from "prop-types";
-import {journals} from "../../reducers/journalsReducer";
 
 class JournalsRows extends React.Component {
 
     loadMore() {
-        this.props.loadNext(this.props.filter);
+        const {quickFilter, loadNext, filter} = this.props;
+        if (quickFilter.length === 0) {
+            loadNext(filter);
+        }
     }
 
     renderJournals() {
@@ -73,7 +75,7 @@ class JournalsRows extends React.Component {
             )
         });
         if (journalsRows.length === 0) {
-            this.props.noMore(journalsRows, filter);
+            this.props.noMore(filter);
         }
         return journalsRows;
     }
@@ -105,7 +107,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => {
     return {
         loadNext: (filter) => dispatch(journalActions.loadNext(filter)),
-        noMore: (journals, filter) => dispatch(journalActions.noMore(journals, filter))
+        noMore: (filter) => dispatch(journalActions.noMore(filter))
     }
 };
 

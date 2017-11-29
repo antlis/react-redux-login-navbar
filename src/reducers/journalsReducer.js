@@ -5,7 +5,7 @@ import moment from "moment";
 const defaultFilter = {
     startDate: moment().startOf('day').unix(),
     stopDate: moment().endOf('day').unix(),
-    limit: 50,
+    limit: journalConstants.PAGE_SIZE,
     offset: 0
 };
 

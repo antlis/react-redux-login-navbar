@@ -3,6 +3,7 @@ import React from "react";
 import {connect} from "react-redux";
 import ReduxInfiniteScroll from "../ReduxInfiniteScroll";
 import PropTypes from "prop-types";
+import {journalConstants} from "../../constants/journalContstants";
 
 class JournalsRows extends React.Component {
 
@@ -15,7 +16,7 @@ class JournalsRows extends React.Component {
 
     renderJournals() {
         let journalsRows = [];
-        const {rows, quickFilter, filter} = this.props;
+        const {rows, quickFilter} = this.props;
 
         rows.filter((journal) => {
             if (quickFilter.length === 0) {
@@ -23,11 +24,11 @@ class JournalsRows extends React.Component {
             }
             return quickFilter.indexOf(journal.type) !== -1
         }).map((journal, key) => {
-            if ((key) % 20 === 0) {
+            if ((key) % journalConstants.PAGE_SIZE === 0) {
                 journalsRows.push(
                     <tr style={{height: 0}} key={key}>
                         <td colSpan="5"
-                            className="separator">{'Страница ' + (key / 20 + 1) + ' из 2675 (Записи 1 — 30 из 80324)'}
+                            className="separator">{'Страница ' + (key / journalConstants.PAGE_SIZE + 1) + ' из 2675 (Записи 1 — 30 из 80324)'}
                         </td>
                     </tr>
                 );
@@ -74,14 +75,10 @@ class JournalsRows extends React.Component {
                 </tr>
             )
         });
-        if (journalsRows.length === 0) {
-            this.props.noMore(filter);
-        }
         return journalsRows;
     }
 
     render() {
-        alert(this.props.hasMore);
         return (
             <ReduxInfiniteScroll items={this.renderJournals()}
                                  loadMore={this.loadMore.bind(this)}

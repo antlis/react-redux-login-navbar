@@ -7,8 +7,6 @@ export const journalActions = {
     loadNext: loadNext,
     quickFilterChange: quickFilterChange,
     noMore: noMore
-    // createFilter: createFilter,
-    // updateFilterOffset: updateFilterOffset
 };
 
 function loadJournals(filter) {

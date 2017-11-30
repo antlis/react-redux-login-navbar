@@ -1,6 +1,6 @@
 export * from './devices/devices'
 export * from './users/users'
-export * from './serviceinfo/service.info'
+export * from './serviceinfo/serviceInfo'
 export * from './sanctions/sanctions'
 export * from './orders/orders'
 export * from './groups/groups'

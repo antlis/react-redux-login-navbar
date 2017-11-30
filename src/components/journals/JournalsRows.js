@@ -5,6 +5,7 @@ import ReduxInfiniteScroll from "../ReduxInfiniteScroll";
 import PropTypes from "prop-types";
 import {journalConstants} from "../../constants/journalContstants";
 import {RowInfo} from "./RowInfo";
+import moment from "moment";
 
 const pageSize = journalConstants.PAGE_SIZE;
 const count = 1000;
@@ -38,23 +39,20 @@ class JournalsRows extends React.Component {
                 journalsRows.push(
                     <tr style={{height: 0}} key={key}>
                         <td colSpan="5" className="separator">
-                            {`Страница ${pageNumber+1} из ${pageCount} (Записи ${firstRowNumber} - ${lastRowNumber} из ${count})`}
+                            {`Страница ${pageNumber + 1} из ${pageCount} (Записи ${firstRowNumber} - ${lastRowNumber} из ${count})`}
                         </td>
                     </tr>
                 );
             }
             journalsRows.push(
                 <tr key={journal.id}>
-                    <td>
-                        <div>{journal.time}</div>
-                    </td>
-                    <td>
-                        <div>{journal.type}</div>
-                    </td>
+                    <td>{moment.unix(journal.time).format('DD.MM.YYYY HH:mm')}</td>
+                    <td>{journal.type}</td>
                     <td>{journal.source}</td>
                     <td><i className="glyphicon glyphicon-ok-sign activeStatus"
                            data-toggle="tooltip"
-                           data-placement="right" title="Успешно"/></td>
+                           data-placement="right" title="Успешно"/>
+                    </td>
                     <td>
                         <RowInfo journal={journal}/>
                     </td>

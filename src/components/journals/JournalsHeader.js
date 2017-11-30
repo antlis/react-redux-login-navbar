@@ -20,7 +20,7 @@ class JournalsHeader extends React.Component {
     }
 
     render() {
-        const {filter, quickFilter, lang, quickFilterChange} = this.props;
+        const {filter, quickFilter, lang, quickFilterChange, loadJournals} = this.props;
         return (
             <div className="panel-heading">
                 <div className="row">
@@ -38,7 +38,7 @@ class JournalsHeader extends React.Component {
                     <div className="pull-left">
                         <Button type="button" className="btn btn-info btn-xs smallOffsetLeft"
                                 id="gwt-debug-journaling-refresh-button"
-                                onClick={() => this.props.loadJournals(filter)}>
+                                onClick={() => loadJournals(filter)}>
                             <span className="glyphicon glyphicon-refresh"/>
                             {lang.refresh}
                         </Button>

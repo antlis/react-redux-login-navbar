@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {MenuItem, Nav, Navbar, NavDropdown, NavItem} from "react-bootstrap";
 import {history} from "../constants/history";
+import PropTypes from "prop-types";
 
 class App extends React.Component {
     render() {
@@ -86,3 +87,19 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(App);
+
+App.propTypes = {
+    user: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        login: PropTypes.string.isRequired,
+        group: PropTypes.shape({
+            groupId: PropTypes.number.isRequired,
+            name: PropTypes.string.isRequired,
+            parentId: PropTypes.number,
+            objState: PropTypes.number.isRequired,
+            //usersList: null,
+            role: PropTypes.string.isRequired,
+            //sanctionTypes: []
+        })
+    })
+};

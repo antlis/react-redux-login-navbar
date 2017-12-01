@@ -8,6 +8,7 @@ import {Devices, Groups, Orders, Sanctions, ServiceInfo, Users} from "../compone
 import {Journals} from "./JournalsPage";
 import DevTools from "./DevTools";
 import App from "./App";
+import {PrivateRoute} from "../components/PrivateRoute";
 
 const Root = ({store}) => (
     <Provider store={store}>
@@ -16,7 +17,7 @@ const Root = ({store}) => (
                 <Route exact path="/" render={() => (
                     <Redirect to="/index"/>
                 )}/>
-                <Route path='/index' component={App}/>
+                <PrivateRoute path="/index" component={App} />
                 <Switch>
                     <Route path='/index/orders' component={Orders}/>
                     <Route path='/index/users' component={Users}/>

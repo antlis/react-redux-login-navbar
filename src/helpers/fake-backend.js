@@ -25,34 +25,28 @@ export function configureFakeBackend() {
             // wrap in timeout to simulate server api call
             setTimeout(() => {
 
-                // authenticate
                 if (url.endsWith('/users/authenticate') && opts.method === 'POST') {
                     // get parameters from post request
-                    let params = JSON.parse(opts.body);
+                    // let params = JSON.parse(opts.body);
 
-                    // find if any user matches login credentials
-                    let filteredUsers = users.filter(user => {
-                        return user.username === params.username && user.password === params.password;
-                    });
+                    // if login details are valid return user details and fake jwt token
+                    let responseJson = {
+                        name: " superadmin superadmin superadmin (#1)",
+                        login: "superadmin",
+                        group: {
+                            groupId: 1,
+                            name: "superadmins",
+                            parentId: null,
+                            objState: 10,
+                            usersList: null,
+                            role: "SUPER_ADMIN",
+                            sanctionTypes: []
+                        }
+                    };
 
-                    if (filteredUsers.length) {
-                        // if login details are valid return user details and fake jwt token
-                        let user = filteredUsers[0];
-                        let responseJson = {
-                            id: user.id,
-                            username: user.username,
-                            firstName: user.firstName,
-                            lastName: user.lastName,
-                            token: 'fake-jwt-token'
-                        };
-                        resolve({ok: true, json: () => responseJson});
-                    } else {
-                        // else return error
-                        reject('Username or password is incorrect');
-                    }
-
-                    return;
+                    resolve({ok: true, json: () => responseJson});
                 }
+
 
                 // get journals
                 if (url.endsWith('/journals') && opts.method === 'POST') {

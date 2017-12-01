@@ -5,11 +5,11 @@ import {history} from "../constants/history";
 
 class App extends React.Component {
     render() {
-        const lang = this.props.lang;
+        const {lang, user} = this.props;
         const title =
             <div id="gwt-debug-navbar-usermenu-btn" className="navbar-user">
                 <img alt="" src="../../styles/images/user_icon.png"/>
-                <span>Superadmin2,  superadmin2   (#34), superadmins</span>
+                <span>{user.name}, {user.group.name}</span>
                 <b className="caret"/>
             </div>;
         return (
@@ -78,8 +78,10 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
     const lang = state.translate.content.page.navbar;
+    const {user} = state.authentication;
     return {
-        lang
+        lang,
+        user
     };
 }
 

@@ -18,7 +18,8 @@ const configureStore = () => {
 
     store.subscribe(() => {
         saveState({
-            translate: store.getState().translate
+            translate: store.getState().translate,
+            user: store.getState().user
         });
     });
 

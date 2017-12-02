@@ -8,7 +8,7 @@ import {Devices, Groups, Orders, Sanctions, ServiceInfo, Users} from "../compone
 import {Journals} from "./JournalsPage";
 import DevTools from "./DevTools";
 import App from "./App";
-import {PrivateRoute} from "../components/PrivateRoute";
+import {PrivateRoute} from "../components/common/PrivateRoute";
 
 const Root = ({store}) => (
     <Provider store={store}>

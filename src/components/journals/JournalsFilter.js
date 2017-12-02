@@ -5,9 +5,10 @@ import {Button} from "react-bootstrap";
 import moment from "moment";
 import DatePicker from "../common/DatePicker";
 import {journalConstants} from "../../constants/journalContstants";
+import {dateFormat} from "../../constants/dateFormat";
 
 
-const dates = moment().startOf('day').format('DD.MM.YYYY HH:mm') + ' - ' + moment().endOf('day').format('DD.MM.YYYY HH:mm');
+const dates = moment().startOf('day').format(dateFormat) + ' - ' + moment().endOf('day').format(dateFormat);
 
 class JournalsFilter extends React.Component {
     constructor(props) {
@@ -30,8 +31,8 @@ class JournalsFilter extends React.Component {
     createFilter() {
         if (this.dateIsValid()) {
             let splitDates = this.state.dates.split(" - ");
-            let startDate = moment(splitDates[0], 'DD.MM.YYYY HH:mm', true);
-            let endDate = moment(splitDates[1], 'DD.MM.YYYY HH:mm', true);
+            let startDate = moment(splitDates[0], dateFormat, true);
+            let endDate = moment(splitDates[1], dateFormat, true);
 
             return {
                 startDate: startDate.unix(),
@@ -48,12 +49,12 @@ class JournalsFilter extends React.Component {
     }
 
     handleSelect(range) {
-        let dates = range.startDate.format('DD.MM.YYYY HH:mm') + " - " + range.endDate.format('DD.MM.YYYY HH:mm');
+        let dates = range.startDate.format(dateFormat) + " - " + range.endDate.format(dateFormat);
         this.setState({dates});
     }
 
     dateIsValid() {
-        return moment(this.state.dates, 'DD.MM.YYYY HH:mm - DD.MM.YYYY HH:mm', true).isValid();
+        return moment(this.state.dates, dateFormat + " - " + dateFormat, true).isValid();
     }
 
     render() {

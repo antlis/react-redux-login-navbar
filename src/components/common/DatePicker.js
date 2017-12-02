@@ -6,12 +6,13 @@ import PropTypes from "prop-types";
 import Popover from "react-bootstrap/es/Popover";
 import OverlayTrigger from "react-bootstrap/es/OverlayTrigger";
 import {DateRange} from 'react-date-range';
+import {dateFormat} from "../../constants/dateFormat";
 
 const DatePicker = ({dates, onChange, onSelect}) => {
     const popoverClick =
-        <Popover placement='right' id="popover-trigger-click" title="" style={{zIndex:200, maxWidth:'100%'}}>
+        <Popover id="popover-trigger-click" title="" style={{zIndex:200, maxWidth:'100%'}}>
             <DateRange
-                format={'DD.MM.YYYY HH:mm'}
+                format={dateFormat}
                 onChange={onSelect}
             />
         </Popover>;

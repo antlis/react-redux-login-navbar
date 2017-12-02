@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {MenuItem, Nav, Navbar, NavDropdown, NavItem} from "react-bootstrap";
 import {history} from "../constants/history";
 import PropTypes from "prop-types";
+import {LinkContainer} from "react-router-bootstrap";
 
 class App extends React.Component {
     render() {
@@ -24,41 +25,48 @@ class App extends React.Component {
                         </Navbar.Brand>
                     </Navbar.Header>
                     <Nav>
-                        <NavItem eventKey={'/index/orders'}
-                                 onSelect={(page) => history.push(page)}
-                                 id="gwt-debug-navbar-tasks">
-                            {lang.orders}
-                        </NavItem>
-                        <NavItem eventKey={'/index/users'}
-                                 onSelect={(page) => history.push(page)}
-                                 id="gwt-debug-navbar-accounts">
-                            {lang.users}
-                        </NavItem>
-                        <NavItem eventKey={'/index/groups'}
-                                 onSelect={(page) => history.push(page)}
-                                 id="gwt-debug-navbar-groups">
-                            {lang.groups}
-                        </NavItem>
-                        <NavItem eventKey={'/index/devices'}
-                                 onSelect={(page) => history.push(page)}
-                                 id="gwt-debug-navbar-devices">
-                            {lang.devices}
-                        </NavItem>
-                        <NavItem eventKey={'/index/journals'}
-                                 onSelect={(page) => history.push(page)}
-                                 id="gwt-debug-navbar-journal">
-                            {lang.journals}
-                        </NavItem>
-                        <NavItem eventKey={'/index/sanctions'}
-                                 onSelect={(page) => history.push(page)}
-                                 id="gwt-debug-navbar-sanctions">
-                            {lang.sanctions}
-                        </NavItem>
-                        <NavItem eventKey={'/index/serviceInfo'}
-                                 onSelect={(page) => history.push(page)}
-                                 id="gwt-debug-navbar-serviceinfo">
-                            {lang.serviceInfo}
-                        </NavItem>
+                        <LinkContainer to={'/index/orders'}>
+                            <NavItem eventKey={1}
+                                     id="gwt-debug-navbar-tasks">
+                                {lang.orders}
+                            </NavItem>
+                        </LinkContainer>
+                        <LinkContainer to={'/index/users'}>
+                            <NavItem eventKey={2}
+                                     id="gwt-debug-navbar-accounts">
+                                {lang.users}
+                            </NavItem>
+                        </LinkContainer>
+                        <LinkContainer to={'/index/groups'}>
+                            <NavItem eventKey={3}
+                                     id="gwt-debug-navbar-groups">
+                                {lang.groups}
+                            </NavItem>
+                        </LinkContainer>
+                        <LinkContainer to={'/index/devices'}>
+                            <NavItem eventKey={4}
+                                     id="gwt-debug-navbar-devices">
+                                {lang.devices}
+                            </NavItem>
+                        </LinkContainer>
+                        <LinkContainer to={'/index/journals'}>
+                            <NavItem eventKey={5}
+                                     id="gwt-debug-navbar-journal">
+                                {lang.journals}
+                            </NavItem>
+                        </LinkContainer>
+                        <LinkContainer to={'/index/sanctions'}>
+                            <NavItem eventKey={6}
+                                     id="gwt-debug-navbar-sanctions">
+                                {lang.sanctions}
+                            </NavItem>
+                        </LinkContainer>
+                        <LinkContainer to={'/index/serviceInfo'}>
+                            <NavItem eventKey={7}
+                                     id="gwt-debug-navbar-serviceinfo">
+                                {lang.serviceInfo}
+                            </NavItem>
+                        </LinkContainer>
                     </Nav>
                     <Nav className="nav navbar-nav navbar-right">
                         <NavDropdown eventKey={8} pullRight noCaret title={title} id="basic-nav-dropdown">

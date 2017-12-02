@@ -982,7 +982,7 @@ tr.selected td {
 }
 
 .gwt-PopupPanel {
-    z-index: 9900;
+    z-index: 100;
 }
 
 /* SELECTOR DROPDOWN IMPLEMENTATION */

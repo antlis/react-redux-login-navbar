@@ -9,7 +9,7 @@ function createJournals() {
     for (let i = 0; i < journalConstants.PAGE_SIZE; i++) {
         journals[i] = {
             id:  Math.ceil(Math.random() * 1000000000),
-            time: Date.now(),
+            time: Date.now()/1000,
             type: i%4+1,
             source: "Пользователь " + i,
             result: 'ok'

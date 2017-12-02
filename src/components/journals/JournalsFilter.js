@@ -6,6 +6,7 @@ import moment from "moment";
 import DatePicker from "../common/DatePicker";
 import {journalConstants} from "../../constants/journalContstants";
 
+
 const dates = moment().startOf('day').format('DD.MM.YYYY HH:mm') + ' - ' + moment().endOf('day').format('DD.MM.YYYY HH:mm');
 
 class JournalsFilter extends React.Component {
@@ -15,6 +16,7 @@ class JournalsFilter extends React.Component {
             dates: dates,
         };
         this.onDatesChange = this.onDatesChange.bind(this);
+        this.handleSelect = this.handleSelect.bind(this);
     }
 
     onApplyClicked() {
@@ -45,6 +47,11 @@ class JournalsFilter extends React.Component {
         this.setState({dates});
     }
 
+    handleSelect(range) {
+        let dates = range.startDate.format('DD.MM.YYYY HH:mm') + " - " + range.endDate.format('DD.MM.YYYY HH:mm');
+        this.setState({dates});
+    }
+
     dateIsValid() {
         return moment(this.state.dates, 'DD.MM.YYYY HH:mm - DD.MM.YYYY HH:mm', true).isValid();
     }
@@ -60,7 +67,10 @@ class JournalsFilter extends React.Component {
                                 {lang.journals.filter.SamplingPeriod}
                             </label>
                             <div className={this.dateIsValid() ? '' : 'has-error'}>
-                                <DatePicker dates={this.state.dates} onChange={this.onDatesChange}/>
+                                <DatePicker dates={this.state.dates}
+                                            onChange={this.onDatesChange}
+                                            onSelect={this.handleSelect}
+                                />
                             </div>
                         </div>
                         <div className="form-group col-xs-6">

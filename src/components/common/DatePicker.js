@@ -5,7 +5,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import Popover from "react-bootstrap/es/Popover";
 import OverlayTrigger from "react-bootstrap/es/OverlayTrigger";
-import {DateRange} from 'react-date-range';
 import {dateFormat} from "../../constants/dateFormat";
 
 const DatePicker = ({dates, onChange, onSelect}) => {
@@ -19,7 +18,8 @@ const DatePicker = ({dates, onChange, onSelect}) => {
     return (
         <div className="form-group" id="gwt-debug-journaling-filter-range-picker">
             <div className="input-group date">
-                <input className="form-control" onChange={onChange}
+                <input className="form-control"
+                       onChange={onChange}
                        value={dates}
                        type="text"/>
                 <div className="input-group-btn">
@@ -29,7 +29,6 @@ const DatePicker = ({dates, onChange, onSelect}) => {
                         </button>
                     </OverlayTrigger>
                 </div>
-
             </div>
         </div>
     );
@@ -37,7 +36,8 @@ const DatePicker = ({dates, onChange, onSelect}) => {
 
 DatePicker.propTypes = {
     dates: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
+    onSelect: PropTypes.func.isRequired
 };
 
 export default DatePicker;

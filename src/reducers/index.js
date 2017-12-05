@@ -12,7 +12,6 @@ const rootReducer = combineReducers({
     users,
     journals,
     alert
-    //   journalsFilter
 });
 
 export default rootReducer;

@@ -21,26 +21,24 @@ class JournalsFilter extends React.Component {
     }
 
     onApplyClicked() {
-        let filter = this.createFilter();
-        if (filter) {
+        if (this.dateIsValid()) {
+            let filter = this.createFilter();
             this.props.loadJournals(filter);
             this.props.toggleFilter();
         }
     }
 
     createFilter() {
-        if (this.dateIsValid()) {
-            let splitDates = this.state.dates.split(" - ");
-            let startDate = moment(splitDates[0], dateFormat, true);
-            let endDate = moment(splitDates[1], dateFormat, true);
+        let splitDates = this.state.dates.split(" - ");
+        let startDate = moment(splitDates[0], dateFormat, true);
+        let endDate = moment(splitDates[1], dateFormat, true);
+        return {
+            startDate: startDate.unix(),
+            stopDate: endDate.unix(),
+            limit: journalConstants.PAGE_SIZE,
+            offset: 0
+        };
 
-            return {
-                startDate: startDate.unix(),
-                stopDate: endDate.unix(),
-                limit: journalConstants.PAGE_SIZE,
-                offset: 0
-            };
-        }
     }
 
     onDatesChange(e) {

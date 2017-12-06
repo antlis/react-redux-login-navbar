@@ -1,11 +1,9 @@
-/**
- * Created by hudyshkin on 23.11.17.
- */
 import React from "react";
 import PropTypes from "prop-types";
 import Popover from "react-bootstrap/es/Popover";
 import OverlayTrigger from "react-bootstrap/es/OverlayTrigger";
 import {dateFormat} from "../../constants/dateFormat";
+import {DateRange} from "react-date-range";
 
 const DatePicker = ({dates, onChange, onSelect}) => {
     const popoverClick =

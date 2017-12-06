@@ -100,13 +100,13 @@ class JournalsFilter extends React.Component {
                         <div className="form-group col-xs-12 fix-col-xs-12" id="gwt-debug-journaling-event-category">
                             <label>{lang.journals.filter.SourceType}</label>
                             <div className="btn-group btn-group-selector">
-                                <button type="button" className="btn btn-white" style={{marginTop: 0}}>
+                                <Button type="button" className="btn-white" style={{marginTop: 0}}>
                                     Любая
-                                </button>
+                                </Button>
                                 <span className="input-group-btn">
-                                            <button type="button" className="btn btn-default">
+                                            <Button type="button" style={{marginTop: 0}}>
                                                   <span className="caret"/>
-                                            </button>
+                                            </Button>
                                         </span>
                             </div>
                         </div>

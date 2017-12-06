@@ -3,6 +3,7 @@ import JournalsFilter from "./JournalsFilter";
 import {Button, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
 import {connect} from "react-redux";
 import {journalActions} from "../../actions/journalsActions";
+import {journalConstants} from "../../constants/journalContstants";
 
 class JournalsHeader extends React.Component {
     constructor(props) {
@@ -49,13 +50,13 @@ class JournalsHeader extends React.Component {
                             value={quickFilter}
                             onChange={quickFilterChange}>
                             <ToggleButton className="btn btn-xs btn-default"
-                                          value={1}>{lang.quickFilter.authorization}</ToggleButton>
+                                          value={journalConstants.AUTH}>{lang.quickFilter.authorization}</ToggleButton>
                             <ToggleButton className="btn btn-xs btn-default"
-                                          value={2}>{lang.quickFilter.hostEvents}</ToggleButton>
+                                          value={journalConstants.NODE}>{lang.quickFilter.hostEvents}</ToggleButton>
                             <ToggleButton className="btn btn-xs btn-default"
-                                          value={3}>{lang.quickFilter.databaseStatus}</ToggleButton>
+                                          value={journalConstants.DATABASE}>{lang.quickFilter.databaseStatus}</ToggleButton>
                             <ToggleButton className="btn btn-xs btn-default"
-                                          value={4}>{lang.quickFilter.objectEvents}</ToggleButton>
+                                          value={journalConstants.OBJECT}>{lang.quickFilter.objectEvents}</ToggleButton>
                         </ToggleButtonGroup>
                     </div>
                 </div>

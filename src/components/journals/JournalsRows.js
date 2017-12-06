@@ -46,7 +46,7 @@ class JournalsRows extends React.Component {
             }
             journalsRows.push(
                 <tr key={journal.id}>
-                    <td>{moment.unix(journal.time).format('DD.MM.YYYY HH:mm')}</td>
+                    <td>{moment.unix(journal.time).format('DD.MM.YYYY HH:mm:ss')}</td>
                     <td>{journal.type}</td>
                     <td>{journal.source}</td>
                     <td><i className="glyphicon glyphicon-ok-sign activeStatus"

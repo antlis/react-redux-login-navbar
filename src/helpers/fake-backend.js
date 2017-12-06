@@ -3,14 +3,15 @@ import {journalConstants} from "../constants/journalContstants";
 
 let users = JSON.parse(localStorage.getItem('users')) || [];
 
+const objTypes = [journalConstants.AUTH, journalConstants.NODE, journalConstants.DATABASE, journalConstants.OBJECT];
 
 function createJournals() {
     let journals = [];
     for (let i = 0; i < journalConstants.PAGE_SIZE; i++) {
         journals[i] = {
-            id:  Math.ceil(Math.random() * 1000000000),
-            time: Date.now()/1000,
-            type: i%4+1,
+            id: Math.ceil(Math.random() * 1000000000),
+            time: Date.now() / 1000,
+            type: objTypes[i % 4],
             source: "Пользователь " + i,
             result: 'ok'
         }

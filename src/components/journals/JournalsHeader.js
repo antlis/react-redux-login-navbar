@@ -21,7 +21,7 @@ class JournalsHeader extends React.Component {
     }
 
     render() {
-        const {filter, quickFilter, lang, quickFilterChange, loadJournals} = this.props;
+        const {filter, quickFilter, lang, quickFilterChange, loadJournals, loading} = this.props;
         return (
             <div className="panel-heading">
                 <div className="row">
@@ -37,13 +37,15 @@ class JournalsHeader extends React.Component {
                         }
                     </div>
                     <div className="pull-left">
-                        <Button type="button" className="btn btn-info btn-xs smallOffsetLeft"
+                        <Button type="button" className={"btn-info btn-xs smallOffsetLeft"}
                                 id="gwt-debug-journaling-refresh-button"
-                                onClick={() => loadJournals(filter)}>
+                                onClick={() => loadJournals(filter)}
+                                disabled={loading}>
                             <span className="glyphicon glyphicon-refresh"/>
-                            {lang.refresh}
+                            {lang.refresh + (loading ? "..." : "")}
                         </Button>
                     </div>
+
                     <div className="btn-group pull-right smallOffsetRight">
                         <ToggleButtonGroup
                             type="checkbox"
@@ -67,11 +69,12 @@ class JournalsHeader extends React.Component {
 
 function mapStateToProps(state) {
     const lang = state.translate.content.page.common;
-    const {filter, quickFilter} = state.journals;
+    const {filter, quickFilter, loading} = state.journals;
     return {
         lang,
         filter,
-        quickFilter
+        quickFilter,
+        loading
     };
 }
 

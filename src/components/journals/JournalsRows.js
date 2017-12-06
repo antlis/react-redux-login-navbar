@@ -1,9 +1,9 @@
-import {journalActions} from "../../actions/journalsActions";
+import {journalActions} from "../../actions/index";
 import React from "react";
 import {connect} from "react-redux";
 import ReduxInfiniteScroll from "../common/ReduxInfiniteScroll";
 import PropTypes from "prop-types";
-import {journalConstants} from "../../constants/journalContstants";
+import {journalConstants} from "../../constants/index";
 import {RowInfo} from "./RowInfo";
 import moment from "moment";
 
@@ -101,5 +101,4 @@ JournalsRows.propTypes = {
         limit: PropTypes.number.isRequired,
         offset: PropTypes.number.isRequired
     }),
-    loadNext: PropTypes.func.isRequired
 };

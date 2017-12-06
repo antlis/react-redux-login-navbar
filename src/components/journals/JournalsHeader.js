@@ -2,8 +2,8 @@ import React from "react";
 import JournalsFilter from "./JournalsFilter";
 import {Button, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
 import {connect} from "react-redux";
-import {journalActions} from "../../actions/journalsActions";
-import {journalConstants} from "../../constants/journalContstants";
+import {journalActions} from "../../actions/index";
+import {journalConstants} from "../../constants/index";
 
 class JournalsHeader extends React.Component {
     constructor(props) {

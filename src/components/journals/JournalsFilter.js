@@ -1,11 +1,10 @@
 import React from "react";
 import {connect} from "react-redux";
-import {journalActions} from "../../actions/journalsActions";
+import {journalActions} from "../../actions/index";
 import {Button} from "react-bootstrap";
 import moment from "moment";
 import DatePicker from "../common/DatePicker";
-import {journalConstants} from "../../constants/journalContstants";
-import {dateFormat} from "../../constants/dateFormat";
+import {dateFormat, journalConstants} from "../../constants/index";
 
 
 const dates = moment().startOf('day').format(dateFormat) + ' - ' + moment().endOf('day').format(dateFormat);

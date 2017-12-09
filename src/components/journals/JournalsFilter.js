@@ -52,7 +52,6 @@ class JournalsFilter extends React.Component {
     }
 
     onSelectChange(name, value) {
-        alert(name);
         this.setState({[name]: value});
     }
 

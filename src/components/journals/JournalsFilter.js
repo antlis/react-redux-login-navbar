@@ -1,7 +1,8 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
+import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {journalActions} from "../../actions/index";
-import {Button, DropdownButton, FormControl, FormGroup, InputGroup, MenuItem, SplitButton} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 import moment from "moment";
 import DatePicker from "../common/DatePicker";
 import {dateFormat, journalConstants} from "../../constants/index";
@@ -33,6 +34,15 @@ class JournalsFilter extends React.Component {
         }
     }
 
+    dateIsValid() {
+        return moment(this.state.dates, dateFormat + " - " + dateFormat, true).isValid();
+    }
+
+    onDatesChange(e) {
+        let dates = e.target.value;
+        this.setState({dates});
+    }
+
     createFilter() {
         let splitDates = this.state.dates.split(" - ");
         let startDate = moment(splitDates[0], dateFormat, true);
@@ -46,11 +56,6 @@ class JournalsFilter extends React.Component {
 
     }
 
-    onDatesChange(e) {
-        let dates = e.target.value;
-        this.setState({dates});
-    }
-
     onSelectChange(name, value) {
         this.setState({[name]: value});
     }
@@ -58,10 +63,6 @@ class JournalsFilter extends React.Component {
     onRangeChange(range) {
         let dates = range.startDate.format(dateFormat) + " - " + range.endDate.format(dateFormat);
         this.setState({dates});
-    }
-
-    dateIsValid() {
-        return moment(this.state.dates, dateFormat + " - " + dateFormat, true).isValid();
     }
 
     render() {
@@ -154,7 +155,7 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispatchToProps)(JournalsFilter)
 
 JournalsFilter.propTypes = {
-    // loadJournals: PropTypes.func.isRequired,
-    //page: PropTypes.array.isRequired,
-    //toggleFilter: PropTypes.func.isRequired
+  loadJournals: PropTypes.func.isRequired,
+  page: PropTypes.object.isRequired,
+  toggleFilter: PropTypes.func.isRequired
 };

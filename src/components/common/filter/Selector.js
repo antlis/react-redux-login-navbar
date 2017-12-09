@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import {Button} from "react-bootstrap";
 
 export class Selector extends React.Component {
-    constructor(props) {
+
+  constructor(props) {
         super(props);
         this.state = {
             isOpen: false
@@ -53,7 +54,9 @@ export class Selector extends React.Component {
 }
 
 Selector.propTypes = {
-    label: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-    value: PropTypes.string.isRequired
+  items: PropTypes.array.isRequired,
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired
 };

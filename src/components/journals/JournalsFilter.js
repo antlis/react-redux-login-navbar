@@ -1,12 +1,15 @@
-import React from "react";
+import React, {PropTypes} from 'react'
 import {connect} from "react-redux";
 import {journalActions} from "../../actions/index";
-import {Button} from "react-bootstrap";
+import {Button, DropdownButton, FormControl, FormGroup, InputGroup, MenuItem, SplitButton} from "react-bootstrap";
 import moment from "moment";
 import DatePicker from "../common/DatePicker";
 import {dateFormat, journalConstants} from "../../constants/index";
+import {Selector} from "../common/filter/Selector";
 
 
+const srcTypes = ['1', '2', '3', '4'];
+const objTypes = ['Пользователь', 'Любая'];
 const dates = moment().startOf('day').format(dateFormat) + ' - ' + moment().endOf('day').format(dateFormat);
 
 class JournalsFilter extends React.Component {
@@ -14,9 +17,12 @@ class JournalsFilter extends React.Component {
         super(props);
         this.state = {
             dates: dates,
+            srcType: 'Любая',
+            objType: 'Пользователь'
         };
         this.onDatesChange = this.onDatesChange.bind(this);
-        this.handleSelect = this.handleSelect.bind(this);
+        this.onSelectChange = this.onSelectChange.bind(this);
+        this.onRangeChange = this.onRangeChange.bind(this);
     }
 
     onApplyClicked() {
@@ -45,7 +51,12 @@ class JournalsFilter extends React.Component {
         this.setState({dates});
     }
 
-    handleSelect(range) {
+    onSelectChange(name, value) {
+        alert(name);
+        this.setState({[name]: value});
+    }
+
+    onRangeChange(range) {
         let dates = range.startDate.format(dateFormat) + " - " + range.endDate.format(dateFormat);
         this.setState({dates});
     }
@@ -56,6 +67,7 @@ class JournalsFilter extends React.Component {
 
     render() {
         const lang = this.props.page;
+        const {objType,srcType} = this.state;
         return (
             <div style={{visibility: 'visible', position: 'absolute', overflow: 'visible'}} className="gwt-PopupPanel">
                 <div className="filter-popup animated fadeIn" style={{width: 600}}>
@@ -67,7 +79,7 @@ class JournalsFilter extends React.Component {
                             <div className={this.dateIsValid() ? '' : 'has-error'}>
                                 <DatePicker dates={this.state.dates}
                                             onChange={this.onDatesChange}
-                                            onSelect={this.handleSelect}
+                                            onSelect={this.onRangeChange}
                                 />
                             </div>
                         </div>
@@ -82,32 +94,18 @@ class JournalsFilter extends React.Component {
                             </div>
                         </div>
                         <div className="form-group col-xs-6" id="gwt-debug-journaling-object-type">
-                            <label>
-                                {lang.journals.filter.ObjType}
-                            </label>
-                            <div className="btn-group btn-group-selector">
-                                <button type="button" className="btn btn-white" style={{marginTop: 0}}>
-                                    {lang.common.user}
-                                </button>
-                                <span className="input-group-btn">
-                                            <button type="button" className="btn btn-default" style={{marginTop: 0}}>
-                                                <span className="caret"/>
-                                            </button>
-                                </span>
-                            </div>
+                            <Selector label={lang.journals.filter.ObjType}
+                                      name={'objType'}
+                                      value={objType}
+                                      items={objTypes}
+                                      onChange={this.onSelectChange}/>
                         </div>
                         <div className="form-group col-xs-12 fix-col-xs-12" id="gwt-debug-journaling-event-category">
-                            <label>{lang.journals.filter.SourceType}</label>
-                            <div className="btn-group btn-group-selector">
-                                <Button type="button" className="btn-white" style={{marginTop: 0}}>
-                                    Любая
-                                </Button>
-                                <span className="input-group-btn">
-                                            <Button type="button" style={{marginTop: 0}}>
-                                                  <span className="caret"/>
-                                            </Button>
-                                        </span>
-                            </div>
+                            <Selector label={lang.journals.filter.SourceType}
+                                      name={'srcType'}
+                                      value={srcType}
+                                      items={srcTypes}
+                                      onChange={this.onSelectChange}/>
                         </div>
                         <div className="form-group col-xs-12">
                                 <span className="checkbox" id="gwt-debug-filters-successful-pings-checkbox">
@@ -155,3 +153,9 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(JournalsFilter)
+
+JournalsFilter.propTypes = {
+    // loadJournals: PropTypes.func.isRequired,
+    //page: PropTypes.array.isRequired,
+    //toggleFilter: PropTypes.func.isRequired
+};

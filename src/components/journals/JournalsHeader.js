@@ -62,15 +62,16 @@ class JournalsHeader extends React.Component {
                         </ToggleButtonGroup>
                     </div>
                 </div>
-                <div style={{width: '95%', marginTop: 2,position:'absolute',
-                    left:5,
-                    right:5,
-                    marginLeft:'auto',
-                    marginRight:'auto'
+                <div style={{
+                    width: '95%', marginTop: 2, position: 'absolute',
+                    left: 5,
+                    right: 5,
+                    marginLeft: 'auto',
+                    marginRight: 'auto'
                 }}>
                     <BarLoader width={'100%'}
                                color='#49b6d6'
-                               loading={!loading}
+                               loading={loading}
                     />
                 </div>
             </div>

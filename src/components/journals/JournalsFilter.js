@@ -66,7 +66,7 @@ class JournalsFilter extends React.Component {
     }
 
     render() {
-        const lang = this.props.page;
+        const {lang} = this.props;
         const {objType,srcType} = this.state;
         return (
             <div style={{visibility: 'visible', position: 'absolute', overflow: 'visible'}} className="gwt-PopupPanel">
@@ -138,10 +138,10 @@ class JournalsFilter extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const {page} = state.translate.content;
+    const lang = state.translate.content.page;
     const {journalsFilter} = state;
     return {
-        page,
+        lang,
         journalsFilter
     };
 }

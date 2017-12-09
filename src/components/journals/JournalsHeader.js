@@ -4,6 +4,7 @@ import {Button, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
 import {connect} from "react-redux";
 import {journalActions} from "../../actions/index";
 import {journalConstants} from "../../constants/index";
+import {BarLoader} from "react-spinners";
 
 class JournalsHeader extends React.Component {
     constructor(props) {
@@ -42,10 +43,9 @@ class JournalsHeader extends React.Component {
                                 onClick={() => loadJournals(filter)}
                                 disabled={loading}>
                             <span className="glyphicon glyphicon-refresh"/>
-                            {lang.refresh + (loading ? "..." : "")}
+                            {lang.refresh}
                         </Button>
                     </div>
-
                     <div className="btn-group pull-right smallOffsetRight">
                         <ToggleButtonGroup
                             type="checkbox"
@@ -61,6 +61,17 @@ class JournalsHeader extends React.Component {
                                           value={journalConstants.OBJECT}>{lang.quickFilter.objectEvents}</ToggleButton>
                         </ToggleButtonGroup>
                     </div>
+                </div>
+                <div style={{width: '95%', marginTop: 2,position:'absolute',
+                    left:5,
+                    right:5,
+                    marginLeft:'auto',
+                    marginRight:'auto'
+                }}>
+                    <BarLoader width={'100%'}
+                               color='#49b6d6'
+                               loading={!loading}
+                    />
                 </div>
             </div>
         )

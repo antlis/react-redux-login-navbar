@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {journalActions} from "../../actions/index";
@@ -48,8 +48,15 @@ class JournalsFilter extends React.Component {
         let startDate = moment(splitDates[0], dateFormat, true);
         let endDate = moment(splitDates[1], dateFormat, true);
         return {
-            startDate: startDate.unix(),
-            stopDate: endDate.unix(),
+            journalsFilter: {
+                srcId: "",
+                srcType: null,
+                from: startDate.unix(),
+                to: endDate.unix(),
+                id: null,
+                showSuccessfulPings: false,
+                includeAllRelatedEvents: false,
+            },
             limit: journalConstants.PAGE_SIZE,
             offset: 0
         };

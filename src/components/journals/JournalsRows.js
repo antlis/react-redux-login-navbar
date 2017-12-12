@@ -96,8 +96,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(JournalsRows);
 
 JournalsRows.propTypes = {
     filter: PropTypes.shape({
-        startDate: PropTypes.number.isRequired,
-        stopDate: PropTypes.number.isRequired,
+        from: PropTypes.number.isRequired,
+        to: PropTypes.number.isRequired,
         limit: PropTypes.number.isRequired,
         offset: PropTypes.number.isRequired
     }),

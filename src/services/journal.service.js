@@ -1,36 +1,31 @@
-import {authHeader} from '../helpers';
+import {authHeader} from "../helpers";
+
+const host = 'http://127.0.0.1:8080';
 
 export const journalService = {
     loadJournals,
-    loadNext,
-    getById
+    loadNext
 };
 
 function loadJournals(filter) {
+    console.log(filter.journalsFilter);
     const requestOptions = {
         method: 'POST',
-        body: filter,
-        headers: authHeader(),
+        body: JSON.stringify(filter.journalsFilter),
+        headers: {
+            'Content-Type': 'application/json'
+        },
     };
-    return fetch('/journals', requestOptions).then(handleResponse);
+    return fetch(host + '/createJob?offset=' + filter.offset + '&limit=' + filter.limit, requestOptions).then(handleResponse);
 }
 
 function loadNext(filter) {
     const requestOptions = {
         method: 'POST',
-        body: filter,
+        body: JSON.stringify(filter.journalsFilter),
         headers: authHeader(),
     };
     return fetch('/journals', requestOptions).then(handleResponse);
-}
-
-function getById(id) {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
-
-    return fetch('/journal/' + id, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

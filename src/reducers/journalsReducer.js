@@ -3,8 +3,15 @@ import moment from "moment";
 
 
 const defaultFilter = {
-    startDate: moment().startOf('day').unix(),
-    stopDate: moment().endOf('day').unix(),
+    JournalingFilter: {
+        srcId: "",
+        srcType: null,
+        from: moment().startOf('day').unix(),
+        to: moment().endOf('day').unix(),
+        id: null,
+        showSuccessfulPings: false,
+        includeAllRelatedEvents: false,
+    },
     limit: journalConstants.PAGE_SIZE,
     offset: 0
 };

@@ -12,7 +12,7 @@ export const journalActions = {
 function loadJournals(filter) {
     return dispatch => {
         dispatch(request());
-
+        console.log("loadJ " + filter.journalsFilter);
         journalService.loadJournals(filter)
             .then(
                 journals => dispatch(success(journals, filter)),

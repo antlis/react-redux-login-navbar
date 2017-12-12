@@ -4,7 +4,6 @@ import {journalConstants} from "../constants/journalContstants";
 
 export const journalsActions = {
     loadJournals: loadJournals,
-    loadNext: loadNext,
     quickFilterChange: quickFilterChange,
     noMore: noMore
 };
@@ -39,32 +38,6 @@ function loadJournals(filter) {
 
 function noMore(filter) {
     return {type: journalConstants.NO_MORE_JOURNALS, filter};
-}
-
-function loadNext(oldFilter) {
-    return dispatch => {
-        //dispatch(request());
-        let filter = Object.assign({}, oldFilter, {
-            offset: oldFilter.offset + journalConstants.PAGE_SIZE,
-        });
-        journalService.loadJournals(filter)
-            .then(
-                journals => dispatch(success(journals, filter)),
-                error => dispatch(failure(error))
-            );
-    };
-
-    function success(journals, filter) {
-        if (journals.length < journalConstants.PAGE_SIZE) {
-            return {type: journalConstants.NO_MORE_JOURNALS, journals, filter};
-        } else {
-            return {type: journalConstants.LOAD_NEXT_SUCCESS, journals, filter: filter}
-        }
-    }
-
-    function failure(error) {
-        return {type: journalConstants.GETALL_FAILURE, error}
-    }
 }
 
 function quickFilterChange(quickFilter) {

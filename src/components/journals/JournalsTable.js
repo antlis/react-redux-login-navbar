@@ -19,7 +19,9 @@ class JournalsTable extends React.Component {
                                 <th>{lang.params}</th>
                             </tr>
                             </thead>
-                            {rows.length !== 0 && <JournalsRows/>}
+                            {
+                                rows.length > 0 && <JournalsRows/>
+                            }
                         </table>
                     </div>
                 </div>

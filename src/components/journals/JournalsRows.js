@@ -13,9 +13,10 @@ const count = 1000;
 class JournalsRows extends React.Component {
 
     loadMore() {
-        const {quickFilter, loadNext, filter} = this.props;
+        let {quickFilter, loadJournals, filter} = this.props;
         if (quickFilter.length === 0) {
-            loadNext(filter);
+            filter.offset = filter.offset + journalConstants.PAGE_SIZE;
+            loadJournals(filter);
         }
     }
 
@@ -30,7 +31,7 @@ class JournalsRows extends React.Component {
             }
             return quickFilter.indexOf(journal.type) !== -1
         }).map((journal, key) => {
-            if ((key) % pageSize === 0) {
+            if (key % pageSize === 0) {
                 let pageNumber = key / pageSize;
                 let pageCount = count / pageSize;
                 let firstRowNumber = pageNumber * pageSize + 1;
@@ -87,7 +88,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadNext: (filter) => dispatch(journalsActions.loadNext(filter)),
+        loadJournals: (filter) => dispatch(journalsActions.loadJournals(filter)),
         noMore: (filter) => dispatch(journalsActions.noMore(filter))
     }
 };

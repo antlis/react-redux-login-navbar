@@ -33,18 +33,13 @@ export function journals(state = initialState, action) {
             return Object.assign({}, state, {
                 loading: false,
                 filter: action.filter,
-                rows: action.journals
+                rows: action.filter.offset === 0 ? action.journals : state.rows.concat(action.journals)
             });
         case journalConstants.NO_MORE_JOURNALS:
             return Object.assign({}, state, {
                 hasMore: false,
                 loading: false,
                 filter: action.filter
-            });
-        case journalConstants.LOAD_NEXT_SUCCESS:
-            return Object.assign({}, state, {
-                filter: action.filter,
-                rows: state.rows.concat(action.journals)
             });
         case journalConstants.GETALL_FAILURE:
             return Object.assign({}, state, {

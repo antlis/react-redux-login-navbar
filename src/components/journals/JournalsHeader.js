@@ -13,6 +13,7 @@ class JournalsHeader extends React.Component {
             filterIsOpen: false,
         };
         this.toggleFilter = this.toggleFilter.bind(this);
+        this.refresh = this.refresh.bind(this);
     }
 
     toggleFilter() {
@@ -21,8 +22,14 @@ class JournalsHeader extends React.Component {
         });
     }
 
+    refresh(filter) {
+        const {loadJournals} = this.props;
+        filter.offset = 0;
+        loadJournals(filter);
+    }
+
     render() {
-        const {filter, quickFilter, lang, quickFilterChange, loadJournals, loading} = this.props;
+        const {filter, quickFilter, lang, quickFilterChange, loading} = this.props;
         return (
             <div className="panel-heading">
                 <div className="row">
@@ -38,26 +45,19 @@ class JournalsHeader extends React.Component {
                         }
                     </div>
                     <div className="pull-left">
-                        <Button type="button" className={"btn-info btn-xs smallOffsetLeft"}
+                        <Button type="button" className="btn-info btn-xs smallOffsetLeft"
                                 id="gwt-debug-journaling-refresh-button"
-                                onClick={() => loadJournals(filter)}
+                                onClick={() => this.refresh(filter)}
                                 disabled={loading}>
                             <span className="glyphicon glyphicon-refresh"/>
                             {lang.refresh}
                         </Button>
                     </div>
-                    <div style={{
-                        marginLeft: 10,
-                        marginRight: 10,
-                        float: 'left'
-                    }}>
+                    <div style={{marginLeft: 10, marginRight: 10, float: 'left'}}>
                         {loading ? <ClipLoader size={18} color='#49b6d6'/> : ""}
                     </div>
                     <div className="btn-group pull-right smallOffsetRight">
-                        <ToggleButtonGroup
-                            type="checkbox"
-                            value={quickFilter}
-                            onChange={quickFilterChange}>
+                        <ToggleButtonGroup type="checkbox" value={quickFilter} onChange={quickFilterChange}>
                             <ToggleButton className="btn btn-xs btn-default"
                                           value={journalConstants.AUTH}>{lang.quickFilter.authorization}</ToggleButton>
                             <ToggleButton className="btn btn-xs btn-default"

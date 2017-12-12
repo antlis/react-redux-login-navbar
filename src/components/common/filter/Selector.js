@@ -4,7 +4,7 @@ import {Button} from "react-bootstrap";
 
 export class Selector extends React.Component {
 
-  constructor(props) {
+    constructor(props) {
         super(props);
         this.state = {
             isOpen: false
@@ -18,8 +18,8 @@ export class Selector extends React.Component {
         })
     }
 
-    itemClick(name,value) {
-        this.props.onChange(name,value);
+    itemClick(name, value) {
+        this.props.onChange(name, value);
         this.toggle();
     }
 
@@ -54,9 +54,9 @@ export class Selector extends React.Component {
 }
 
 Selector.propTypes = {
-  items: PropTypes.array.isRequired,
-  label: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired
+    items: PropTypes.array.isRequired,
+    label: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired
 };

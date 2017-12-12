@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {journalActions} from "../../actions/index";
+import {journalsActions} from "../../actions/index";
 import {Button} from "react-bootstrap";
 import moment from "moment";
 import DatePicker from "../common/DatePicker";
@@ -50,7 +50,7 @@ class JournalsFilter extends React.Component {
         return {
             journalsFilter: {
                 srcId: "",
-                srcType: null,
+                srcType: this.state.srcType,
                 from: startDate.unix(),
                 to: endDate.unix(),
                 id: null,
@@ -74,7 +74,7 @@ class JournalsFilter extends React.Component {
 
     render() {
         const {lang} = this.props;
-        const {objType,srcType} = this.state;
+        const {objType, srcType} = this.state;
         return (
             <div style={{visibility: 'visible', position: 'absolute', overflow: 'visible'}} className="gwt-PopupPanel">
                 <div className="filter-popup animated fadeIn" style={{width: 600}}>
@@ -155,14 +155,14 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadJournals: (filter) => dispatch(journalActions.loadJournals(filter))
+        loadJournals: (filter) => dispatch(journalsActions.loadJournals(filter))
     }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(JournalsFilter)
 
 JournalsFilter.propTypes = {
-  loadJournals: PropTypes.func.isRequired,
-  page: PropTypes.object.isRequired,
-  toggleFilter: PropTypes.func.isRequired
+    loadJournals: PropTypes.func.isRequired,
+    lang: PropTypes.object.isRequired,
+    toggleFilter: PropTypes.func.isRequired
 };

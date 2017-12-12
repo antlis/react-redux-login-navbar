@@ -2,9 +2,9 @@ import React from "react";
 import JournalsFilter from "./JournalsFilter";
 import {Button, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
 import {connect} from "react-redux";
-import {journalActions} from "../../actions/index";
 import {journalConstants} from "../../constants/index";
-import {BarLoader} from "react-spinners";
+import {ClipLoader} from "react-spinners";
+import {journalsActions} from "../../actions/journalsActions";
 
 class JournalsHeader extends React.Component {
     constructor(props) {
@@ -46,6 +46,13 @@ class JournalsHeader extends React.Component {
                             {lang.refresh}
                         </Button>
                     </div>
+                    <div style={{
+                        marginLeft: 10,
+                        marginRight: 10,
+                        float: 'left'
+                    }}>
+                        {loading ? <ClipLoader size={18} color='#49b6d6'/> : ""}
+                    </div>
                     <div className="btn-group pull-right smallOffsetRight">
                         <ToggleButtonGroup
                             type="checkbox"
@@ -61,18 +68,6 @@ class JournalsHeader extends React.Component {
                                           value={journalConstants.OBJECT}>{lang.quickFilter.objectEvents}</ToggleButton>
                         </ToggleButtonGroup>
                     </div>
-                </div>
-                <div style={{
-                    width: '95%', marginTop: 2, position: 'absolute',
-                    left: 5,
-                    right: 5,
-                    marginLeft: 'auto',
-                    marginRight: 'auto'
-                }}>
-                    <BarLoader width={'100%'}
-                               color='#49b6d6'
-                               loading={loading}
-                    />
                 </div>
             </div>
         )
@@ -92,8 +87,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadJournals: (filter) => dispatch(journalActions.loadJournals(filter)),
-        quickFilterChange: (value) => dispatch(journalActions.quickFilterChange(value))
+        loadJournals: (filter) => dispatch(journalsActions.loadJournals(filter)),
+        quickFilterChange: (value) => dispatch(journalsActions.quickFilterChange(value))
     }
 };
 export default connect(mapStateToProps, mapDispatchToProps)(JournalsHeader)

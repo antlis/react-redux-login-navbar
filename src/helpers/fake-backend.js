@@ -48,9 +48,8 @@ export function configureFakeBackend() {
                     resolve({ok: true, json: () => responseJson});
                 }
 
-
                 // get journals
-                if (url.endsWith('/journals') && opts.method === 'POST') {
+                if (url.match('/createJob?') && opts.method === 'POST' || opts.method === 'OPTIONS') {
                     // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
                     resolve({ok: true, json: () => createJournals()});
                     return;

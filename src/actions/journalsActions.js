@@ -2,7 +2,7 @@ import {journalService} from "../services/journal.service";
 import {journalConstants} from "../constants/journalContstants";
 
 
-export const journalActions = {
+export const journalsActions = {
     loadJournals: loadJournals,
     loadNext: loadNext,
     quickFilterChange: quickFilterChange,
@@ -12,7 +12,6 @@ export const journalActions = {
 function loadJournals(filter) {
     return dispatch => {
         dispatch(request());
-        console.log("loadJ " + filter.journalsFilter);
         journalService.loadJournals(filter)
             .then(
                 journals => dispatch(success(journals, filter)),
@@ -48,7 +47,7 @@ function loadNext(oldFilter) {
         let filter = Object.assign({}, oldFilter, {
             offset: oldFilter.offset + journalConstants.PAGE_SIZE,
         });
-        journalService.loadNext(filter)
+        journalService.loadJournals(filter)
             .then(
                 journals => dispatch(success(journals, filter)),
                 error => dispatch(failure(error))

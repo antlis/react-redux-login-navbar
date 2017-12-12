@@ -1,9 +1,8 @@
 import {journalConstants} from "../constants/journalContstants";
 import moment from "moment";
 
-
 const defaultFilter = {
-    JournalingFilter: {
+    journalingFilter: {
         srcId: "",
         srcType: null,
         from: moment().startOf('day').unix(),

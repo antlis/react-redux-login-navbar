@@ -1,4 +1,4 @@
-import {journalActions} from "../../actions/index";
+import {journalsActions} from "../../actions/index";
 import React from "react";
 import {connect} from "react-redux";
 import ReduxInfiniteScroll from "../common/ReduxInfiniteScroll";
@@ -87,8 +87,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadNext: (filter) => dispatch(journalActions.loadNext(filter)),
-        noMore: (filter) => dispatch(journalActions.noMore(filter))
+        loadNext: (filter) => dispatch(journalsActions.loadNext(filter)),
+        noMore: (filter) => dispatch(journalsActions.noMore(filter))
     }
 };
 
@@ -96,8 +96,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(JournalsRows);
 
 JournalsRows.propTypes = {
     filter: PropTypes.shape({
-        from: PropTypes.number.isRequired,
-        to: PropTypes.number.isRequired,
+        JournalingFilter: PropTypes.shape({
+            from: PropTypes.number.isRequired,
+            to: PropTypes.number.isRequired,
+        }),
         limit: PropTypes.number.isRequired,
         offset: PropTypes.number.isRequired
     }),

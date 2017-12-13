@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 
 import {RowInfo} from "./RowInfo";
 import moment from "moment";
-import {journalConstants} from "../../../constants/journalContstants";
-import {journalsActions} from "../../../actions/journalsActions";
+import {journalConstants} from "../../../constants/index";
+import {journalsActions} from "../../../actions/index";
 
 const pageSize = journalConstants.PAGE_SIZE;
 const count = 1000;

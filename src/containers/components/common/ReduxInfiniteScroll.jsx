@@ -99,7 +99,7 @@ export default class ReduxInfiniteScroll extends React.Component {
     }
 
     renderLoader() {
-        return (this.props.loadingMore && this.props.showLoader) ? this.props.loader : undefined;
+        return (this.props.hasMore && this.props.showLoader) ? this.props.loader : undefined;
     }
 
     _assignHolderClass() {
@@ -185,7 +185,7 @@ ReduxInfiniteScroll.defaultProps = {
     horizontal: false,
     hasMore: true,
     loadingMore: false,
-    loader: <div style={{textAlign: 'center'}}>Loading...</div>,
+    loader: <div style={{textAlign: 'center', position: 'absolute', width: '100%'}}>Loading...</div>,
     showLoader: true,
     holderType: 'div',
     children: [],

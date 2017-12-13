@@ -1,11 +1,12 @@
-import {journalsActions} from "../../actions/index";
 import React from "react";
 import {connect} from "react-redux";
 import ReduxInfiniteScroll from "../common/ReduxInfiniteScroll";
 import PropTypes from "prop-types";
-import {journalConstants} from "../../constants/index";
+
 import {RowInfo} from "./RowInfo";
 import moment from "moment";
+import {journalConstants} from "../../../constants/journalContstants";
+import {journalsActions} from "../../../actions/journalsActions";
 
 const pageSize = journalConstants.PAGE_SIZE;
 const count = 1000;

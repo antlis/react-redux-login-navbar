@@ -39,10 +39,12 @@ export function journals(state = initialState, action) {
             return Object.assign({}, state, {
                 hasMore: false,
                 loading: false,
-                filter: action.filter
+                filter: action.filter,
+                rows: state.rows.concat(action.journals)
             });
         case journalConstants.GETALL_FAILURE:
             return Object.assign({}, state, {
+                loading: false,
                 error: action.error
             });
         case journalConstants.QUICK_FILTER_CHANGE:

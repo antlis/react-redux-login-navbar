@@ -1,5 +1,5 @@
 import * as React from "react";
-import JournalsRows from './JournalsRows';
+import JournalsRows from "./JournalsRows";
 import {connect} from "react-redux";
 
 class JournalsTable extends React.Component {

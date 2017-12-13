@@ -1,9 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import React from "react";
+import ReactDOM from "react-dom";
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import PropTypes from "prop-types";
 
-import {leftPosition, topPosition} from './utils/DOMPositionUtils';
+import {leftPosition, topPosition} from "./utils/DOMPositionUtils";
 
 export default class ReduxInfiniteScroll extends React.Component {
 

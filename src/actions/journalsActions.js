@@ -36,10 +36,10 @@ function loadJournals(filter) {
 
 }
 
-function noMore(filter) {
-    return {type: journalConstants.NO_MORE_JOURNALS, filter};
-}
-
 function quickFilterChange(quickFilter) {
     return {type: journalConstants.QUICK_FILTER_CHANGE, quickFilter: quickFilter}
+}
+
+function noMore(journals, filter) {
+    return {type: journalConstants.NO_MORE_JOURNALS, journals, filter};
 }

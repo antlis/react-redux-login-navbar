@@ -1,5 +1,5 @@
 // array in local storage for registered users
-import {journalConstants} from "../constants/journalContstants";
+import {journalConstants} from "../../constants/journalContstants";
 
 let users = JSON.parse(localStorage.getItem('users')) || [];
 

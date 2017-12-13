@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {journalsActions} from "../../actions/index";
 import {Button} from "react-bootstrap";
 import moment from "moment";
 import DatePicker from "../common/DatePicker";
-import {dateFormat, journalConstants} from "../../constants/index";
 import {Selector} from "../common/filter/Selector";
+import {dateFormat, journalConstants} from "../../../constants/index";
+import {journalsActions} from "../../../actions/index";
 
 
 const srcTypes = ['1', '2', '3', '4'];

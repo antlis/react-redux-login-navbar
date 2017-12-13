@@ -1,6 +1,6 @@
 import React from "react";
-import JournalsTable from "../components/journals/JournalsTable";
-import JournalsHeader from "../components/journals/JournalsHeader";
+import JournalsTable from "./components/journals/JournalsTable";
+import JournalsHeader from "./components/journals/JournalsHeader";
 
 export const Journals = () => {
         return (

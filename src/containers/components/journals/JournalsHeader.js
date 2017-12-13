@@ -2,9 +2,9 @@ import React from "react";
 import JournalsFilter from "./JournalsFilter";
 import {Button, ToggleButton, ToggleButtonGroup} from "react-bootstrap";
 import {connect} from "react-redux";
-import {journalConstants} from "../../constants/index";
 import {ClipLoader} from "react-spinners";
-import {journalsActions} from "../../actions/journalsActions";
+import {journalConstants} from "../../../constants/index";
+import {journalsActions} from "../../../actions/index";
 
 class JournalsHeader extends React.Component {
     constructor(props) {

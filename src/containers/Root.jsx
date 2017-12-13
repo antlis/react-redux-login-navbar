@@ -4,11 +4,11 @@ import {Provider} from "react-redux";
 import {history} from "../constants/history";
 import {Redirect, Route, Router, Switch} from "react-router-dom";
 import LoginPage from "./LoginPage";
-import {Devices, Groups, Orders, Sanctions, ServiceInfo, Users} from "../components/index";
+import {Devices, Groups, Orders, Sanctions, ServiceInfo, Users} from "./components/index";
 import {Journals} from "./JournalsPage";
 import DevTools from "./DevTools";
 import App from "./App";
-import {PrivateRoute} from "../components/common/PrivateRoute";
+import {PrivateRoute} from "./components/common/PrivateRoute";
 
 const Root = ({store}) => (
     <Provider store={store}>

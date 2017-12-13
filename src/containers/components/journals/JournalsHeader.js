@@ -24,8 +24,7 @@ class JournalsHeader extends React.Component {
 
     refresh(filter) {
         const {loadJournals} = this.props;
-        filter.offset = 0;
-        loadJournals(filter);
+        loadJournals(filter, true);
     }
 
     render() {
@@ -87,7 +86,7 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadJournals: (filter) => dispatch(journalsActions.loadJournals(filter)),
+        loadJournals: (filter, refresh) => dispatch(journalsActions.loadJournals(filter, refresh)),
         quickFilterChange: (value) => dispatch(journalsActions.quickFilterChange(value))
     }
 };

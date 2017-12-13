@@ -1,10 +1,11 @@
 const host = '';
 
 export const journalService = {
+    createJob,
     loadJournals
 };
 
-function loadJournals(filter) {
+function createJob(filter) {
     const requestOptions = {
         method: 'POST',
         body: JSON.stringify(filter.journalingFilter),
@@ -12,7 +13,18 @@ function loadJournals(filter) {
             'Content-Type': 'application/json'
         },
     };
-    return fetch(host + '/createJob?offset=' + filter.offset + '&limit=' + filter.limit, requestOptions).then(handleResponse);
+    return fetch(host + '/createJob', requestOptions).then(handleResponse);
+}
+
+function loadJournals(filter, taskDescriptor) {
+    const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify(taskDescriptor),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    };
+    return fetch(host + '/getJobResult?offset=' + filter.offset + '&limit=' + filter.limit, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

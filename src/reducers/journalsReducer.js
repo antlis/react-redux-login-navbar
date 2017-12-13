@@ -20,7 +20,8 @@ const initialState = {
     hasMore: true,
     rows: [],
     filter: defaultFilter,
-    quickFilter: []
+    quickFilter: [],
+    taskDescriptor: null
 };
 
 export function journals(state = initialState, action) {
@@ -28,6 +29,11 @@ export function journals(state = initialState, action) {
         case journalConstants.GETALL_REQUEST:
             return Object.assign({}, state, {
                 loading: true
+            });
+        case journalConstants.CREATE_JOB:
+            return Object.assign({}, state, {
+                filter: action.filter,
+                taskDescriptor: action.taskDescriptor
             });
         case journalConstants.GETALL_SUCCESS:
             return Object.assign({}, state, {

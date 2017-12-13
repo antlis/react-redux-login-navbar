@@ -29,7 +29,7 @@ class JournalsFilter extends React.Component {
     onApplyClicked() {
         if (this.dateIsValid()) {
             let filter = this.createFilter();
-            this.props.loadJournals(filter);
+            this.props.loadJournals(filter, true);
             this.props.toggleFilter();
         }
     }

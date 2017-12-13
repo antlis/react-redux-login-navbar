@@ -8,10 +8,19 @@ export const journalsActions = {
     noMore: noMore
 };
 
-function loadJournals(filter) {
+function loadJournals(filter, refresh) {
     return dispatch => {
         dispatch(request());
-        journalService.loadJournals(filter)
+        let taskDescriptor = filter.taskDescriptor;
+        if (refresh || !taskDescriptor) {
+            filter.offset = 0;
+            taskDescriptor = journalService.createJob(filter)
+                .then(
+                    taskDescriptor => dispatch(createJob(filter, taskDescriptor)),
+                    error => dispatch(failure(error))
+                );
+        }
+        journalService.loadJournals(filter, taskDescriptor)
             .then(
                 journals => dispatch(success(journals, filter)),
                 error => dispatch(failure(error))
@@ -20,6 +29,11 @@ function loadJournals(filter) {
 
     function request() {
         return {type: journalConstants.GETALL_REQUEST}
+    }
+
+    function createJob(filter, taskDescriptor) {
+        filter.taskDescriptor = taskDescriptor;
+        return {type: journalConstants.CREATE_JOB, filter}
     }
 
     function success(journals) {

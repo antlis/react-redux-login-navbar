@@ -26,7 +26,8 @@ export class Selector extends React.Component {
     render() {
         let list = this.props.items.map((item) => {
             let boundItemClick = this.itemClick.bind(this, this.props.name, item);
-            return <li key={item} onClick={boundItemClick}>{item}</li>
+            return <li style={{padding: '5px 15px'}} key={item} onClick={boundItemClick}>{item}</li>
+
         });
         return (
             <div>
@@ -40,14 +41,14 @@ export class Selector extends React.Component {
                            <span className="caret"/>
                         </Button>
                     </span>
+                    {
+                        this.state.isOpen &&
+                        <ul className="dropdown-menu dropdown-menu-right"
+                            style={{display: 'block', width: '100%'}}>
+                            {list}
+                        </ul>
+                    }
                 </div>
-                {
-                    this.state.isOpen &&
-                    <ul role="menu" className="dropdown-menu"
-                        style={{display: 'block', width: '96.5%', marginLeft: 10}}>
-                        {list}
-                    </ul>
-                }
             </div>
         )
     }

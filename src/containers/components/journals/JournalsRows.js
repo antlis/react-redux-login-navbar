@@ -2,19 +2,15 @@ import React from "react";
 import {connect} from "react-redux";
 import ReduxInfiniteScroll from "../common/ReduxInfiniteScroll";
 import PropTypes from "prop-types";
-
-import {RowInfo} from "./RowInfo";
-import moment from "moment";
 import {journalConstants} from "../../../constants/index";
 import {journalsActions} from "../../../actions/index";
-
-const pageSize = journalConstants.PAGE_SIZE;
-const count = 1000;
+import {addPageInfo, addRows} from "./helpers/RowHelper";
 
 class JournalsRows extends React.Component {
 
     loadMore() {
         let {quickFilter, loadJournals, filter} = this.props;
+
         if (quickFilter.length === 0) {
             filter.offset = filter.offset + journalConstants.PAGE_SIZE;
             loadJournals(filter);
@@ -27,39 +23,10 @@ class JournalsRows extends React.Component {
         let journalsRows = [];
 
         rows.filter((journal) => {
-            if (quickFilter.length === 0) {
-                return true;
-            }
-            return quickFilter.indexOf(journal.type) !== -1
+            return quickFilter.length === 0 ? true : quickFilter.indexOf(journal.type) !== -1
         }).map((journal, key) => {
-            if (key % pageSize === 0) {
-                let pageNumber = key / pageSize;
-                let pageCount = count / pageSize;
-                let firstRowNumber = pageNumber * pageSize + 1;
-                let lastRowNumber = pageNumber * pageSize + pageSize;
-
-                journalsRows.push(
-                    <tr style={{height: 0}} key={key}>
-                        <td colSpan="5" className="separator">
-                            {`Страница ${pageNumber + 1} из ${pageCount} (Записи ${firstRowNumber} - ${lastRowNumber} из ${count})`}
-                        </td>
-                    </tr>
-                );
-            }
-            journalsRows.push(
-                <tr key={journal.id}>
-                    <td>{moment.unix(journal.time).format('DD.MM.YYYY HH:mm:ss')}</td>
-                    <td>{journal.type}</td>
-                    <td>{journal.source}</td>
-                    <td><i className="glyphicon glyphicon-ok-sign activeStatus"
-                           data-toggle="tooltip"
-                           data-placement="right" title="Успешно"/>
-                    </td>
-                    <td>
-                        <RowInfo journal={journal}/>
-                    </td>
-                </tr>
-            )
+            addPageInfo(key, journalsRows);
+            addRows(journalsRows, journal);
         });
         return journalsRows;
     }
